@@ -1,0 +1,66 @@
+@media (max-width: 768px) {
+    .header__contact {
+        display: none;
+    }
+
+    .header__top {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .header__main--btn {
+        display: none;
+    }
+
+    .header__main--bars {
+        display: block;
+    }
+
+    .header__main {
+        height: 80px;
+    }
+
+    .header__main--search {
+        display: none;
+    }
+
+    .header__menu--wrap {
+        display: none;
+    }
+
+    .header__menu--list {
+        display: none;
+        li a {
+            color: #000;
+        }
+    }
+
+    .carousel__extra {
+        display: none;
+    }
+
+    .carousel {
+        .carousel__main {
+            height: 258px;
+        }
+    }
+
+    .sales .sales__img {
+        height: 110px;
+    }
+
+    .menu__collapse {
+        display: none;
+    }
+    .filter {
+        display: none;
+    }
+
+    div>.menu__bar {
+        display: block;
+    }
+}
+
+// @media (max-width: 375px) {
+
+// }
