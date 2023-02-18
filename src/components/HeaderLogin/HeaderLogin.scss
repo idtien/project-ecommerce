@@ -1,0 +1,16 @@
+.header__login {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .header__login--img {
+        width: 340px;
+    }
+
+    .header__login--help {
+        font-size: 18px;
+        color: #EE4D2D;
+        cursor: pointer;
+    }
+}

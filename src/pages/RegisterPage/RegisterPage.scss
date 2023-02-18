@@ -1,0 +1,44 @@
+
+
+.form__register {
+    background-color: #EE4D2D;
+    padding: 0 200px;
+
+    .form__register--logo {
+        img {
+            width: 500px;
+            margin-left: 50px;
+        }
+
+        p {
+            color: #fff;
+            font-size: 30px;
+            text-align: center;
+            margin-top: -100px;
+        }
+    }
+
+}
+
+
+
+.form__register--input {
+    background-color: #fff;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 100px 0;
+    border-radius: 10px;
+    .form__register--input2 {
+        margin-top: 20px;
+    }
+    
+}
+.form__register--btns {
+    margin-left: -80px !important;
+    // display: flex;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: bold;
+}
