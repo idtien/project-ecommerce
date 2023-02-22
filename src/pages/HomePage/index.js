@@ -15,7 +15,7 @@ const lg = { span: 16 }
 const HomePage = () => {
     return (
         <>
-            <Row gutter={[16]}>
+            <Row gutter={[]}>
                 <Col xs={xs} sm={sm} md={md} lg={lg} className='carousel'>
                     <Carousel autoplay draggable className='carousel'>
                         <div>
@@ -33,7 +33,7 @@ const HomePage = () => {
                     </Carousel>
                 </Col>
                 <Col span={8}>
-                    <Row gutter={[16, 16]}>
+                    <Row gutter={[0, 16]}>
                         <Col span={24}>
                             <div>
                                 <h3 className='carousel__extra'> </h3>

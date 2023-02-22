@@ -1,7 +1,6 @@
 import React from 'react'
-import { DownOutlined } from '@ant-design/icons';
-import { Col, Dropdown, Row, Space, message, Collapse } from 'antd'
-import  './Shop.scss'
+import { Col, Row, message, Collapse, Slider } from 'antd'
+import './Shop.scss'
 import Product from '../Product';
 const { Panel } = Collapse;
 
@@ -28,11 +27,8 @@ const Shop = () => {
 
     return (
         <>
-            <Row>
-
-            </Row>
-            <Row  >
-                <Col span={4} offset={1}>
+            <Row className='shop' >
+                <Col span={4} offset={0}>
                     {/* <div className='menu__bar'>
                         <MenuOutlined />
                     </div> */}
@@ -60,28 +56,23 @@ const Shop = () => {
                                 </ul>
                             </Panel>
                         </Collapse>
+                        <br />
+                        <Col span={20} offset={0} >
+                            <div className='filter'>
+                                Around Price: USD
+                                <Slider
+                                    range
+                                    max={10000}
+                                    step={10}
+                                    defaultValue={[0, 400]}
+                                // onChange={onChange}
+                                // onAfterChange={onAfterChange}
+                                />
+                            </div>
+                        </Col>
                     </div>
-                    <br />
-                    <Col span={20} offset={0} >
-                        <div className='filter'>
-                            <Dropdown
-                                menu={{
-                                    items,
-                                    onClick,
-                                }}
-                            >
-                                <a href='/' onClick={(e) => e.preventDefault()}>
-                                    <Space style={{ fontWeight: 'bold', fontSize: '20px' }}>
-                                        Filter by:
-                                        <DownOutlined />
-                                    </Space>
-                                </a>
-                            </Dropdown>
-                        </div>
-                    </Col>
                 </Col>
-
-                <Col span={18}>
+                <Col span={20}>
                     <Product />
                 </Col>
             </Row>

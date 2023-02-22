@@ -3,13 +3,20 @@
         display: none;
     }
 
+
     .header__top {
         display: flex;
         justify-content: flex-end;
     }
 
     .header__main--btn {
-        display: none;
+        font-size: 12px;
+        align-items: center;
+
+        div {
+            display: none;
+        }
+
     }
 
     .header__main--bars {
@@ -30,6 +37,7 @@
 
     .header__menu--list {
         display: none;
+
         li a {
             color: #000;
         }
@@ -52,6 +60,7 @@
     .menu__collapse {
         display: none;
     }
+
     .filter {
         display: none;
     }

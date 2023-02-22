@@ -1,5 +1,5 @@
 import { DeleteOutlined, HeartOutlined, ShoppingCartOutlined } from '@ant-design/icons';
-import { Button, Col, Row, Table, Tag, Tooltip } from 'antd';
+import { Button, Col, Row, Table, Tag, Tooltip, Typography } from 'antd';
 import React from 'react'
 
 import './WishList.scss'
@@ -104,10 +104,8 @@ const WishListPage = () => {
         <>
             {/* style={{ display:'flex', alignItems:'center', justifyContent:'center', color: '#ee4d2d' }} */}
             <Row gutter={[0, 16]}>
-                <Col span={6} offset={9} >
-                    <Tag className='wishList__tag' icon={<HeartOutlined />} >
-                        Wish List
-                    </Tag>
+                <Col span={10} offset={10} >
+                <Typography.Title>WISH LIST</Typography.Title>
                 </Col>
                 <Col xs={xs} sm={sm} md={md} lg={lg}>
                     {/* style={{ backgroundColor: 'red', width: '100%', height: '100vh' }} */}

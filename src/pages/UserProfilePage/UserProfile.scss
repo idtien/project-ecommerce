@@ -1,0 +1,23 @@
+.userProfile {
+    padding: 50px 0;
+
+    .userProfile__avatar {
+        text-align: center;
+    }
+
+    .userProfile__avatar--img {}
+
+    .userProfile__avatar--btn {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.userProfile__form {
+    color: red;
+
+    .userProfile__form--btn{
+        
+    }
+}
