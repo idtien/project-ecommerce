@@ -1,0 +1,172 @@
+{
+    "user": [
+        {
+            "id": 1,
+            "fullname": "Pham Hoang Thanh Tien",
+            "username": "tien123",
+            "password": "123456",
+            "phone": "0123456789",
+            "email": "tien@gmail.com",
+            "address": "Hue, Viet Nam",
+            "isAdmin": true
+        },
+        {
+            "id": 2,
+            "fullname": "ADMIN",
+            "username": "admin",
+            "password": "admin",
+            "phone": "0123456789",
+            "email": "admin@gmail.com",
+            "address": "Hue, Viet Nam",
+            "isAdmin": true
+        },
+        {
+            "id": 3,
+            "fullname": "Customer",
+            "username": "customer",
+            "password": "123456",
+            "phone": "0123456789",
+            "email": "customer@gmail.com",
+            "address": "Hue, Viet Nam",
+            "isAdmin": false
+        }
+    ],
+    "products": [
+        {
+            "id": 1,
+            "name": "Iphone 14 Promax",
+            "category": "Phone",
+            "price": 200,
+            "priceSale": 100,
+            "rating": 4,
+            "images": [
+                "https://cdn.tgdd.vn/Products/Images/42/289691/iphone-14-pro-vang-thumb-600x600.jpg"
+            ],
+            "tag": [
+                "new",
+                "sale"
+            ],
+            "brand": "Apple",
+            "description": "New Iphone"
+        },
+        {
+            "id": 2,
+            "name": "T-shirt",
+            "category": "Clothes",
+            "price": 200,
+            "priceSale": 100,
+            "rating": 5,
+            "images": [
+                "https://media.gucci.com/style/HEXEEEFEC_Center_0_0_800x800/1666959314/718033_ZAK3J_4699_001_100_0000_Light-Gucci-HA-HA-HA-dove-heart-shirt.jpg",
+                "https://media.gucci.com/style/HEXEEEFEC_Center_0_0_2400x2400/1666959316/718033_ZAK3J_4699_002_100_0000_Light-Gucci-HA-HA-HA-dove-heart-shirt.jpg"
+            ],
+            "tag": [
+                "new",
+                "sale"
+            ],
+            "brand": "Gucci",
+            "description": "New shirt"
+        },
+        {
+            "id": 3,
+            "name": "Laptop Surface",
+            "category": "technological",
+            "price": 200,
+            "priceSale": 100,
+            "rating": 4,
+            "images": [
+                "https://www.laptopvip.vn/images/thumbnails/1100/900/detailed/10/microsoft_surface_pro_x_01.png.png",
+                "https://www.laptopvip.vn/images/thumbnails/1100/900/detailed/10/microsoft_surface_pro_x_01.png.png",
+                "https://www.laptopvip.vn/images/thumbnails/1100/900/detailed/10/microsoft_surface_pro_x_01.png.png"
+            ],
+            "tag": [
+                "new",
+                "sale"
+            ],
+            "brand": "microsoft",
+            "description": "New laptop"
+        }
+    ],
+    "orders": [
+        {
+            "codeOrder": 123123123,
+            "id": 1,
+            "idUser": 1,
+            "cart": [
+                {
+                    "id": 1,
+                    "name": "Iphone 14 Promax",
+                    "category": "Phone",
+                    "price": 200,
+                    "priceSale": 100,
+                    "rating": 4,
+                    "images": [
+                        "https://cdn.tgdd.vn/Products/Images/42/289691/iphone-14-pro-vang-thumb-600x600.jpg"
+                    ],
+                    "tag": [
+                        "new",
+                        "sale"
+                    ],
+                    "brand": "Apple",
+                    "description": "New Iphone",
+                    "quantity": 1
+                },
+                {
+                    "id": 2,
+                    "name": "T-shirt",
+                    "category": "Clothes",
+                    "price": 200,
+                    "priceSale": 100,
+                    "rating": 5,
+                    "images": [
+                        "https://media.gucci.com/style/HEXEEEFEC_Center_0_0_800x800/1666959314/718033_ZAK3J_4699_001_100_0000_Light-Gucci-HA-HA-HA-dove-heart-shirt.jpg",
+                        "https://media.gucci.com/style/HEXEEEFEC_Center_0_0_2400x2400/1666959316/718033_ZAK3J_4699_002_100_0000_Light-Gucci-HA-HA-HA-dove-heart-shirt.jpg"
+                    ],
+                    "tag": [
+                        "new",
+                        "sale"
+                    ],
+                    "brand": "Gucci",
+                    "description": "New shirt",
+                    "quantity": 2
+                }
+            ],
+            "totalMonney": 600,
+            "paymentMethod": "whenReceive",
+            "fullname": "Pham Hoang Thanh Tien",
+            "email": "tien@gmail.com",
+            "phone": "0123456789",
+            "address": "Hue, Viet Nam",
+            "description": "Please deliver during office hours"
+        }
+    ],
+    "comments": [
+        {
+            "id": 1,
+            "idUser": 1,
+            "idProduct": 1,
+            "nameCmt": "Pham Hoang Thanh Tien",
+            "rating": 5,
+            "contentCmt": "Best product",
+            "avatar": "https://static.vecteezy.com/system/resources/previews/009/734/564/original/default-avatar-profile-icon-of-social-media-user-vector.jpg"
+        },
+        {
+            "id": 2,
+            "idUser": 1,
+            "idProduct": 3,
+            "nameCmt": "Pham Hoang Thanh Tien",
+            "rating": 5,
+            "contentCmt": "Best product",
+            "avatar": "https://static.vecteezy.com/system/resources/previews/009/734/564/original/default-avatar-profile-icon-of-social-media-user-vector.jpg"
+        },
+        {
+            "id": 3,
+            "idUser": 2,
+            "idProduct": 2,
+            "nameCmt": "ADMIN",
+            "rating": 5,
+            "contentCmt": "Best product",
+            "avatar": "https://static.vecteezy.com/system/resources/previews/009/734/564/original/default-avatar-profile-icon-of-social-media-user-vector.jpg"
+        }
+    ]
+}

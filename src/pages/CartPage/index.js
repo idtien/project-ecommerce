@@ -1,8 +1,11 @@
 import { DeleteOutlined, ShoppingCartOutlined } from '@ant-design/icons'
-import { Button, Col, Divider, Radio, Row, Table, Tag, Tooltip } from 'antd'
-import React from 'react'
+import { Button, Col, Divider, Form, Input, Modal, Radio, Row, Table, Tag, Tooltip, Typography } from 'antd'
+import React, { useState } from 'react'
 import './CartPage.scss'
 import logoOrange from '../../assets/images/logo_part2_orange.png'
+import AcceptPayment from '../../components/AcceptPayment'
+import { Link } from 'react-router-dom'
+import TextArea from 'antd/es/input/TextArea'
 
 
 const xs = { span: 24, offset: 0 }
@@ -53,7 +56,7 @@ const CartPage = () => {
             render: () => {
                 return (
                     <Tooltip title="Delete" >
-                        <Button><DeleteOutlined style={{ color: 'red' }}  /></Button>
+                        <Button><DeleteOutlined style={{ color: 'red' }} /></Button>
                     </Tooltip>
                 )
             },
@@ -95,13 +98,13 @@ const CartPage = () => {
         },
 
     ]
+
+    const [acceptPayment, setAcceptPayment] = useState(false)
     return (
         <>
             <Row gutter={[0, 16]}>
-                <Col span={22} offset={1} >
-                    <Tag className='cart__tag' icon={<ShoppingCartOutlined />} >
-                        List of products you want to buy
-                    </Tag>
+                <Col span={6} offset={9} >
+                    <Typography.Title>CART</Typography.Title>
                 </Col>
                 <Col xs={xs} sm={sm} md={md} lg={lg}>
                     {/* style={{ backgroundColor: 'red', width: '100%', height: '100vh' }} */}
@@ -127,11 +130,114 @@ const CartPage = () => {
                         </Radio.Group>
                         <Divider />
                         <div className='cart__total--submit' >
-                            <Button>Submit</Button>
-                            <Button>Back</Button>
+                            <Button onClick={() => { setAcceptPayment(true) }}>Order</Button>
+                            <Button>Continued Shopping</Button>
                         </div>
                     </div>
                 </Col>
+
+                {acceptPayment && <Modal
+                    // title="Please Enter Your Information"
+                    centered
+                    onOk={() => setAcceptPayment(false)}
+                    onCancel={() => setAcceptPayment(false)}
+                    open={acceptPayment}
+                    width={600}
+                >
+                    <Form className='form__register--input2'
+                        name="basic"
+                        labelCol={{
+                            span: 24
+                        }}
+                        wrapperCol={{
+                            span: 24
+                        }}
+                        style={{
+                            maxWidth: 600,
+                        }}
+                        initialValues={{
+                            remember: true,
+                        }}
+                        // onFinish={onFinish}
+                        // onFinishFailed={onFinishFailed}
+                        autoComplete="off"
+                    >
+                        <h2 style={{ textAlign: 'center' }}>Purchase Confirmation</h2>
+                        <Form.Item
+                            label="Full Name"
+                            name="fullname"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please enter full name!',
+                                },
+                            ]}
+                        >
+                            <Input placeholder="Full Name" />
+                        </Form.Item>
+
+                        <Form.Item
+                            label="Phone Number"
+                            name="phone"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please enter your phone number!',
+                                },
+                            ]}
+                        >
+                            <Input placeholder="Phone Number" />
+                        </Form.Item>
+
+                        <Form.Item
+                            label="Email"
+                            name="email"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please enter your email!',
+                                },
+                            ]}
+                        >
+                            <Input placeholder="Email address" />
+                        </Form.Item>
+
+                        <Form.Item
+                            label="Address"
+                            name="address"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please enter your address!',
+                                },
+                            ]}
+                        >
+                            <Input placeholder="Your Address" />
+                        </Form.Item>
+
+
+
+                        <Form.Item
+                            label="Description"
+                            name="description"
+                            rules={[
+                                {
+                                    required: false,
+                                },
+                            ]}
+                        >
+                            <TextArea
+                                showCount
+                                maxLength={100}
+                                style={{
+                                    height: 120,
+                                    resize: 'none',
+                                }}
+                                placeholder="Type some description"
+                            />
+                        </Form.Item>
+                    </Form>
+                </Modal>}
             </Row>
         </>
     )

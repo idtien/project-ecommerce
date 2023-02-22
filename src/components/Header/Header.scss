@@ -12,7 +12,6 @@
     padding: 0 50px;
 }
 
-
 .header__contact {
     cursor: pointer;
     font-size: 16px;
@@ -71,7 +70,7 @@
 }
 
 .header__menu--wrap {
-    background-color: #000;
+    background-color: #ee4d2d;
     padding: 1px;
 }
 
@@ -85,7 +84,7 @@
         align-items: center;
         justify-content: space-around;
         list-style-type: none;
-        font-size: 24px;
+        font-size: 20px;
         font-weight: bold;
 
         & li a {
@@ -102,7 +101,6 @@
 
         & li:hover {
             cursor: pointer;
-
             transition: .5s;
         }
     }
@@ -122,18 +120,15 @@
     }
 }
 
-.header__menu--list {}
-
 .header__menu--active {
     color: #000;
 }
 
 
-
-
-
-// header__menu--list
-
-// .header__menu--list li:hover {
-//     color: red;
-// }
+.header__user {
+    width: 150px;
+    font-size: 24px;
+    a {
+     color: black
+    }
+}
