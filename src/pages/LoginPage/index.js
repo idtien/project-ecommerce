@@ -1,15 +1,77 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Col, Form, Input, Row } from 'antd'
-import { Link } from 'react-router-dom'
-
+import { Link, useNavigate } from 'react-router-dom'
 
 import { ROUTE_URL } from '../../constants/routingUrl'
-import './LoginPage.scss'
+import { useDispatch, useSelector } from 'react-redux'
+import { actReLogin, fetchLogin } from '../../redux/features/User/userSlice'
+
+import { ToastContainer, toast } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
+
 import logoLogin2 from '../../assets/images/logo_part2.png'
+import './LoginPage.scss'
+import { fetchAllProduct } from '../../redux/features/Product/productSlice'
+
 
 const LoginPage = () => {
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const { isLoading, isLogged, accessToken } = useSelector(state => state.users)
+
+    const [inputDataLogin, setInputDataLogin] = useState({
+        email: '',
+        password: ''
+    })
+    
+    const handleSubmit = (e) => {
+        if (!isLogged) {
+            toast.error('Please check email or password!!!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+        }
+        dispatch(fetchLogin(inputDataLogin))
+    }
+
+    useEffect(() => {
+        if (isLogged) {
+            navigate('/')
+        }
+    }, [isLogged])
+
+
+    const handleLoginForm = (e) => {
+        const { name, value } = e.target
+        setInputDataLogin({
+            ...inputDataLogin,
+            [name]: value
+        })
+
+    }
+
     return (
         <>
+        <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                limit={1}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
             <Row>
                 <Col span={24}>
                     <div className='form__login'>
@@ -33,12 +95,10 @@ const LoginPage = () => {
                                     initialValues={{
                                         remember: true,
                                     }}
-                                    // onFinish={onFinish}
-                                    // onFinishFailed={onFinishFailed}
                                     autoComplete="off"
                                 >
-                                    <h2>LOGIN</h2>
 
+                                    <h2>LOGIN</h2>
                                     <Form.Item
                                         label="Username"
                                         name="username"
@@ -49,7 +109,7 @@ const LoginPage = () => {
                                             },
                                         ]}
                                     >
-                                        <Input placeholder="Email/Phone Number/Username" />
+                                        <Input placeholder="Email/Phone Number/Username" name="email" value={inputDataLogin.username} onChange={handleLoginForm} />
                                     </Form.Item>
 
                                     <Form.Item
@@ -62,19 +122,8 @@ const LoginPage = () => {
                                             },
                                         ]}
                                     >
-                                        <Input.Password placeholder="Password"/>
+                                        <Input.Password placeholder="Password" name='password' value={inputDataLogin.password} onChange={handleLoginForm} />
                                     </Form.Item>
-
-                                    {/* <Form.Item
-                                        name="remember"
-                                        valuePropName="checked"
-                                        wrapperCol={{
-                                            offset: 8,
-                                            span: 16,
-                                        }}
-                                    >
-                                        <Checkbox>Remember me</Checkbox>
-                                    </Form.Item> */}
 
                                     <Form.Item
                                         wrapperCol={{
@@ -83,12 +132,12 @@ const LoginPage = () => {
                                         }}
                                     >
                                         <div className='form__login--btns'>
-                                            <Button type="primary" htmlType="submit">
+                                            <Button type="primary" htmlType="submit" onClick={handleSubmit}>
                                                 Login
                                             </Button>
+
                                             <Button type="link">
-                                                
-                                            <Link to={ROUTE_URL.REGISTER}>You don't have account? Register</Link>
+                                                <Link to={ROUTE_URL.REGISTER}>You don't have account? Register</Link>
                                             </Button>
                                         </div>
                                     </Form.Item>

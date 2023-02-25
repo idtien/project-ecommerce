@@ -1,12 +1,33 @@
-import { CarOutlined, HeartOutlined, LeftOutlined, RightOutlined, ShoppingCartOutlined } from '@ant-design/icons'
-import { Avatar, Button, Card, Carousel, Col, Divider, Form, Image, Input, InputNumber, Rate, Row, Space, Typography } from 'antd'
+import React, { useEffect, useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
+
+import { CarOutlined, HeartOutlined, ShoppingCartOutlined } from '@ant-design/icons'
+import { Avatar, Button, Card, Carousel, Col, Divider, Form, Image, InputNumber, Rate, Row, Space, Tag, Typography } from 'antd'
 import Meta from 'antd/es/card/Meta'
 import TextArea from 'antd/es/input/TextArea'
-import React, { useRef } from 'react'
+
+import useGoToTop from '../../hooks/useGoToTop'
+
 import './ProductDetail.scss'
+import { actGetProductById } from '../../redux/features/Product/productSlice'
+
 
 const ProductDetails = () => {
+  useGoToTop()
   const ref = useRef()
+  const params = useParams()
+  const dispatch = useDispatch()
+
+
+  const { product } = useSelector(state => state.products)
+  console.log(params);
+
+  useEffect(()=>{
+    dispatch(actGetProductById(params.id))
+  }, [params.id])
+
+
   const contentStyle = {
     margin: 0,
     height: '500px',
@@ -15,7 +36,16 @@ const ProductDetails = () => {
     textAlign: 'center',
     background: '#364d79',
   };
+  let color = ''
 
+  if (product?.category === 'technological') {
+    color = '#f5222d'
+  } else if (product?.category === 'clothes') {
+    color = '#52c41a'
+  } else if (product?.category === 'jewelry') {
+    color = '#69b1ff'
+  }
+  
 
   return (
     <>
@@ -23,53 +53,40 @@ const ProductDetails = () => {
         <Col xs={{ span: 24, offset: 0 }} sm={{ span: 24, offset: 0 }} md={{ span: 20, offset: 2 }} lg={{ span: 8, offset: 2 }}>
           <div className='productDetails__img'>
             <Carousel
+              draggable
+              autoplay
               dots={false}
               ref={ref}
             >
-              <div >
-                <Image
-                  style={contentStyle}
-                  width={'100%'}
-                  src="https://img.vn/uploads/thuvien/singa-png-20220719150401Tdj1WAJFQr.png"
-                />
-              </div>
-              <div >
-                <Image
-                  style={contentStyle}
-                  width={'100%'}
-                  src="https://images.pexels.com/photos/1408221/pexels-photo-1408221.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                />
-              </div>
-              <div >
-                <Image
-                  style={contentStyle}
-                  width={'100%'}
-                  src="https://onlinejpgtools.com/images/examples-onlinejpgtools/orange-flower.jpg"
-                />
-              </div>
-              <div >
-                <Image
-                  style={contentStyle}
-                  width={'100%'}
-                  src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-                />
-              </div>
+              {product?.images?.map((img, index) => {
+                return <div key={index}>
+                  <Image
+                    style={contentStyle}
+                    width={'100%'}
+                    src={img}
+                  />
+                </div>
+              })}
+
             </Carousel>
             <div style={{ textAlign: 'center' }}>
               <Space>
-                <Button onClick={() => {
-                  ref.current.prev()
-                }}>
-                  <LeftOutlined />
-                  Prev Photo
-                </Button>
-
-                <Button onClick={() => {
-                  ref.current.next()
-                }}>
-                  Next Photo
-                  <RightOutlined />
-                </Button>
+                {product?.images?.map((img, index) => {
+                  return (
+                    <div
+                      className='productDetails__img--select'
+                      key={index}
+                      onClick={() => {
+                        ref.current.goTo(index)
+                      }}>
+                      <Image
+                        preview={false}
+                        width={'100%'}
+                        src={img}
+                      />
+                    </div>
+                  )
+                })}
               </Space>
             </div>
           </div>
@@ -77,17 +94,17 @@ const ProductDetails = () => {
         <Col xs={{ span: 24, offset: 0 }} sm={{ span: 24, offset: 0 }} md={{ span: 22, offset: 1 }} lg={{ span: 10, offset: 1 }}>
           <div className='productDetails__details'>
             <div className='productDetails__details--title'>
-              Tổng hợp Khẩu trang KF94 dễ thở, không gây bí, không gây mụn, ngăn ngừa khói bụi, bảo vệ đường hô hấp bạn.
+              {product?.name}
             </div>
             <div className='productDetails__details--rate'>
               <div className='productDetails__details--star'>
                 <span>Rates: </span>
-                <Rate disabled defaultValue={2} />
+                <Rate disabled defaultValue={product?.rating} />
               </div>
               <Divider type="vertical" style={{ height: '20px', border: '1px solid #000' }} />
               <div className='productDetails__details--sold'>
                 <span>Sold: </span>
-                12k
+                ...
               </div>
             </div>
             <Divider />
@@ -97,10 +114,13 @@ const ProductDetails = () => {
                   Price:
                 </strong>
                 <span className='productDetails__details--infoPrice'>
-                  $100
+                  ${product?.priceSale}
+                </span>
+                <span className='productDetails__details--infoPriceSale'>
+                  ${product?.price}
                 </span>
               </div>
-              <div>
+              {/* <div>
                 <strong>
                   Size:
                 </strong>
@@ -119,21 +139,23 @@ const ProductDetails = () => {
                     </Avatar>
                   </Space>
                 </span>
-              </div>
-              <div>
+              </div> */}
+              {/* <div>
                 <strong>
                   Color:
                 </strong>
                 <span className='productDetails__details--infoColor'>
                   <Avatar shape="square" size='large' style={{ backgroundColor: 'red' }} />
                 </span>
-              </div>
+              </div> */}
               <div>
                 <strong>
                   Type:
                 </strong>
                 <span className='productDetails__details--infoType'>
-                  Computer
+                  <Tag color={color} key={product?.id}>
+                    {product?.category}
+                  </Tag>
                 </span>
               </div>
               <div>
@@ -165,16 +187,7 @@ const ProductDetails = () => {
                 bordered
               >
                 <p>
-                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                  totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-                  dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,
-                  sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
-                  est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius
-                  modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima
-                  veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid
-                  ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea
-                  voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem
-                  eum fugiat quo voluptas nulla pariatur
+                  {product?.description}
                 </p>
               </Card>
             </div>

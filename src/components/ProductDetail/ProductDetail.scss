@@ -3,7 +3,19 @@
 
     .productDetails__img {
         width: 100%;
-        // background-color: red;
+
+        &--select {
+            img {
+                max-width: 100px;
+
+                &:hover {
+                    border: 2px solid red;
+                    opacity: .5;
+                }
+            }
+
+        }
+
     }
 
     .productDetails__details {
@@ -11,8 +23,9 @@
         margin-left: 16px;
 
         &--title {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 500;
+            color: #ee4d2d;
         }
 
         &--rate {
@@ -45,7 +58,18 @@
             color: red;
             font-size: 24px;
             font-weight: 500;
+        }
 
+        &--infoPriceSale {
+            margin-left: 8px;
+            color: #aaa;
+            font-size: 20px;
+            text-decoration: line-through;
+        }
+
+        &--infoType {
+            text-transform: uppercase;
+            font-weight: bold;
         }
 
         &--btn {
@@ -55,13 +79,14 @@
 
         &--des div {
             font-weight: bold;
+
             p {
                 font-weight: normal;
                 padding: 10px;
                 font-size: 16px;
                 line-height: 2;
             }
-        } 
+        }
 
     }
 }

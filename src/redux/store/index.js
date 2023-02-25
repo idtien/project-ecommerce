@@ -9,12 +9,12 @@ import commentReducer from '../features/Comment/commentSlice'
 
 const store = configureStore({
     reducer: {
-        cart: cartReducer,
-        product: productReducer,
-        order: orderReducer,
-        user: userReducer,
+        carts: cartReducer,
+        products: productReducer,
+        orders: orderReducer,
+        users: userReducer,
         wishList: wishListReducer,
-        comment: commentReducer
+        comments: commentReducer
     }
 })
 

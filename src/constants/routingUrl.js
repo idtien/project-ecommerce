@@ -13,4 +13,5 @@ export const ROUTE_URL = {
     ADMIN_PRODUCT: 'product',
     ADMIN_CUSTOMER: 'customer',
     ADMIN_ORDER: 'order',
+    ERROR: 'error'
 }
