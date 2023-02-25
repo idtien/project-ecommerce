@@ -1,10 +1,8 @@
-import { DeleteOutlined, ShoppingCartOutlined } from '@ant-design/icons'
-import { Button, Col, Divider, Form, Input, Modal, Radio, Row, Table, Tag, Tooltip, Typography } from 'antd'
+import { DeleteOutlined } from '@ant-design/icons'
+import { Button, Col, Divider, Form, Input, Modal, Radio, Row, Table, Tooltip, Typography } from 'antd'
 import React, { useState } from 'react'
 import './CartPage.scss'
 import logoOrange from '../../assets/images/logo_part2_orange.png'
-import AcceptPayment from '../../components/AcceptPayment'
-import { Link } from 'react-router-dom'
 import TextArea from 'antd/es/input/TextArea'
 
 

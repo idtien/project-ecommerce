@@ -4,7 +4,6 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import './App.css';
 import HomeLayout from "./layout/HomeLayout";
 import About from "./pages/AboutPage";
-import AdminPage from "./pages/AdminPage";
 import Shop from "./components/Shop";
 import ProductDetails from "./components/ProductDetail";
 import LoginPage from "./pages/LoginPage";
@@ -20,8 +19,27 @@ import CustomerAdmin from "./components/AdminComponents/CustomerAdmin";
 import ProductAdmin from "./components/AdminComponents/PruductAdmin";
 import OrdersAdmin from "./components/AdminComponents/OrdersAdmin";
 import DashboardAdmin from "./components/AdminComponents/DashboardAdmin";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { actReLogin } from "./redux/features/User/userSlice";
+import { fetchAllProduct } from "./redux/features/Product/productSlice";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
+  const dispatch = useDispatch()
+
+  const accessToken = useSelector(state => state.users.accessToken)
+  const { isLogged, user } = useSelector(state => state.users)
+  useEffect(() => {
+    if (accessToken) {
+      dispatch(actReLogin(accessToken))
+    }
+  }, [])
+
+  useEffect(() => {
+    dispatch(fetchAllProduct())
+  })
+
   return (
     <BrowserRouter>
       <Routes>
@@ -31,7 +49,7 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="cart" element={<CartPage />} />
-          <Route path="product_details" element={<ProductDetails />} />
+          <Route path="products/:id" element={<ProductDetails />} />
           <Route path="wishList" element={<WishListPage />} />
           <Route path="profile_user" element={<UserProfilePage />} />
         </Route>
@@ -57,8 +75,11 @@ function App() {
           <Route path="product" element={<ProductAdmin />} />
           <Route path="order" element={<OrdersAdmin />} />
         </Route>
+        <Route path="error" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
+
+
   );
 }
 

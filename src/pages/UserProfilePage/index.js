@@ -5,10 +5,7 @@ import React from 'react'
 import './UserProfile.scss'
 import TextArea from 'antd/es/input/TextArea'
 
-const xs = { span: 24, offset: 0 }
-const sm = { span: 24, offset: 0 }
-const md = { span: 24, offset: 0 }
-const lg = { span: 24, offset: 0 }
+
 const UserProfilePage = () => {
     return (
         <>

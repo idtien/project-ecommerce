@@ -1,13 +1,15 @@
 
-import { FacebookOutlined, HeartOutlined, InstagramOutlined, LoginOutlined, LogoutOutlined, ShoppingCartOutlined, TwitterOutlined, UserAddOutlined, YoutubeOutlined, MenuOutlined, UserOutlined } from '@ant-design/icons/lib/icons'
-import { Avatar, Badge, Button, Col, Divider, Drawer, Input, InputNumber, Popover, Row, Table } from 'antd'
+import { FacebookOutlined, HeartOutlined, InstagramOutlined, LoginOutlined, LogoutOutlined, ShoppingCartOutlined, TwitterOutlined, UserAddOutlined, YoutubeOutlined, MenuOutlined, UserOutlined, DashboardOutlined } from '@ant-design/icons/lib/icons'
+import { Avatar, Badge, Col, Divider, Drawer, Input, Popover, Row, Table } from 'antd'
 import './Header.scss'
 import '../../styles/Responsive.scss'
 
 import logoOrange from '../../assets/images/logo-orange.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { ROUTE_URL } from '../../constants/routingUrl'
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { actLogout } from '../../redux/features/User/userSlice'
 
 const xs = { span: 24, offset: 0 }
 const sm = { span: 24, offset: 0 }
@@ -15,8 +17,24 @@ const md = { span: 12, offset: 6 }
 const lg = { span: 12, offset: 6 }
 
 const HeaderCpn = () => {
+
+  const isLogged = useSelector(state => state.users.isLogged)
+  const isAdmin = useSelector(state => state.users.user.isAdmin)
   const [visibleDrawer, setVisibleDrawer] = useState(false);
-  const [isLogin, setIsLogin] = useState(true)
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const handleLogout = () => {
+    dispatch(actLogout())
+
+    navigate('/login')
+  }
+
+  const goDashboard = () => {
+    navigate('/admin')
+  }
+
 
   const cart = [
     {
@@ -71,21 +89,25 @@ const HeaderCpn = () => {
 
   const content = (
     <div className='header__user'>
+      {isAdmin && (
+        <>
+        <span href='' onClick={goDashboard}><DashboardOutlined /> Dashboard</span>
+        <hr />
+        </>
+      )}
+      
       <Link to={ROUTE_URL.PROFILE_USER}>
         <p> <UserOutlined /> Profile</p>
       </Link>
       <hr />
-      <Link to={ROUTE_URL.LOGIN}>
-        <p><LogoutOutlined /> Logout</p>
-      </Link>
+      <div onClick={handleLogout}><LogoutOutlined /> Logout</div>
     </div>
   )
   const contentCart = (
     <div className='header__user'>
-      <Table pagination={false} dataSource={cart} columns={columns}  />
+      <Table pagination={false} dataSource={cart} columns={columns} />
     </div>
   )
-
 
   return (
     <>
@@ -98,7 +120,8 @@ const HeaderCpn = () => {
             <span > <TwitterOutlined /></span>
           </div>
           <div className='header__contact2'>
-            {!isLogin && (
+
+            {!isLogged && (
               <>
                 <Link to={ROUTE_URL.REGISTER}><span><UserAddOutlined /> Register</span></Link>
                 <Link to={ROUTE_URL.LOGIN}><span style={{ marginLeft: '8px' }}> <LoginOutlined />  Login</span></Link>
@@ -125,6 +148,7 @@ const HeaderCpn = () => {
             </Row>
           </div>
           <div className='header__main--btn'>
+
             <span >
               <Link to={ROUTE_URL.WISHLIST}>
                 <Badge style={{}} count={5}><HeartOutlined style={{ fontSize: '20px' }} /></Badge>
@@ -143,7 +167,7 @@ const HeaderCpn = () => {
                 </Popover>
               </Link>
             </span>
-            {isLogin && (
+            {isLogged && (
               <>
                 <Popover content={content} placement="bottomRight" >
                   <span style={{ marginLeft: '32px' }}>
@@ -155,7 +179,7 @@ const HeaderCpn = () => {
                       size="large"
                     // gap={gap}
                     >
-                      Hello Tien
+                      HelloTien
                     </Avatar>
                   </span>
                 </Popover>

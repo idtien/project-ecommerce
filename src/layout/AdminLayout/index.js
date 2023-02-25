@@ -1,13 +1,13 @@
 import { AppstoreOutlined, LogoutOutlined, ShopOutlined, ShoppingCartOutlined, UserOutlined } from '@ant-design/icons'
-import { Avatar, Col, Divider, Input, Menu, Popover, Row, Space } from 'antd'
-import React from 'react'
+import { Avatar, Col, Divider, Input, Menu, Popover, Row } from 'antd'
+import React, { useEffect } from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 import FooterCpn from '../../components/Footer'
-import AdminPage from '../../pages/AdminPage'
 
 import { ROUTE_URL } from '../../constants/routingUrl'
 import logo from '../../assets/images/logo-orange.png'
 import './AdminLayout.scss'
+import {  useSelector } from 'react-redux'
 
 
 const AdminLayout = () => {
@@ -24,6 +24,18 @@ const AdminLayout = () => {
     )
 
     const navigate = useNavigate()
+
+    const { user } = useSelector(state => state.users)
+
+    useEffect(()=> {
+        if(Object.values(user).length === 0) return
+        if (!user.isAdmin) {
+            navigate('/error')
+        }
+    },[user])
+
+    if(Object.values(user).length === 0 || !user.isAdmin) return null
+
     return (
         <>
 
@@ -31,12 +43,12 @@ const AdminLayout = () => {
                 <Col span={4}>
                     <div className='admin__menu'>
                         <div className='admin_menu--logo'>
-                            <img src={logo} style={{ width: '200px' }} />
+                            <img src={logo} style={{ width: '200px' }} alt='img' />
                         </div>
                         <Divider />
                         <div className='admin__menu--menu'>
                             <Menu
-                                onClick={({key}) => {
+                                onClick={({ key }) => {
                                     navigate(key)
                                 }}
                                 items={[
@@ -44,7 +56,7 @@ const AdminLayout = () => {
                                         label: 'Dashboard',
                                         icon: <AppstoreOutlined />,
                                         key: `${ROUTE_URL.ADMIN}`,
-                                        
+
                                     },
                                     {
                                         label: 'Products',

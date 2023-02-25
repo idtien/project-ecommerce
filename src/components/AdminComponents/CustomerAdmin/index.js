@@ -1,5 +1,4 @@
-import { DollarCircleOutlined, ShoppingCartOutlined, ShoppingOutlined, UserOutlined } from '@ant-design/icons'
-import { Avatar, Card, Col, Row, Space, Statistic, Table, Tag, Typography } from 'antd'
+import {  Button, Col, Row, Space, Table,  Typography } from 'antd'
 import React from 'react'
 
 const CustomerAdmin = () => {
@@ -9,7 +8,7 @@ const CustomerAdmin = () => {
             title: 'Name',
             dataIndex: 'name',
             key: 'name',
-            render: (text) => <a>{text}</a>,
+            render: (text) => <a href='#'>{text}</a>,
         },
         {
             title: 'User Name',
@@ -52,8 +51,8 @@ const CustomerAdmin = () => {
             key: 'action',
             render: (_, record) => (
                 <Space size="middle">
-                    <a>Edit</a>
-                    <a>Delete</a>
+                    <Button>Edit</Button>
+                    <Button>Delete</Button>
                 </Space>
             ),
         },

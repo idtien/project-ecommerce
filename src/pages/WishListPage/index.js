@@ -1,5 +1,5 @@
-import { DeleteOutlined, HeartOutlined, ShoppingCartOutlined } from '@ant-design/icons';
-import { Button, Col, Row, Table, Tag, Tooltip, Typography } from 'antd';
+import { DeleteOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import { Button, Col, Row, Table, Tooltip, Typography } from 'antd';
 import React from 'react'
 
 import './WishList.scss'
