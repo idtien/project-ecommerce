@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
@@ -11,6 +11,9 @@ import useGoToTop from '../../hooks/useGoToTop'
 
 import './ProductDetail.scss'
 import { actGetProductById } from '../../redux/features/Product/productSlice'
+import { actListCart, actMoreListCart } from '../../redux/features/Cart/cartSlice'
+import { toast, ToastContainer } from 'react-toastify'
+import { actAddWishList } from '../../redux/features/WishList/wishListSlice'
 
 
 const ProductDetails = () => {
@@ -18,12 +21,47 @@ const ProductDetails = () => {
   const ref = useRef()
   const params = useParams()
   const dispatch = useDispatch()
-
+  
+  const [cart, setCart] = useState({})
+  const [quantity, setQuantity] = useState(1)
 
   const { product } = useSelector(state => state.products)
-  console.log(params);
+  const { listCart } = useSelector(state => state.carts)
+  const { isLogged, user } = useSelector(state => state.users)
 
-  useEffect(()=>{
+  useEffect(() => {
+    setCart({
+      ...product,
+      quantity: quantity
+    })
+  }, [product, quantity])
+
+  const handleAddToCart = () => {
+    dispatch(actMoreListCart(cart))
+  }
+
+  const handleAddToWishList = () => {
+    if (!isLogged) {
+      toast.warn('Please Login To Add Wish List!', {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+
+      });
+    } else {
+      dispatch(actAddWishList(cart))
+
+    }
+  }
+
+
+
+  useEffect(() => {
     dispatch(actGetProductById(params.id))
   }, [params.id])
 
@@ -45,10 +83,11 @@ const ProductDetails = () => {
   } else if (product?.category === 'jewelry') {
     color = '#69b1ff'
   }
-  
+
 
   return (
     <>
+      <ToastContainer />
       <Row className='productDetails'>
         <Col xs={{ span: 24, offset: 0 }} sm={{ span: 24, offset: 0 }} md={{ span: 20, offset: 2 }} lg={{ span: 8, offset: 2 }}>
           <div className='productDetails__img'>
@@ -163,19 +202,36 @@ const ProductDetails = () => {
                   Quantity:
                 </strong>
                 <span className='productDetails__details--infoQuantity'>
-                  <InputNumber size="large" style={{ width: '150px' }} min={1} max={100000} defaultValue={1} />
+                  <InputNumber size="large" style={{ width: '150px' }} min={1} max={100000} defaultValue={quantity}
+                    onChange={(value) => {
+                      setQuantity(value)
+                    }} />
                 </span>
               </div>
             </div>
             <div className='productDetails__details--btn'>
               <Space>
-                <Button type="primary" shape="round" style={{ backgroundColor: '#ff7875' }} icon={<HeartOutlined />} size='large'>
-                  {/* ADD TO WISHLIST */}
+                <Button
+                  type="primary"
+                  shape="round"
+                  style={{ backgroundColor: '#ff7875' }}
+                  icon={<HeartOutlined />}
+                  size='large'
+                  onClick={handleAddToWishList}
+                >
+                  WISH LIST
                 </Button>
-                <Button type="primary" shape="round" style={{ backgroundColor: '#ff4d4f' }} icon={<ShoppingCartOutlined />} size='large'>
+                {/* <Button type="primary" shape="round" style={{ backgroundColor: '#ff4d4f' }} icon={<ShoppingCartOutlined />} size='large'>
                   BUY IT NOW
-                </Button>
-                <Button type='primary' shape="round" style={{ backgroundColor: '#69b1ff' }} icon={<CarOutlined />} size='large'>
+                </Button> */}
+                <Button
+                  type='primary'
+                  shape="round"
+                  style={{ backgroundColor: '#69b1ff' }}
+                  icon={<CarOutlined />}
+                  size='large'
+                  onClick={handleAddToCart}
+                >
                   ADD TO CARD
                 </Button>
               </Space>
@@ -197,8 +253,6 @@ const ProductDetails = () => {
         <Col span={20} offset={2}>
           <div className='productDetails__comments'>
             <Typography.Title level={3}>Send Reviews</Typography.Title>
-            {/* <Typography.Text level={3}>Send Reviews</Typography.Text> */}
-
             <Form
               name="formComment"
               labelCol={{
@@ -263,60 +317,6 @@ const ProductDetails = () => {
         <Col span={20} offset={2}>
           <div className='productDetails__comments'>
             <Typography.Title level={3}>Reviews</Typography.Title>
-            <div className='productDetails__comments--id' >
-              <Card
-                style={{
-                  width: '100%',
-                  marginTop: '20px'
-                }}
-              >
-
-                <Meta
-                  avatar={<Avatar src="https://joesch.moe/api/v1/random" />}
-                  title="Pham Hoang Thanh Tien"
-                  description="This is the best product I have ever bought"
-                />
-                <div style={{ marginLeft: '45px' }}>
-                  <Rate disabled defaultValue={5} />
-                </div>
-              </Card>
-            </div>
-            <div className='productDetails__comments--id' >
-              <Card
-                style={{
-                  width: '100%',
-                  marginTop: '20px'
-                }}
-              >
-
-                <Meta
-                  avatar={<Avatar src="https://joesch.moe/api/v1/random" />}
-                  title="Pham Hoang Thanh Tien"
-                  description="This is the best product I have ever bought"
-                />
-                <div style={{ marginLeft: '45px' }}>
-                  <Rate disabled defaultValue={5} />
-                </div>
-              </Card>
-            </div>
-            <div className='productDetails__comments--id' >
-              <Card
-                style={{
-                  width: '100%',
-                  marginTop: '20px'
-                }}
-              >
-
-                <Meta
-                  avatar={<Avatar src="https://joesch.moe/api/v1/random" />}
-                  title="Pham Hoang Thanh Tien"
-                  description="This is the best product I have ever bought"
-                />
-                <div style={{ marginLeft: '45px' }}>
-                  <Rate disabled defaultValue={5} />
-                </div>
-              </Card>
-            </div>
             <div className='productDetails__comments--id' >
               <Card
                 style={{

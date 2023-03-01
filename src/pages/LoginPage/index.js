@@ -47,15 +47,16 @@ const LoginPage = () => {
         }
     }, [isLogged])
 
-
+    
     const handleLoginForm = (e) => {
         const { name, value } = e.target
         setInputDataLogin({
             ...inputDataLogin,
             [name]: value
         })
-
     }
+    
+    if (isLogged) return null
 
     return (
         <>

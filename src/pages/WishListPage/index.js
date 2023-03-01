@@ -1,9 +1,12 @@
-import { DeleteOutlined, ShoppingCartOutlined } from '@ant-design/icons';
-import { Button, Col, Row, Table, Tooltip, Typography } from 'antd';
-import React from 'react'
+import { DeleteOutlined, HomeOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import { Breadcrumb, Button, Col, Row, Table, Tag, Tooltip } from 'antd';
+import React, { useEffect, useState } from 'react'
 
 import './WishList.scss'
-import logoOrange from '../../assets/images/logo_part2_orange.png'
+import { useDispatch, useSelector } from 'react-redux';
+import { actDeleteWishList } from '../../redux/features/WishList/wishListSlice';
+import { ToastContainer } from 'react-toastify';
+import { actListCart } from '../../redux/features/Cart/cartSlice';
 
 
 const xs = { span: 20, offset: 2 }
@@ -11,15 +14,28 @@ const sm = { span: 20, offset: 2 }
 const md = { span: 20, offset: 2 }
 const lg = { span: 20, offset: 2 }
 const WishListPage = () => {
+
+    const dispatch = useDispatch()
+    const [wishList, setWishList] = useState([])
+
+    const { listWishList } = useSelector(state => state.wishList)
+
+    const handleDeleteWishList = (product) => {
+        dispatch(actDeleteWishList(product))
+    }
+
+    const handleAddToCart = (product) => {
+        dispatch(actListCart(product))
+    }
+
     const columns = [
         {
             width: 100,
             title: 'Product',
-            dataIndex: 'product',
+            dataIndex: 'image',
             key: 'name',
             render: (text) => {
-                console.log(text);
-                return <img className='img-product' style={{ width: '100px' }} src={logoOrange} alt='cart'></img>
+                return <img className='img-product' style={{ width: '100px' }} src={text} alt='cart'></img>
             },
 
         },
@@ -37,27 +53,49 @@ const WishListPage = () => {
         },
         {
             width: 100,
+            title: 'Price Sale',
+            dataIndex: 'priceSale',
+            key: 'name',
+        },
+        {
+            width: 100,
             title: 'Quantity',
             dataIndex: 'quantity',
             key: 'name',
         },
         {
             width: 100,
-            title: 'Total',
-            dataIndex: 'totalPrice',
+            title: 'Category',
+            dataIndex: 'category',
             key: 'name',
+            render: (category) => {
+                let color = ''
+
+                if (category === 'technological') {
+                    color = '#f5222d'
+                } else if (category === 'clothes') {
+                    color = '#52c41a'
+                } else if (category === 'jewelry') {
+                    color = '#69b1ff'
+                }
+                return (
+                    <Tag color={color}>
+                        {category}
+                    </Tag>
+                )
+            }
         },
         {
             width: 100,
             title: 'Actions',
-            render: () => {
+            render: (product) => {
                 return (
                     <>
                         <Tooltip title="Delete" >
-                            <Button><DeleteOutlined style={{ color: 'red' }} /></Button>
+                            <Button><DeleteOutlined style={{ color: 'red' }} onClick={() => handleDeleteWishList(product)} /></Button>
                         </Tooltip>
                         <Tooltip title="Add To Card">
-                            <Button style={{ marginLeft: '8px' }}><ShoppingCartOutlined style={{ color: 'blue' }} /></Button>
+                            <Button style={{ marginLeft: '8px' }}><ShoppingCartOutlined onClick={() => handleAddToCart(product)} style={{ color: 'blue' }} /></Button>
                         </Tooltip>
                     </>
                 )
@@ -65,52 +103,41 @@ const WishListPage = () => {
         },
     ]
 
-    const cart = [
-        {
-            key: '1',
-            product: 'img',
-            nameProduct: 'ABCCC',
-            price: '$200',
-            quantity: '9',
-            totalPrice: '$1800',
-        },
-        {
-            key: '2',
-            product: 'img',
-            nameProduct: 'ABCCC',
-            price: '$200',
-            quantity: '9',
-            totalPrice: '$1800',
-        },
-        {
-            key: '3',
-            product: 'img',
-            nameProduct: 'ABCCC',
-            price: '$200',
-            quantity: '9',
-            totalPrice: '$1800',
-        },
-        {
-            key: '4',
-            product: 'img',
-            nameProduct: 'ABCCC',
-            price: '$200',
-            quantity: '9',
-            totalPrice: '$1800',
-        },
 
-    ]
+    useEffect(() => {
+        setWishList(listWishList?.map((wishListMap, index) => {
+            return (
+                {
+                    key: index,
+                    id: wishListMap?.id,
+                    image: wishListMap?.images[0],
+                    nameProduct: wishListMap?.name,
+                    price: wishListMap?.price,
+                    priceSale: wishListMap?.priceSale,
+                    category: wishListMap?.category,
+                    quantity: wishListMap?.quantity
+                }
+            )
+        }))
+    }, [listWishList])
+
     return (
         <>
-            {/* style={{ display:'flex', alignItems:'center', justifyContent:'center', color: '#ee4d2d' }} */}
+            <ToastContainer />
             <Row gutter={[0, 16]}>
-                <Col span={10} offset={10} >
-                <Typography.Title>WISH LIST</Typography.Title>
+                <Col span={6} offset={2} >
+                    <Breadcrumb >
+                        <Breadcrumb.Item className='wishList__breadcrumb'>
+                            <HomeOutlined />
+                        </Breadcrumb.Item>
+
+                        <Breadcrumb.Item className='wishList__breadcrumb'>Wish List</Breadcrumb.Item>
+                    </Breadcrumb>
                 </Col>
                 <Col xs={xs} sm={sm} md={md} lg={lg}>
                     {/* style={{ backgroundColor: 'red', width: '100%', height: '100vh' }} */}
                     <div className='wishList__table' >
-                        <Table dataSource={cart} columns={columns} scroll={{ x: 500, y: 300 }} />
+                        <Table dataSource={wishList} columns={columns} scroll={{ x: 500, y: 300 }} />
                     </div>
                 </Col>
             </Row>

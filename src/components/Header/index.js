@@ -7,7 +7,7 @@ import '../../styles/Responsive.scss'
 import logoOrange from '../../assets/images/logo-orange.png'
 import { Link, useNavigate } from 'react-router-dom'
 import { ROUTE_URL } from '../../constants/routingUrl'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { actLogout } from '../../redux/features/User/userSlice'
 
@@ -17,13 +17,17 @@ const md = { span: 12, offset: 6 }
 const lg = { span: 12, offset: 6 }
 
 const HeaderCpn = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const [cart, setCart] = useState([])
+  const [visibleDrawer, setVisibleDrawer] = useState(false);
 
   const isLogged = useSelector(state => state.users.isLogged)
   const isAdmin = useSelector(state => state.users.user.isAdmin)
-  const [visibleDrawer, setVisibleDrawer] = useState(false);
-
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const { user } = useSelector(state => state.users)
+  const { listCart, totalCart } = useSelector(state => state.carts)
+  const {totalWishList} = useSelector(state => state.wishList)
 
   const handleLogout = () => {
     dispatch(actLogout())
@@ -31,56 +35,56 @@ const HeaderCpn = () => {
     navigate('/login')
   }
 
+  useEffect(() => {
+    setCart(listCart?.map((cart, index) => {
+      return (
+        {
+          key: index,
+          id: cart?.id,
+          image: cart?.images[0],
+          nameProduct: cart?.nameProduct,
+          price: cart?.price,
+          quantity: cart?.quantity,
+          totalPrice: cart?.totalMoney,
+        }
+      )
+    }))
+  }, [listCart])
+
   const goDashboard = () => {
     navigate('/admin')
   }
 
+  const handleChangeInputSearch = (e) => {
+    console.log(e.target.value);
+  }
 
-  const cart = [
-    {
-      key: '1',
-      product: 'img',
-      nameProduct: 'ABCCC',
-      price: '$200',
-      quantity: '9',
-      totalPrice: '$1800',
-    },
-    {
-      key: '2',
-      product: 'img',
-      nameProduct: 'ABCCC',
-      price: '$200',
-      quantity: '9',
-      totalPrice: '$1800',
-    }
-  ]
 
   const columns = [
     {
-      width: 100,
+      with: 20000,
       title: 'Product',
-      dataIndex: 'product',
-      key: 'name',
-      render: (text) => {
-        console.log(text);
-        return <img className='img-product' style={{ width: '50px' }} src={logoOrange} alt='cart'></img>
+      dataIndex: 'image',
+      key: 'key',
+      render: (image) => {
+        return <img className='img-product' style={{ width: '50px' }} src={image} alt='cart'></img>
       },
 
     },
     {
-      width: 400,
+      with: 20000,
+      height: '1500px',
       title: 'Name',
       dataIndex: 'nameProduct',
       key: 'name',
     },
     {
-      width: 200,
+      with: 20000,
       title: 'Price',
       dataIndex: 'price',
       key: 'price',
     },
     {
-      width: 200,
       title: 'Quantity',
       dataIndex: 'quantity',
       key: 'quantity',
@@ -91,11 +95,11 @@ const HeaderCpn = () => {
     <div className='header__user'>
       {isAdmin && (
         <>
-        <span href='' onClick={goDashboard}><DashboardOutlined /> Dashboard</span>
-        <hr />
+          <span onClick={goDashboard}><DashboardOutlined /> Dashboard</span>
+          <hr />
         </>
       )}
-      
+
       <Link to={ROUTE_URL.PROFILE_USER}>
         <p> <UserOutlined /> Profile</p>
       </Link>
@@ -103,9 +107,12 @@ const HeaderCpn = () => {
       <div onClick={handleLogout}><LogoutOutlined /> Logout</div>
     </div>
   )
+
   const contentCart = (
     <div className='header__user'>
-      <Table pagination={false} dataSource={cart} columns={columns} />
+      <div className='header__user--'>
+        <Table pagination={false} dataSource={cart} columns={columns} />
+      </div>
     </div>
   )
 
@@ -143,6 +150,7 @@ const HeaderCpn = () => {
                   size="large"
                   allowClear
                   placeholder='Type to search'
+                  onChange={handleChangeInputSearch}
                 />
               </Col>
             </Row>
@@ -151,16 +159,17 @@ const HeaderCpn = () => {
 
             <span >
               <Link to={ROUTE_URL.WISHLIST}>
-                <Badge style={{}} count={5}><HeartOutlined style={{ fontSize: '20px' }} /></Badge>
+                <Badge style={{}} count={totalWishList}><HeartOutlined style={{ fontSize: '20px' }} /></Badge>
                 <div>WishList</div>
               </Link>
             </span>
             <span style={{ marginLeft: '32px' }}>
               <Link to={ROUTE_URL.CART}>
-                <Popover overlayStyle={{
-                  width: '350px'
-                }} content={contentCart} placement="bottomRight" >
-                  <Badge count={5}><ShoppingCartOutlined style={{ fontSize: '20px' }} /></Badge>
+                <Popover
+                  overlayInnerStyle={{
+                    width: '500px',
+                  }} content={contentCart} placement="bottomRight" >
+                  <Badge count={totalCart}><ShoppingCartOutlined style={{ fontSize: '20px' }} /></Badge>
                   <div>
                     Card
                   </div>
@@ -179,7 +188,7 @@ const HeaderCpn = () => {
                       size="large"
                     // gap={gap}
                     >
-                      HelloTien
+                      {user?.fullname}
                     </Avatar>
                   </span>
                 </Popover>
