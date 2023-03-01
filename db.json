@@ -19,6 +19,16 @@
       "address": "Hue, Viet Nam",
       "isAdmin": false,
       "id": 2
+    },
+    {
+      "email": "aa@gmail.com",
+      "password": "$2a$10$G3fzKzZI535mBYV06thIMOsZlEpkqGRkP8I0.LNdnlSIA619Oj.LO",
+      "username": "111111111",
+      "phone": "11",
+      "address": "111",
+      "fullname": "111",
+      "isAdmin": false,
+      "id": 3
     }
   ],
   "products": [
@@ -1594,55 +1604,64 @@
   ],
   "orders": [
     {
-      "codeOrder": 123123123,
-      "id": 1,
+      "receiverOfName": "Pham Hoang Thanh Tien",
+      "phone": "0126755974",
+      "address": "Hue, Viet Nam",
+      "description": "Mua hang qua mang",
+      "codeOrder": "07027ea0-bc44-4946-ba9b-a1fede015ed4",
       "idUser": 1,
       "cart": [
         {
           "id": 1,
-          "name": "Iphone 14 Promax",
-          "category": "Phone",
-          "price": 200,
-          "priceSale": 100,
-          "rating": 4,
+          "name": "Laptop Acer Aspire 3 A315 58 54XF i5 ",
+          "category": "technological",
+          "price": 1599,
+          "priceSale": 1099,
+          "rating": 4.5,
           "images": [
-            "https://cdn.tgdd.vn/Products/Images/42/289691/iphone-14-pro-vang-thumb-600x600.jpg"
+            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-1.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-2.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-03.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-4.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-3.jpg"
           ],
           "tag": [
             "new",
             "sale"
           ],
-          "brand": "Apple",
-          "description": "New Iphone",
-          "quantity": 1
+          "brand": "acer",
+          "description": "If you are looking for a study - office laptop with an elegant, modern design and configuration parameters powerful enough for smooth operation of work tasks, the Acer Aspire 3 A315 58 54XF i5 (NX. AM0SV.007) is the ideal choice for you.",
+          "quantity": 13
         },
         {
           "id": 2,
-          "name": "T-shirt",
-          "category": "Clothes",
-          "price": 200,
-          "priceSale": 100,
-          "rating": 5,
+          "name": "Laptop Lenovo Ideapad 5 15IAL7 i5",
+          "category": "technological",
+          "price": 2020,
+          "priceSale": 1509,
+          "rating": 4,
           "images": [
-            "https://media.gucci.com/style/HEXEEEFEC_Center_0_0_800x800/1666959314/718033_ZAK3J_4699_001_100_0000_Light-Gucci-HA-HA-HA-dove-heart-shirt.jpg",
-            "https://media.gucci.com/style/HEXEEEFEC_Center_0_0_2400x2400/1666959316/718033_ZAK3J_4699_002_100_0000_Light-Gucci-HA-HA-HA-dove-heart-shirt.jpg"
+            "https://cdn.tgdd.vn/Products/Images/44/300689/lenovo-ideapad-5-15ial7-i5-82sf005hvn-1.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/300689/lenovo-ideapad-5-15ial7-i5-82sf005hvn-2.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/300689/lenovo-ideapad-5-15ial7-i5-82sf005hvn-3.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/300689/lenovo-ideapad-5-15ial7-i5-82sf005hvn-4.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/300689/lenovo-ideapad-5-15ial7-i5-82sf005hvn-5.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/300689/lenovo-ideapad-5-15ial7-i5-82sf005hvn-6.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/300689/lenovo-ideapad-5-15ial7-i5-82sf005hvn-8.jpg"
           ],
           "tag": [
             "new",
             "sale"
           ],
-          "brand": "gucci",
-          "description": "New shirt",
-          "quantity": 2
+          "brand": "lenovo",
+          "description": "Laptop Lenovo Ideapad 5 15IAL7 i5 1235U (82SF005HVN) will be a formidable competitor in the segment of study - office laptops when possessing the outstanding performance power from Intel Gen 12 processor and elegant appearance, Always ready to accompany you everywhere.",
+          "quantity": 7
         }
       ],
-      "totalMonney": 600,
+      "totalMoney": 34927,
+      "totalMoneySale": 24850,
       "paymentMethod": "whenReceive",
-      "fullname": "Pham Hoang Thanh Tien",
-      "email": "tien@gmail.com",
-      "phone": "0123456789",
-      "address": "Hue, Viet Nam",
-      "description": "Please deliver during office hours"
+      "id": 15
     }
   ],
   "comments": [

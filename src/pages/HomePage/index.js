@@ -1,22 +1,16 @@
-import { Button, Carousel, Col, Row } from 'antd'
-import React, { useEffect } from 'react'
+import { Carousel, Col, Row } from 'antd'
+import React from 'react'
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-import { fetchAllProduct } from '../../redux/features/Product/productSlice'
 import Product from '../../components/Product'
-
 
 import './HomePage.scss'
 import '../../styles/Responsive.scss'
 
 import bnSale from '../../assets/images/banner3.png'
 import bnSale2 from '../../assets/images/banner4.png'
-import { actReLogin } from '../../redux/features/User/userSlice';
-import { KEY_ACCESS_TOKEN } from '../../constants/config';
+import { ToastContainer } from 'react-toastify'
 
 
 const xs = { span: 24 }
@@ -24,27 +18,9 @@ const sm = { span: 24 }
 const md = { span: 16 }
 const lg = { span: 16 }
 const HomePage = () => {
-    const dispatch = useDispatch();
     const { allProduct, isLoading } = useSelector(state => state.products)
     const { isLogged, user } = useSelector(state => state.users)
-
-
-    useEffect(() => {
-        if (user?.fullname) {
-            toast.success(`Hello ${user?.fullname}`, {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
-        }
-    }, [user?.fullname])
-
-
+    
 
     const renderListProduct = (listProduct) => {
         return listProduct.map((product) => {
@@ -54,19 +30,7 @@ const HomePage = () => {
 
     return (
         <>
-            <ToastContainer
-                position="top-center"
-                autoClose={5000}
-                limit={1}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="colored"
-            />
+        <ToastContainer/>
             <Row>
                 <Col xs={xs} sm={sm} md={md} lg={lg} className='carousel'>
                     <Carousel autoplay draggable className='carousel'>

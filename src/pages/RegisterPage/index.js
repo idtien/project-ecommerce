@@ -1,15 +1,20 @@
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 import { Button, Col, Form, Input, Row } from 'antd'
-import React, { useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
+
 import { ROUTE_URL } from '../../constants/routingUrl'
-import { Link } from 'react-router-dom'
+import { actRegister } from '../../redux/features/User/userSlice'
 
 import logoLogin2 from '../../assets/images/logo_part2.png'
 import './RegisterPage.scss'
-import { useDispatch } from 'react-redux'
-import { actRegister } from '../../redux/features/User/userSlice'
 
 const RegisterPage = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const { isLogged, isRegister } = useSelector(state => state.users)
+
     const [formRegister, setFormRegister] = useState({
         username: '',
         password: '',
@@ -27,14 +32,24 @@ const RegisterPage = () => {
             [name]: value
         })
     }
+    console.log('register: ', isRegister);
 
-    const handleRegister = () => {
+    useEffect(() => {
+        if (isLogged) {
+            navigate('/')
+        }
+    })
+
+    const handleRegister = (e) => {
         dispatch(actRegister(formRegister))
     }
+
+    if (isLogged) return null
 
 
     return (
         <>
+            <ToastContainer />
             <Row>
                 <Col span={24}>
                     <div className='form__register'>

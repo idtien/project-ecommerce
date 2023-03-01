@@ -1,11 +1,13 @@
 import { Badge, Card, Col, Rate } from 'antd'
 import { ShoppingCartOutlined, HeartOutlined } from '@ant-design/icons'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Product.scss'
 
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { actGetProduct, actGetProductById } from '../../redux/features/Product/productSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { actListCart } from '../../redux/features/Cart/cartSlice'
+import { toast } from 'react-toastify'
+import { actAddWishList } from '../../redux/features/WishList/wishListSlice'
 const xs = { span: 24 }
 const sm = { span: 12 }
 const md = { span: 6 }
@@ -15,10 +17,44 @@ const Product = (props) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { loading, products } = props
+    const [quantity, setQuantity] = useState(1)
+    const [cart, setCart] = useState({})
+    const { isLogged } = useSelector(state => state.users)
 
     const handleRedirectProductDetail = (id) => {
         navigate(`/products/${id}`)
     }
+
+    useEffect(() => {
+        setCart({
+            ...products,
+            quantity: quantity
+        })
+    }, [quantity])
+
+
+    const handleAddToWishList = (products) => {
+        if (!isLogged) {
+            toast.warn('Please Login To Add Wish List!', {
+                position: "top-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                
+            });
+        } else {
+            dispatch(actAddWishList(cart))
+        }
+    }
+
+    const handleAddToCart = (products) => {
+        dispatch(actListCart(cart))
+    }
+
     return (
         <>
             <Col xs={xs} sm={sm} md={md} lg={lg}>
@@ -35,10 +71,19 @@ const Product = (props) => {
                         }
                         actions={[
                             <>
-                                <HeartOutlined key="favorite" />Favorites
+                                <span
+                                    onClick={() => handleAddToWishList(products)}
+                                >
+                                    <HeartOutlined key="favorite" />Favorites
+                                </span>
                             </>,
                             <>
-                                <ShoppingCartOutlined key="buyNow" />Buy now
+                                <span
+                                    onClick={() => handleAddToCart(products)}
+                                >
+                                    <ShoppingCartOutlined key="buyNow" />
+                                    Add To Cart
+                                </span>
                             </>,
                         ]}>
                         <div className='card__title'

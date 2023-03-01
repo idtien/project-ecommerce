@@ -3,6 +3,7 @@ import axios from 'axios'
 import { BE_URL, KEY_ACCESS_TOKEN, KEY_IS_LOGGED } from '../../../constants/config'
 import * as Jwt from 'jsonwebtoken'
 import { fetchInfoMe, fetchRegisterUser } from '../../../apis/userAPI'
+import { toast } from 'react-toastify'
 
 const initialState = {
     user: {},
@@ -10,7 +11,8 @@ const initialState = {
     isLoading: false,
     isLogged: JSON.parse(localStorage.getItem(KEY_IS_LOGGED)) || false, //re-cache status avoid re-render page
     error: {},
-    isRegister: false
+    isRegister: false,
+    isToastLoginSuccess: false
 }
 
 //Create middleware call api
@@ -27,7 +29,6 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         actGetMe: (state, action) => {
-            console.log('hihi');
             state.user = action.payload
         },
         loginSuccess: (state, action) => {
@@ -63,8 +64,9 @@ export const userSlice = createSlice({
                 localStorage.setItem(KEY_IS_LOGGED, JSON.stringify(true))
                 localStorage.setItem(KEY_ACCESS_TOKEN, accessToken);
             }
+            
             state.isLoading = false;
-           
+
         });
     },
 })
@@ -81,6 +83,8 @@ export const actReLogin = (accessToken) => async (dispatch) => {
             dispatch(actGetMe(infoUser)) //usemiddware dispatch info user when have data
             dispatch(loginSuccess()) //middeware update status login success
         }
+
+        
     } catch (error) {
         console.log(error);
     }
@@ -91,7 +95,27 @@ export const actRegister = (dataRegister) => async (dispatch) => {
     try {
         dispatch(actUpdateRegister(true))
         await fetchRegisterUser(dataRegister)
+        toast.success('🦄 Success Register !', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
     } catch (error) {
+        toast.error('🦄 ERROR Register !', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
         console.log(error);
     } finally {
         dispatch(actUpdateRegister(false))

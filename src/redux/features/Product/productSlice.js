@@ -22,7 +22,6 @@ export const productSlice = createSlice({
     initialState: initialState,
     reducers: {
         actGetProduct: (state, action) => {
-            console.log('action', action);
             state.product = action.payload
         }
     },
@@ -51,7 +50,6 @@ export const actGetProductById = (id) => async (dispatch) => {
     try {
         const dataProduct =   await fetchDataProductByID(id)
         dispatch(actGetProduct(dataProduct.data))
-        console.log(dataProduct, 'get produt by id slice product');
     } catch (error) {
         console.log(error);
     } 

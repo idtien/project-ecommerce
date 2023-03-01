@@ -128,7 +128,20 @@
 .header__user {
     width: 150px;
     font-size: 24px;
+
     a {
-     color: black
+        color: black
     }
+
+    &--popoverCart div {
+        width: 200px !important;
+        height: 400px !important;
+        overflow: scroll;
+    }
+}
+
+.hihi {
+    color: red;
+    background-color: red;
+    height: 500px;
 }

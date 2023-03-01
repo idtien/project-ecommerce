@@ -1,4 +1,4 @@
-import { AppstoreOutlined, LogoutOutlined, ShopOutlined, ShoppingCartOutlined, UserOutlined } from '@ant-design/icons'
+import { AppstoreOutlined, HomeOutlined, LogoutOutlined, ShopOutlined, ShoppingCartOutlined, UserOutlined } from '@ant-design/icons'
 import { Avatar, Col, Divider, Input, Menu, Popover, Row } from 'antd'
 import React, { useEffect } from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
@@ -7,43 +7,55 @@ import FooterCpn from '../../components/Footer'
 import { ROUTE_URL } from '../../constants/routingUrl'
 import logo from '../../assets/images/logo-orange.png'
 import './AdminLayout.scss'
-import {  useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { actLogout } from '../../redux/features/User/userSlice'
 
 
 const AdminLayout = () => {
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const { user } = useSelector(state => state.users)
+
+    const handleLogout = () => {
+        dispatch(actLogout())
+        navigate('/login')
+      }
+
+    useEffect(() => {
+        if (Object.values(user).length === 0) return
+        if (!user.isAdmin) {
+            navigate('/error')
+        }
+    }, [user])
+
+    if (Object.values(user).length === 0 || !user.isAdmin) return null
+    
     const content = (
         <div className='header__user'>
+            <Link to={ROUTE_URL.HOME}>
+                <p> <HomeOutlined /> Home</p>
+            </Link>
+            <hr />
             <Link to={ROUTE_URL.PROFILE_USER}>
                 <p> <UserOutlined /> Profile</p>
             </Link>
             <hr />
             <Link to={ROUTE_URL.LOGIN}>
-                <p><LogoutOutlined /> Logout</p>
+                <p onClick={handleLogout}><LogoutOutlined /> Logout</p>
             </Link>
         </div>
     )
 
-    const navigate = useNavigate()
-
-    const { user } = useSelector(state => state.users)
-
-    useEffect(()=> {
-        if(Object.values(user).length === 0) return
-        if (!user.isAdmin) {
-            navigate('/error')
-        }
-    },[user])
-
-    if(Object.values(user).length === 0 || !user.isAdmin) return null
 
     return (
         <>
-
             <Row className='admin'>
                 <Col span={4}>
                     <div className='admin__menu'>
                         <div className='admin_menu--logo'>
-                            <img src={logo} style={{ width: '200px' }} alt='img' />
+                            <Link to={ROUTE_URL.HOME}>
+                                <img src={logo} style={{ width: '200px' }} alt='img' />
+                            </Link>
                         </div>
                         <Divider />
                         <div className='admin__menu--menu'>

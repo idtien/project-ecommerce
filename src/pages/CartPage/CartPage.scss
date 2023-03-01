@@ -1,3 +1,20 @@
+.cart {
+    margin-bottom: 100px;
+
+    .cart__breadcrumb {
+        font-size: 24px;
+    }
+
+    
+}
+.cart__confirm {
+    height: 100px;
+    line-height: 100px; 
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    }
+
 .cart__tag {
     display: flex;
     justify-content: center;
@@ -7,30 +24,37 @@
     color: #fff;
     background-color: #ee4d2d;
 }
+
 .cart__table {
     padding: 0 16px;
 }
+
 .cart__total {
     color: #fff;
     padding: 10px;
-    border: 1px solid #000;
+    // border: 1px solid #000;
     border-radius: 5px;
-    background-color: #ee4d2d;
+    background-color: #52c41a;
+
     h3 {
         font-size: 20px;
     }
+
     .card__total--sub {
         font-size: 20px;
         font-weight: bold;
     }
+
     .card__total--payment {
         font-size: 20px;
         font-weight: bold;
     }
+
     .card__total--select {
         font-size: 16px;
         color: #fff;
     }
+
     .cart__total--submit {
         display: flex;
         justify-content: space-around;

@@ -2,6 +2,8 @@ import React from 'react'
 import { Col, Row, message, Collapse, Slider } from 'antd'
 import './Shop.scss'
 import Product from '../Product';
+import { useSelector } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 const { Panel } = Collapse;
 
 const onClick = ({ key }) => {
@@ -25,18 +27,21 @@ const items = [
 
 const Shop = () => {
 
+    const { allProduct, isLoading } = useSelector(state => state.products)
+
+
+    const renderListProduct = (listProduct) => {
+        return listProduct.map((product) => {
+            return <Product key={product.id} products={product} />
+        })
+    }
     return (
         <>
+            <ToastContainer />
             <Row className='shop' >
                 <Col span={4} offset={0}>
-                    {/* <div className='menu__bar'>
-                        <MenuOutlined />
-                    </div> */}
                     <div className='menu__collapse'>
                         <Collapse
-                            // defaultActiveKey={['1']}
-                            // onChange={onChange}
-                            // ghost
                             expandIconPosition={'end'}
                             size='large'
                         >
@@ -73,7 +78,17 @@ const Shop = () => {
                     </div>
                 </Col>
                 <Col span={20}>
-                    <Product />
+                    <Row>
+                        <Col span={20} offset={2}>
+                            <Row gutter={[16, 16]}>
+                                {isLoading ? <Product loading={isLoading} /> :
+                                    (
+                                        renderListProduct(allProduct)
+                                    )
+                                }
+                            </Row>
+                        </Col>
+                    </Row>
                 </Col>
             </Row>
         </>
