@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { actDeleteWishList } from '../../redux/features/WishList/wishListSlice';
 import { ToastContainer } from 'react-toastify';
 import { actListCart } from '../../redux/features/Cart/cartSlice';
+import useGoToTop from '../../hooks/useGoToTop';
 
 
 const xs = { span: 20, offset: 2 }
@@ -14,6 +15,7 @@ const sm = { span: 20, offset: 2 }
 const md = { span: 20, offset: 2 }
 const lg = { span: 20, offset: 2 }
 const WishListPage = () => {
+    useGoToTop()
 
     const dispatch = useDispatch()
     const [wishList, setWishList] = useState([])
@@ -24,8 +26,9 @@ const WishListPage = () => {
         dispatch(actDeleteWishList(product))
     }
 
-    const handleAddToCart = (product) => {
-        dispatch(actListCart(product))
+    const handleAddToCart = (id) => {
+        const existProduct = listWishList.findIndex(item => item.id === id)
+        dispatch(actListCart(listWishList[existProduct]))
     }
 
     const columns = [
@@ -40,7 +43,7 @@ const WishListPage = () => {
 
         },
         {
-            width: 100,
+            width: 150,
             title: 'Name',
             dataIndex: 'nameProduct',
             key: 'name',
@@ -95,7 +98,7 @@ const WishListPage = () => {
                             <Button><DeleteOutlined style={{ color: 'red' }} onClick={() => handleDeleteWishList(product)} /></Button>
                         </Tooltip>
                         <Tooltip title="Add To Card">
-                            <Button style={{ marginLeft: '8px' }}><ShoppingCartOutlined onClick={() => handleAddToCart(product)} style={{ color: 'blue' }} /></Button>
+                            <Button style={{ marginLeft: '8px' }}><ShoppingCartOutlined onClick={() => handleAddToCart(product.id)} style={{ color: 'blue' }} /></Button>
                         </Tooltip>
                     </>
                 )
@@ -135,7 +138,6 @@ const WishListPage = () => {
                     </Breadcrumb>
                 </Col>
                 <Col xs={xs} sm={sm} md={md} lg={lg}>
-                    {/* style={{ backgroundColor: 'red', width: '100%', height: '100vh' }} */}
                     <div className='wishList__table' >
                         <Table dataSource={wishList} columns={columns} scroll={{ x: 500, y: 300 }} />
                     </div>

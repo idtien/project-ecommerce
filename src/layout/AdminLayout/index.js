@@ -103,11 +103,12 @@ const AdminLayout = () => {
                             <Popover content={content} placement="bottomRight" >
                                 <span>
                                     <Avatar
+                                    src='https://joesch.moe/api/v1/random?key=1'
                                         style={{
                                             backgroundColor: 'red',
                                             verticalAlign: 'right',
                                         }}
-                                        size="large"
+                                        size={50}
                                     // gap={gap}
                                     >
                                         Hello Tien

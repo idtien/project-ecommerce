@@ -12,23 +12,13 @@
     },
     {
       "email": "user@gmail.com",
-      "password": "$2a$10$VKsgtfrnXvXGY4juyxSHXOfooiublLB7rY112ct.S7R6BWwV7P6em",
-      "fullname": "User",
-      "username": "user",
+      "password": "$2a$10$anAVnxgHChQ3k/j7fW/b9.j4aTvET.tO5hHPrFxiZrqPBd0Yhr42e",
+      "username": "idtien",
       "phone": "0123456789",
-      "address": "Hue, Viet Nam",
+      "address": "Hue, Viet nam",
+      "fullname": "Pham Hoang Thanh Tien",
       "isAdmin": false,
       "id": 2
-    },
-    {
-      "email": "aa@gmail.com",
-      "password": "$2a$10$G3fzKzZI535mBYV06thIMOsZlEpkqGRkP8I0.LNdnlSIA619Oj.LO",
-      "username": "111111111",
-      "phone": "11",
-      "address": "111",
-      "fullname": "111",
-      "isAdmin": false,
-      "id": 3
     }
   ],
   "products": [
@@ -1662,6 +1652,157 @@
       "totalMoneySale": 24850,
       "paymentMethod": "whenReceive",
       "id": 15
+    },
+    {
+      "receiverOfName": "Thanh Tien",
+      "phone": "0766759974",
+      "address": "Da Nang, Viet Nam",
+      "description": "Mua hang online",
+      "codeOrder": "c17c2c94-39eb-4b34-97e0-dc99cfed2e42",
+      "idUser": 1,
+      "cart": [
+        {
+          "id": 1,
+          "name": "Laptop Acer Aspire 3 A315 58 54XF i5 ",
+          "category": "technological",
+          "price": 1599,
+          "priceSale": 1099,
+          "rating": 4.5,
+          "images": [
+            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-1.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-2.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-03.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-4.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-3.jpg"
+          ],
+          "tag": [
+            "new",
+            "sale"
+          ],
+          "brand": "acer",
+          "description": "If you are looking for a study - office laptop with an elegant, modern design and configuration parameters powerful enough for smooth operation of work tasks, the Acer Aspire 3 A315 58 54XF i5 (NX. AM0SV.007) is the ideal choice for you.",
+          "quantity": 4
+        }
+      ],
+      "totalMoney": 6396,
+      "totalMoneySale": 4396,
+      "paymentMethod": "whenReceive",
+      "id": 16
+    },
+    {
+      "receiverOfName": "Tien",
+      "phone": "01266759974",
+      "address": "Da Nang, Viet Nam",
+      "description": "buy online",
+      "codeOrder": "6220f06f-77cd-4684-80f9-d4864ef1cf7d",
+      "idUser": 1,
+      "cart": [
+        {
+          "id": 2,
+          "name": "Laptop Lenovo Ideapad 5 15IAL7 i5",
+          "category": "technological",
+          "price": 2020,
+          "priceSale": 1509,
+          "rating": 4,
+          "images": [
+            "https://cdn.tgdd.vn/Products/Images/44/300689/lenovo-ideapad-5-15ial7-i5-82sf005hvn-1.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/300689/lenovo-ideapad-5-15ial7-i5-82sf005hvn-2.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/300689/lenovo-ideapad-5-15ial7-i5-82sf005hvn-3.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/300689/lenovo-ideapad-5-15ial7-i5-82sf005hvn-4.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/300689/lenovo-ideapad-5-15ial7-i5-82sf005hvn-5.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/300689/lenovo-ideapad-5-15ial7-i5-82sf005hvn-6.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/300689/lenovo-ideapad-5-15ial7-i5-82sf005hvn-8.jpg"
+          ],
+          "tag": [
+            "new",
+            "sale"
+          ],
+          "brand": "lenovo",
+          "description": "Laptop Lenovo Ideapad 5 15IAL7 i5 1235U (82SF005HVN) will be a formidable competitor in the segment of study - office laptops when possessing the outstanding performance power from Intel Gen 12 processor and elegant appearance, Always ready to accompany you everywhere.",
+          "quantity": 1
+        }
+      ],
+      "totalMoney": 2020,
+      "totalMoneySale": 1509,
+      "paymentMethod": "whenReceive",
+      "id": 17
+    },
+    {
+      "receiverOfName": "Tien",
+      "phone": "123456789",
+      "address": "Hua",
+      "description": "123",
+      "codeOrder": "3da8a22f-313a-44ec-a49e-56772c9b0907",
+      "idUser": 1,
+      "cart": [
+        {
+          "id": 1,
+          "name": "Laptop Acer Aspire 3 A315 58 54XF i5 ",
+          "category": "technological",
+          "price": 1599,
+          "priceSale": 1099,
+          "rating": 4.5,
+          "images": [
+            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-1.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-2.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-03.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-4.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-3.jpg"
+          ],
+          "tag": [
+            "new",
+            "sale"
+          ],
+          "brand": "acer",
+          "description": "If you are looking for a study - office laptop with an elegant, modern design and configuration parameters powerful enough for smooth operation of work tasks, the Acer Aspire 3 A315 58 54XF i5 (NX. AM0SV.007) is the ideal choice for you.",
+          "quantity": 13
+        },
+        {
+          "name": "Laptop MacBook Pro 16 inch M2 Pro 2023 ",
+          "category": "technological",
+          "price": 3000,
+          "priceSale": 2000,
+          "rating": 5,
+          "images": [
+            "https://cdn.tgdd.vn/Products/Images/44/302149/macbook-pro-16-inch-m2-pro-a-8.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/302149/macbook-pro-16-inch-m2-pro-a-7.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/302149/macbook-pro-16-inch-m2-pro-a-6.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/302149/macbook-pro-16-inch-m2-pro-a-1.jpg"
+          ],
+          "tag": [
+            "new",
+            "sale",
+            "hot"
+          ],
+          "brand": "macbook",
+          "description": "Apple has just introduced to users the 16-inch MacBook Pro M2 Pro 2023 with a thin and light design but inside is an extremely powerful performance to meet all tasks, promising to become a great companion. in work, study and leisure.Smoothly handle all tasks thanks to Apple M2 Pro chip",
+          "id": 10,
+          "quantity": 1
+        },
+        {
+          "name": "Gucci HA HA HA dove heart shirt",
+          "category": "clothes",
+          "price": 2150,
+          "priceSale": 1150,
+          "rating": 4,
+          "images": [
+            "https://media.gucci.com/style/HEXEEEFEC_Center_0_0_800x800/1666959314/718033_ZAK3J_4699_001_100_0000_Light-Gucci-HA-HA-HA-dove-heart-shirt.jpg",
+            "https://media.gucci.com/style/HEXEEEFEC_Center_0_0_800x800/1666959316/718033_ZAK3J_4699_002_100_0000_Light-Gucci-HA-HA-HA-dove-heart-shirt.jpg"
+          ],
+          "tag": [
+            "hot",
+            "sale"
+          ],
+          "brand": "gucci",
+          "description": "Available to selected Sydney Metropolitan postcodes. If you are eligible for this service, it will appear at checkout. The return window for online purchases is 30 days from the date you received your purchase. Prepaid return labels for complimentary return/exchange are included with all online orders along with detailed instructions. You may also return or exchange merchandise in any of our Gucci boutiques when accompanied by the original invoice.",
+          "id": 18,
+          "quantity": 4
+        }
+      ],
+      "totalMoney": 32387,
+      "totalMoneySale": 20887,
+      "paymentMethod": "whenReceive",
+      "id": 18
     }
   ],
   "comments": [
@@ -1692,5 +1833,9 @@
       "contentCmt": "Best product",
       "avatar": "https://static.vecteezy.com/system/resources/previews/009/734/564/original/default-avatar-profile-icon-of-social-media-user-vector.jpg"
     }
-  ]
+  ],
+  "allBrandProducts": {
+    "technological": ["macbook", "dell", "acer", "hp", "lenovo", "microsoft", "asus"],
+    "clothes": ["gucci", "louisvuitton", "channel", "zara"]
+  }
 }

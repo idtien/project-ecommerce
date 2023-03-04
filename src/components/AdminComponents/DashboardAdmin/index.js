@@ -1,7 +1,7 @@
 import React from 'react'
 import { DollarCircleOutlined, ShoppingCartOutlined, ShoppingOutlined, UserOutlined } from '@ant-design/icons'
 import { Avatar, Button, Card, Col, Divider, Row, Space, Statistic, Table, Tag, Typography } from 'antd'
-
+import useGoToTop from '../../../hooks/useGoToTop'
 import {
     data,
     options,
@@ -35,6 +35,7 @@ ChartJS.register(ArcElement)
 
 
 const DashboardAdmin = () => {
+    useGoToTop()
     const columnsTable = [
         {
             title: 'Name',

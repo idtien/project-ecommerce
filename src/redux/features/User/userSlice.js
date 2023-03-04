@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { BE_URL, KEY_ACCESS_TOKEN, KEY_IS_LOGGED } from '../../../constants/config'
 import * as Jwt from 'jsonwebtoken'
-import { fetchInfoMe, fetchRegisterUser } from '../../../apis/userAPI'
+import { fetchDeleteUserByID, fetchInfoMe, fetchRegisterUser } from '../../../apis/userAPI'
 import { toast } from 'react-toastify'
 
 const initialState = {
@@ -12,7 +12,8 @@ const initialState = {
     isLogged: JSON.parse(localStorage.getItem(KEY_IS_LOGGED)) || false, //re-cache status avoid re-render page
     error: {},
     isRegister: false,
-    isToastLoginSuccess: false
+    isToastLoginSuccess: false,
+    allUser: []
 }
 
 //Create middleware call api
@@ -20,6 +21,15 @@ export const fetchLogin = createAsyncThunk(
     "user/fetchLogin",
     async (payload) => {
         const res = await axios.post(`${BE_URL}login`, payload)
+        console.log(res.data, 'res.data');
+        return res.data
+    }
+)
+
+export const fetchAllUser = createAsyncThunk(
+    "user/fetchAllUser",
+    async () => {
+        const res = await axios.get(`${BE_URL}users`)
         return res.data
     }
 )
@@ -48,6 +58,7 @@ export const userSlice = createSlice({
 
     },
     extraReducers: (builder) => {
+        //FetchLogin
         builder.addCase(fetchLogin.pending, (state) => {
             state.isLoading = true;
         });
@@ -67,6 +78,18 @@ export const userSlice = createSlice({
             
             state.isLoading = false;
 
+        });
+
+        //FetchAllUser
+
+        // builder.addCase(fetchAllUser.pending, (state) => {{
+            
+        // }});
+        // builder.addCase(fetchAllUser.rejected, (state, action) => {{
+            
+        // }});
+        builder.addCase(fetchAllUser.fulfilled, (state, action) => {
+            state.allUser = action.payload
         });
     },
 })
@@ -120,6 +143,11 @@ export const actRegister = (dataRegister) => async (dispatch) => {
     } finally {
         dispatch(actUpdateRegister(false))
     }
+}
+
+export const actDeleteUserByID = (id) => async (dispatch) => {
+    console.log(id, 'actDeleteUserByID');
+    await dispatch(fetchDeleteUserByID(id))
 }
 
 export const { actGetMe, loginSuccess, actLogout, actUpdateRegister } = userSlice.actions

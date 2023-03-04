@@ -1,12 +1,18 @@
 import { Avatar, Button, Col, Form, Input, Row } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
-import React from 'react'
+import React, { useRef, useState } from 'react'
 
 import './UserProfile.scss'
 import TextArea from 'antd/es/input/TextArea'
+import useGoToTop from '../../hooks/useGoToTop'
+import { useSelector } from 'react-redux'
 
 
 const UserProfilePage = () => {
+    useGoToTop()
+    const [disable, setDisable] = useState(true)
+    const { user } = useSelector(state => state.users)
+    console.log(user, 'user');
     return (
         <>
 
@@ -20,7 +26,7 @@ const UserProfilePage = () => {
                     <br />
                     <br />
                     <div className='userProfile__avatar--btn'>
-                        <Button type='primary'>EDIT</Button>
+                        <Button type='primary' onClick={() => setDisable(!disable)}>EDIT</Button>
                         <Button type='dashed'>UPLOAD</Button>
                     </div>
                 </Col>
@@ -37,11 +43,28 @@ const UserProfilePage = () => {
                         style={{
                             maxWidth: 600,
                         }}
-                        initialValues={{
-                            remember: true,
-                        }}
-                        // onFinish={onFinish}
-                        // onFinishFailed={onFinishFailed}
+                        fields={[
+                            {
+                                name: ["fullname"],
+                                value: user?.fullname,
+                            },
+                            {
+                                name: ["phone"],
+                                value: user?.phone,
+                            },
+                            {
+                                name: ["email"],
+                                value: user?.email,
+                            },
+                            {
+                                name: ["address"],
+                                value: user?.address,
+                            },
+                            {
+                                name: ["description"],
+                                value: '',
+                            },
+                        ]}
                         autoComplete="off"
                     >
                         <h2 style={{ textAlign: 'center' }}>INFORMATION PROFILE USER</h2>
@@ -55,7 +78,7 @@ const UserProfilePage = () => {
                                 },
                             ]}
                         >
-                            <Input placeholder="Full Name" disabled />
+                            <Input placeholder="Full Name" disabled={disable} />
                         </Form.Item>
 
                         <Form.Item
@@ -68,7 +91,7 @@ const UserProfilePage = () => {
                                 },
                             ]}
                         >
-                            <Input placeholder="Phone Number"  disabled/>
+                            <Input placeholder="Phone Number" disabled={disable} />
                         </Form.Item>
 
                         <Form.Item
@@ -81,7 +104,7 @@ const UserProfilePage = () => {
                                 },
                             ]}
                         >
-                            <Input placeholder="Email address" disabled/>
+                            <Input placeholder="Email address" disabled={disable} />
                         </Form.Item>
 
                         <Form.Item
@@ -94,7 +117,7 @@ const UserProfilePage = () => {
                                 },
                             ]}
                         >
-                            <Input placeholder="Your Address" disabled />
+                            <Input placeholder="Your Address" disabled={disable} />
                         </Form.Item>
                         <Form.Item
                             label="Description"
@@ -113,7 +136,7 @@ const UserProfilePage = () => {
                                     resize: 'none',
                                 }}
                                 placeholder="Type some description"
-                                disabled
+                                disabled={disable}
                             />
                         </Form.Item>
 
@@ -124,12 +147,17 @@ const UserProfilePage = () => {
                                 span: 16,
                             }}
                         >
-                                <Button disabled type="default" style={{marginRight: '15px'}}>
-                                    Cancel
-                                </Button>
-                                <Button disabled type="primary" htmlType="submit">
-                                    Save
-                                </Button>
+                            <Button
+                                disabled={disable}
+                                type="default"
+                                style={{ marginRight: '15px' }}
+                                onClick={()=> setDisable(true)}
+                                >
+                                Cancel
+                            </Button>
+                            <Button disabled={disable} type="primary" htmlType="submit">
+                                Save
+                            </Button>
                         </Form.Item>
                     </Form>
                 </Col>

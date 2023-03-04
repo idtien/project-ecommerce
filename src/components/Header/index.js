@@ -1,6 +1,6 @@
 
-import { FacebookOutlined, HeartOutlined, InstagramOutlined, LoginOutlined, LogoutOutlined, ShoppingCartOutlined, TwitterOutlined, UserAddOutlined, YoutubeOutlined, MenuOutlined, UserOutlined, DashboardOutlined } from '@ant-design/icons/lib/icons'
-import { Avatar, Badge, Col, Divider, Drawer, Input, Popover, Row, Table } from 'antd'
+import { LoginOutlined, LogoutOutlined, ShoppingCartOutlined, UserAddOutlined, MenuOutlined, UserOutlined, DashboardOutlined } from '@ant-design/icons/lib/icons'
+import { Avatar, Badge, Col, Drawer, Popover, Row, Table } from 'antd'
 import './Header.scss'
 import '../../styles/Responsive.scss'
 
@@ -10,6 +10,8 @@ import { ROUTE_URL } from '../../constants/routingUrl'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { actLogout } from '../../redux/features/User/userSlice'
+import SearchCpn from '../Search'
+import { HeartOutlined } from '@ant-design/icons'
 
 const xs = { span: 24, offset: 0 }
 const sm = { span: 24, offset: 0 }
@@ -27,7 +29,7 @@ const HeaderCpn = () => {
   const isAdmin = useSelector(state => state.users.user.isAdmin)
   const { user } = useSelector(state => state.users)
   const { listCart, totalCart } = useSelector(state => state.carts)
-  const {totalWishList} = useSelector(state => state.wishList)
+  const { totalWishList } = useSelector(state => state.wishList)
 
   const handleLogout = () => {
     dispatch(actLogout())
@@ -54,12 +56,7 @@ const HeaderCpn = () => {
   const goDashboard = () => {
     navigate('/admin')
   }
-
-  const handleChangeInputSearch = (e) => {
-    console.log(e.target.value);
-  }
-
-
+  
   const columns = [
     {
       with: 20000,
@@ -100,63 +97,47 @@ const HeaderCpn = () => {
         </>
       )}
 
-      <Link to={ROUTE_URL.PROFILE_USER}>
-        <p> <UserOutlined /> Profile</p>
-      </Link>
-      <hr />
-      <div onClick={handleLogout}><LogoutOutlined /> Logout</div>
+      {isLogged ? (
+        <>
+          <Link to={ROUTE_URL.PROFILE_USER}>
+            <p> <UserOutlined /> Profile</p>
+          </Link>
+          <hr />
+          <div onClick={handleLogout}><LogoutOutlined /> Logout</div>
+        </>
+      ) : (
+        <>
+          <Link to={ROUTE_URL.LOGIN}>
+            <p> <LoginOutlined /> Login</p>
+          </Link>
+          <hr />
+          <Link to={ROUTE_URL.REGISTER}>
+            <p> <UserAddOutlined /> Register</p>
+          </Link>
+        </>
+      )}
     </div>
   )
 
   const contentCart = (
     <div className='header__user'>
-      <div className='header__user--'>
         <Table pagination={false} dataSource={cart} columns={columns} />
-      </div>
     </div>
   )
 
   return (
     <>
       <Row id='header'>
-        <Col className='header__top' span={24}>
-          <div className='header__contact'> Contact with us
-            <span > <FacebookOutlined /></span>
-            <span > <InstagramOutlined /></span>
-            <span > <YoutubeOutlined /></span>
-            <span > <TwitterOutlined /></span>
-          </div>
-          <div className='header__contact2'>
-
-            {!isLogged && (
-              <>
-                <Link to={ROUTE_URL.REGISTER}><span><UserAddOutlined /> Register</span></Link>
-                <Link to={ROUTE_URL.LOGIN}><span style={{ marginLeft: '8px' }}> <LoginOutlined />  Login</span></Link>
-              </>
-            )}
-          </div>
-        </Col>
-        <Divider className='header__divider' />
         <Col className='header__main' span={24}>
           <div className='header__main--logo'>
             <Link to={ROUTE_URL.HOME}>
               <img src={logoOrange} style={{ width: '150px', height: '40px' }} alt='logo' />
             </Link>
           </div>
-          <div className='header__main--search'>
-            <Row>
-              <Col span={24}>
-                <Input.Search
-                  size="large"
-                  allowClear
-                  placeholder='Type to search'
-                  onChange={handleChangeInputSearch}
-                />
-              </Col>
-            </Row>
-          </div>
-          <div className='header__main--btn'>
 
+          <SearchCpn />
+
+          <div className='header__main--btn'>
             <span >
               <Link to={ROUTE_URL.WISHLIST}>
                 <Badge style={{}} count={totalWishList}><HeartOutlined style={{ fontSize: '20px' }} /></Badge>
@@ -176,16 +157,17 @@ const HeaderCpn = () => {
                 </Popover>
               </Link>
             </span>
-            {isLogged && (
+            {isLogged ? (
               <>
                 <Popover content={content} placement="bottomRight" >
                   <span style={{ marginLeft: '32px' }}>
                     <Avatar
+                    src='https://joesch.moe/api/v1/random?key=1'
                       style={{
                         backgroundColor: 'red',
                         verticalAlign: 'right',
                       }}
-                      size="large"
+                      size={50}
                     // gap={gap}
                     >
                       {user?.fullname}
@@ -193,7 +175,26 @@ const HeaderCpn = () => {
                   </span>
                 </Popover>
               </>
-            )}
+            ) : (
+              <>
+                <Popover content={content} placement="bottomRight" >
+                  <span style={{ marginLeft: '32px' }}>
+                    <Avatar
+                      style={{
+                        // backgroundColor: 'red',
+                        verticalAlign: 'right',
+                      }}
+                      size={50}
+                    // gap={gap}
+                    >
+                      <UserOutlined/>
+                    </Avatar>
+                  </span>
+                </Popover>
+              </>
+            )
+
+            }
           </div>
           <div className='header__main--bars' onClick={() => setVisibleDrawer(true)}>
             <MenuOutlined />

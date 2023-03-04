@@ -1,34 +1,9 @@
 #header {
     background-color: #fff;
-    height: 120px;
-}
-
-.header__top {
-    width: 100%;
-    font-size: 16px;
-    color: #000;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 50px;
-}
-
-.header__contact {
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.header__contact2 {
-    font-size: 16px;
-}
-
-.header__contact span:hover {
-    opacity: .8;
-}
-
-.header__divider {
-    height: 1px;
-    background-color: #000;
-    margin: 0;
+    height: 80px;
+    position: sticky;
+    top: 0px;
+    z-index: 30;
 }
 
 .header__main {
@@ -72,6 +47,9 @@
 .header__menu--wrap {
     background-color: #ee4d2d;
     padding: 1px;
+    position: sticky;
+    top: 80px;
+    z-index: 20;
 }
 
 .header__menu {
@@ -107,7 +85,7 @@
 }
 
 .ant-drawer-wrapper-body {
-    background-color: #ccc;
+    // background-color: #ccc;
 }
 
 .header__menu--draw {
@@ -128,6 +106,8 @@
 .header__user {
     width: 150px;
     font-size: 24px;
+    cursor: pointer;
+    
 
     a {
         color: black

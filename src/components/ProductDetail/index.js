@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
-import { CarOutlined, HeartOutlined, ShoppingCartOutlined } from '@ant-design/icons'
+import { CarOutlined, HeartOutlined } from '@ant-design/icons'
 import { Avatar, Button, Card, Carousel, Col, Divider, Form, Image, InputNumber, Rate, Row, Space, Tag, Typography } from 'antd'
 import Meta from 'antd/es/card/Meta'
 import TextArea from 'antd/es/input/TextArea'
@@ -11,7 +11,7 @@ import useGoToTop from '../../hooks/useGoToTop'
 
 import './ProductDetail.scss'
 import { actGetProductById } from '../../redux/features/Product/productSlice'
-import { actListCart, actMoreListCart } from '../../redux/features/Cart/cartSlice'
+import { actMoreListCart } from '../../redux/features/Cart/cartSlice'
 import { toast, ToastContainer } from 'react-toastify'
 import { actAddWishList } from '../../redux/features/WishList/wishListSlice'
 
@@ -55,11 +55,8 @@ const ProductDetails = () => {
       });
     } else {
       dispatch(actAddWishList(cart))
-
     }
   }
-
-
 
   useEffect(() => {
     dispatch(actGetProductById(params.id))
@@ -83,7 +80,6 @@ const ProductDetails = () => {
   } else if (product?.category === 'jewelry') {
     color = '#69b1ff'
   }
-
 
   return (
     <>

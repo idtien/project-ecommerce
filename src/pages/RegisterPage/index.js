@@ -9,8 +9,10 @@ import { actRegister } from '../../redux/features/User/userSlice'
 
 import logoLogin2 from '../../assets/images/logo_part2.png'
 import './RegisterPage.scss'
+import useGoToTop from '../../hooks/useGoToTop'
 
 const RegisterPage = () => {
+    useGoToTop()
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const { isLogged, isRegister } = useSelector(state => state.users)

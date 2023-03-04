@@ -2,19 +2,21 @@ import React, { useEffect, useState } from 'react'
 import { Button, Col, Form, Input, Row } from 'antd'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { ROUTE_URL } from '../../constants/routingUrl'
 import { useDispatch, useSelector } from 'react-redux'
-import { actReLogin, fetchLogin } from '../../redux/features/User/userSlice'
 
 import { ToastContainer, toast } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
 
+import { actReLogin, fetchLogin } from '../../redux/features/User/userSlice'
+import { ROUTE_URL } from '../../constants/routingUrl'
+import useGoToTop from '../../hooks/useGoToTop'
 import logoLogin2 from '../../assets/images/logo_part2.png'
 import './LoginPage.scss'
-import { fetchAllProduct } from '../../redux/features/Product/productSlice'
+import { fetchAllUser } from '../../apis/userAPI'
 
 
 const LoginPage = () => {
+    useGoToTop()
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
