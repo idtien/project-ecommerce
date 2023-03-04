@@ -11,6 +11,12 @@ import '../../styles/Responsive.scss'
 import bnSale from '../../assets/images/banner3.png'
 import bnSale2 from '../../assets/images/banner4.png'
 import { ToastContainer } from 'react-toastify'
+import useGoToTop from '../../hooks/useGoToTop'
+
+import banner5 from '../../assets/images/banner5.png'
+import banner6 from '../../assets/images/banner6.png'
+import banner_extra1 from '../../assets/images/banner_extra1.png'
+import banner_extra2 from '../../assets/images/banner_extra2.png'
 
 
 const xs = { span: 24 }
@@ -18,9 +24,10 @@ const sm = { span: 24 }
 const md = { span: 16 }
 const lg = { span: 16 }
 const HomePage = () => {
+    useGoToTop()
     const { allProduct, isLoading } = useSelector(state => state.products)
     const { isLogged, user } = useSelector(state => state.users)
-    
+
 
     const renderListProduct = (listProduct) => {
         return listProduct.map((product) => {
@@ -30,35 +37,36 @@ const HomePage = () => {
 
     return (
         <>
-        <ToastContainer/>
+            <ToastContainer />
             <Row>
                 <Col xs={xs} sm={sm} md={md} lg={lg} className='carousel'>
                     <Carousel autoplay draggable className='carousel'>
-                        <div>
-                            <h3 className='carousel__main'> </h3>
+                        <div className='carousel__main'>
+                            <img src={banner5} />
                         </div>
-                        <div>
-                            <h3 className='carousel__main'> </h3>
+                        <div className='carousel__main'>
+                            <img src={banner6} />
                         </div>
-                        <div>
-                            <h3 className='carousel__main'> </h3>
+                        <div className='carousel__main'>
+                            <img src={banner5} />
                         </div>
-                        <div>
-                            <h3 className='carousel__main'> </h3>
+                        <div className='carousel__main'>
+                            <img src={banner5} />
                         </div>
+
                     </Carousel>
                 </Col>
 
                 <Col span={8}>
                     <Row gutter={[0, 16]}>
                         <Col span={24}>
-                            <div>
-                                <h3 className='carousel__extra'> </h3>
+                            <div className='carousel__extra'> 
+                                <img src={banner_extra1}/>
                             </div>
                         </Col>
                         <Col span={24}>
-                            <div>
-                                <h3 className='carousel__extra'> </h3>
+                        <div className='carousel__extra'> 
+                                <img src={banner_extra2}/>
                             </div>
                         </Col>
                     </Row>

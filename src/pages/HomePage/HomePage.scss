@@ -1,35 +1,32 @@
 .carousel__main {
-    height: 516px;
+    height: 556px;
     color: #fff;
     line-Height: 320px;
     text-Align: center;
     background: #364d79;
 }
 
-.carousel__extra {
-    height: 250px;
+.carousel__extra{
+    height: 270px;
     color: #fff;
     line-Height: 250px;
     text-Align: center;
     background: #364d79;
     margin-left: 16px;
+    img {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .carousel {
-    .carousel__main {
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-        background-image: url("../../assets/images/banner1.png");
+    .carousel__main img{
+        width: 100%;
+        height: 100%;
     }
-
-
 }
 
-.carousel__extra {
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-image: url("../../assets/images/banner2.png");
-}
+
 
 
 .features {

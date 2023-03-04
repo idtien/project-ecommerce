@@ -44,7 +44,7 @@ const Product = (props) => {
                 draggable: true,
                 progress: undefined,
                 theme: "colored",
-                
+
             });
         } else {
             dispatch(actAddWishList(cart))
@@ -55,10 +55,12 @@ const Product = (props) => {
         dispatch(actListCart(cart))
     }
 
+
     return (
         <>
             <Col xs={xs} sm={sm} md={md} lg={lg}>
-                <Badge.Ribbon text="New Product" color="red">
+
+                <Badge.Ribbon text='New Product' color="red">
                     <Card
                         loading={loading}
                         bodyStyle={{ height: '260px' }}

@@ -2,9 +2,11 @@ import React from 'react'
 
 import './About.scss'
 import background from '../../assets/images/page_developing.jpg'
+import useGoToTop from '../../hooks/useGoToTop'
 
 
 const About = () => {
+  useGoToTop()
   return (
     <>
       <div style={{ textAlign: 'center' }}>

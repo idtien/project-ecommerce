@@ -1,6 +1,7 @@
 .shop {
     padding: 20px 0;
 }
+
 .menu__bar {
     display: none;
     font-size: 30px;
@@ -14,6 +15,15 @@
 .menu__collapse {
     padding: 0 40px;
     position: sticky;
-    top: 10px;
-}
+    top: 180px;
 
+    &--filter ul {
+        text-transform: capitalize;
+        margin-left: 15px;
+        & li:hover {
+            color: #ee4d2d;
+            cursor: pointer;
+            transition: .8s;
+        }
+    }
+}

@@ -10,9 +10,9 @@ const initialState = {
 
 export const fetchAllProduct = createAsyncThunk(
     "user/fetchProduct",
-    async () => {
+    async (params = {}) => {
         //call api get all data
-        const data = await fetchAllDataProduct();
+        const data = await fetchAllDataProduct(params);
         return data || [];
     }
 )
@@ -43,8 +43,6 @@ export const productSlice = createSlice({
         });
     }
 })
-
-
 
 export const actGetProductById = (id) => async (dispatch) => {
     try {

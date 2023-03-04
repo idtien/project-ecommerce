@@ -9,6 +9,8 @@ import { actChangeQuantity, actClearCart, actDeleteCart } from '../../redux/feat
 import './CartPage.scss'
 import { actOrderProduct } from '../../redux/features/Order/orderSlice'
 import { KEY_LIST_CART } from '../../constants/config'
+import useGoToTop from '../../hooks/useGoToTop'
+import { Link, useNavigate } from 'react-router-dom'
 
 const xs = { span: 24, offset: 0 }
 const sm = { span: 24, offset: 0 }
@@ -17,7 +19,9 @@ const lg = { span: 17, offset: 1 }
 
 
 const CartPage = () => {
+    useGoToTop()
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [cart, setCart] = useState([])
     const [confirmBuy, setConfirmBuy] = useState(false)
     const [acceptPayment, setAcceptPayment] = useState(false)
@@ -48,6 +52,7 @@ const CartPage = () => {
             )
         }))
     }, [listCart])
+
 
     const handleDeleteCart = (product) => {
         dispatch(actDeleteCart(product))
@@ -145,6 +150,10 @@ const CartPage = () => {
             title: 'Name',
             dataIndex: 'nameProduct',
             key: 'name',
+            render: (_, record) => {
+                console.log(record, 'record');
+                return <Link to={`/products/${record?.id}`}>{record.nameProduct}</Link>
+            }
         },
         {
             width: 100,
@@ -186,7 +195,7 @@ const CartPage = () => {
             dataIndex: 'quantity',
             key: 'name',
             render: (_, quantity) => {
-                return <InputNumber min={1} max={10} defaultValue={quantity.quantity}
+                return <InputNumber min={1} max={999} defaultValue={quantity.quantity}
                     onChange={(value) => {
                         handleChangeQuantity(value, quantity)
                     }}
@@ -254,6 +263,7 @@ const CartPage = () => {
                         open={acceptPayment}
                         width={600}
                         footer={null}
+                        onCancel={() => setAcceptPayment(false)}
                     >
                         <Form className='form__register--input2'
                             name="basic"
@@ -271,6 +281,7 @@ const CartPage = () => {
                             }}
                             autoComplete="off"
                             onFinish={handleCheckFillInfo}
+
                         >
                             <h2 style={{ textAlign: 'center' }}>Purchase Confirmation</h2>
                             <Form.Item
