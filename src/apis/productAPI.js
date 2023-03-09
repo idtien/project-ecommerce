@@ -2,11 +2,13 @@ import axios from "axios"
 import { BE_URL } from "../constants/config"
 
 //Call API get All data product
-export const fetchAllDataProduct = async (params = {_limit: 8, page:1}) => {
-    const { data } = await axios.get(`${BE_URL}products`, {
-        params: {...params}
-    })
-    return data
+// params = {_limit: 8, page:1}
+export const fetchAllDataProduct = async (params) => {
+    const resp = await axios.get(`${BE_URL}products`, {
+        params: { ...params }
+    }
+    )
+    return resp
 }
 
 export const fetchDataProductByID = async (id) => {
@@ -26,4 +28,14 @@ export const deleteProductById = async (id) => {
 
 export const fetchAllBrandProducts = async () => {
     return await axios.get(`${BE_URL}allBrandProducts`)
+}
+
+//Update product by id
+export const fetchUpdateProductEdit = async (infoProductEdit) => {
+    return await axios.patch(`${BE_URL}products/${infoProductEdit?.id}`, infoProductEdit)
+}
+
+//Add new product
+export const fetchAddNewProduct = async (dataProduct) => {
+    return await axios.post(`${BE_URL}products`, dataProduct)
 }

@@ -16,29 +16,27 @@ import UserProfilePage from "./pages/UserProfilePage";
 import ContactPage from "./pages/ContactPage";
 import AdminLayout from "./layout/AdminLayout";
 import CustomerAdmin from "./components/AdminComponents/CustomerAdmin";
-import ProductAdmin from "./components/AdminComponents/PruductAdmin";
+import ProductAdmin from "./components/AdminComponents/ProductAdmin";
 import OrdersAdmin from "./components/AdminComponents/OrdersAdmin";
 import DashboardAdmin from "./components/AdminComponents/DashboardAdmin";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actReLogin } from "./redux/features/User/userSlice";
-import { fetchAllProduct } from "./redux/features/Product/productSlice";
 import ErrorPage from "./pages/ErrorPage";
+import { fetchAllProduct } from "./redux/features/Product/productSlice";
 
 function App() {
   const dispatch = useDispatch()
 
   const accessToken = useSelector(state => state.users.accessToken)
   const { isLogged, user } = useSelector(state => state.users)
+  const { currentPage, pageSize } = useSelector(state => state.products)
+
   useEffect(() => {
     if (accessToken) {
       dispatch(actReLogin(accessToken))
     }
   }, [])
-
-  useEffect(() => {
-    dispatch(fetchAllProduct())
-  })
 
   return (
     <BrowserRouter>

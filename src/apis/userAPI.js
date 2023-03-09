@@ -19,3 +19,8 @@ export const fetchAllUser = async () => {
 export const fetchDeleteUserByID = async (id) => {
     return await axios.delete(`${BE_URL}users/${id}`)
 }
+
+//Update user by id
+export const fetchUpdateUserEdit = async (infoUserEdit) => {
+    return await axios.patch(`${BE_URL}users/${infoUserEdit?.id}`, infoUserEdit)
+}

@@ -1,70 +1,71 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Row, message, Collapse, Slider, Button, Pagination, Space } from 'antd'
+import { Col, Row, message, Collapse, Slider, Button, Pagination, Space, Typography, Menu } from 'antd'
 import './Shop.scss'
 import Product from '../Product';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import useGoToTop from '../../hooks/useGoToTop'
-import axios from 'axios';
-import { BE_URL } from '../../constants/config';
-import continueShopping from '../../assets/images/continueShopping.jpg'
 import { fetchAllBrandProducts } from "../../apis/productAPI"
-import { fetchAllProduct } from '../../redux/features/Product/productSlice';
+import { actSetChangePage, fetchAllProduct } from '../../redux/features/Product/productSlice';
+import { useSearchParams } from 'react-router-dom';
+import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
+import SubMenu from 'antd/es/menu/SubMenu';
+import Icon from '@ant-design/icons/lib/components/Icon';
 
 const { Panel } = Collapse;
 
 const Shop = () => {
     useGoToTop()
     const dispatch = useDispatch()
-    const { allProduct, isLoading } = useSelector(state => state.products)
+    const { allProduct, isLoading, currentPage, pageSize, totalProduct } = useSelector(state => state.products)
 
     const [brandProduct, setBrandProduct] = useState({})
     const [filterResult, setFilterResult] = useState([])
     const [totalRecord, setTotalRecord] = useState(0)
-    const [page, setPage] = useState(1)
     const [filterPrice, setFilterPrice] = useState([0, 9999999])
     const [filterValue, setFilterValue] = useState({
-        _page: 1,
-        _limit: 8,
         brand: '',
-        category: '',
         price: [filterPrice[0], filterPrice[1]]
     })
-    // const [isShowFilter, setIsShowFilter] = useState(false)
+
+    // let [searchParams, setSearchParams] = useSearchParams();
+
+    // const brand = searchParams.get('brand')
+    // const product = searchParams.get('product')
+    // console.log(searchParams.get('brand'), 'brand');
+    // console.log(searchParams.get('product'), 'product');
+    // searchParams.delete('brand')
 
     const renderListProduct = (listProduct) => {
-        // if (!isShowFilter) {
         return listProduct.map((product) => {
             return <Product key={product.id} products={product} />
         })
-        // }
     }
 
-    // const renderListProductFilter = (filterResult) => {
-    //     return filterResult.map((product) => {
-    //         return <Product key={product.id} products={product} />
-    //     })
-    // }
-
-    // const techno = ['macbook', 'dell', 'acer', 'hp', 'lenovo', 'microsoft', 'asus']
-    // const clothes = ['gucci', 'louisvuitton', 'channel', 'zara']
-
-
-
-
-    const handleChangeValue = (dataFilter) => {
-        // setIsShowFilter(true)
-        setFilterValue(dataFilter)
+    const handleChangeBrand = (brand) => {
+        setFilterValue({
+            ...filterValue,
+            brand: brand
+        })
     }
 
-    // useEffect(() => {
-    //     async function fetchDataFilter() {
-    //         const dataFilter = await axios.get(`${BE_URL}products?_page=${page}&_limit=8&brand=${filterValue.brand}&category=${filterValue.category}&price_gte=${filterValue.price[0]}&price_lte=${filterValue.price[1]}`)
-    //         setFilterResult(dataFilter.data)
-    //         setTotalRecord(dataFilter.headers["x-total-count"]);
-    //     }
-    //     fetchDataFilter()
-    // }, [filterValue, page])
+    useEffect(() => {
+        if (filterValue.brand === '') {
+            dispatch(fetchAllProduct({ _page: currentPage, _limit: pageSize, price_gte: filterValue.price[0], price_lte: filterValue.price[1] }))
+        } else {
+            dispatch(fetchAllProduct({ _page: currentPage, _limit: pageSize, brand: filterValue.brand, price_gte: filterValue.price[0], price_lte: filterValue.price[1] }))
+        }
+
+    }, [filterValue])
+
+    useEffect(() => {
+        async function fetchDataBrand() {
+            const dataBrand = await fetchAllBrandProducts()
+            setBrandProduct(dataBrand.data)
+        }
+        fetchDataBrand()
+    }, [])
+
 
     const handleClickSlider = () => {
         window.scrollTo(0, 0)
@@ -74,88 +75,116 @@ const Shop = () => {
         })
     }
 
-    const handleResetFilter = () => {
-        // setIsShowFilter(false)
-    }
+    // const techNological = []
+    // const clothes = []
+    // const jewelry = []
+    
+    // brandProduct?.technological?.map((brand) => {
+    //     return techNological?.push(getItem(brand, brand))
+    // })
+    // brandProduct?.clothes?.map((brand) => {
+    //     return clothes?.push(getItem(brand, brand))
+    // })
+    // brandProduct?.jewelry?.map((brand) => {
+    //     return jewelry?.push(getItem(brand, brand))
+    // })
 
-
-    useEffect(() => {
-        dispatch(fetchAllProduct())
-        async function fetchDataBrand() {
-            const dataBrand = await fetchAllBrandProducts()
-            setBrandProduct(dataBrand.data)
-        }
-        fetchDataBrand()
-    }, [])
-
-
-    console.log(totalRecord, 'totalRecord');
-    console.log(brandProduct, 'brandProduct');
-
+  
+    // function getItem(label, key, icon, children, type) {
+    //     return {
+    //       key,
+    //       icon,
+    //       children,
+    //       label,
+    //       type,
+    //     };
+    //   }
+    //   const items = [
+    //     getItem('Technological', 'sub1', <MailOutlined />, techNological),
+    //     getItem('Clothes', 'sub2', <MailOutlined />, clothes),
+    //     getItem('Jewelry', 'sub3', <MailOutlined />, jewelry)
+    //   ];
+      
+    //   const [openKeys, setOpenKeys] = useState([]);
+    //   const rootSubmenuKeys = ['sub1', 'sub2', 'sub3'];
+    //   const onOpenChange = (keys) => {
+    //     const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
+    //     if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
+    //       setOpenKeys(keys);
+    //       console.log(keys, 'hihi');
+    //     } else {
+    //       setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
+    //     }
+    //   };
     return (
         <>
             <ToastContainer />
             <Row className='shop' >
                 <Col span={4} offset={0}>
                     <div className='menu__collapse'>
-                        <Collapse
-                            expandIconPosition={'end'}
-                            size='large'
+                        
+
+                        <Menu
+                            mode="inline"
+                            style={{
+                                width: 256,
+                            }}
+                            // items={items}
+                            // onOpenChange={onOpenChange}
+                            // openKeys={openKeys}
                         >
-                            <Panel header="Technological" key="1" className='menu__collapse--filter'>
-                                <ul>
-                                    {brandProduct?.technological?.map((brand, index) => {
-                                        return (
-                                            <li
-                                                key={index}
-                                                onClick={() => handleChangeValue({
-                                                    brand: brand,
-                                                    category: 'technological',
-                                                    price: [
-                                                        filterPrice[0],
-                                                        filterPrice[1]
-                                                    ]
-                                                })}
-                                            >
-                                                {brand}
-                                            </li>
-                                        )
-                                    })}
-                                </ul>
-                            </Panel>
-                            <Panel header="Clothes" key="2" className='menu__collapse--filter'>
-                                <ul>
-                                    {brandProduct?.clothes?.map((brand, index) => {
-                                        return (
-                                            <li
-                                                key={index}
-                                                onClick={() => handleChangeValue({
-                                                    brand: brand,
-                                                    category: 'clothes',
-                                                    price: [
-                                                        filterPrice[0],
-                                                        filterPrice[1]
-                                                    ]
-                                                })}
-                                            >
-                                                {brand}
-                                            </li>
+                            <SubMenu
+                                key="sub1"
+                                title={<span><MailOutlined />
+                                    <span>Technological</span></span>}>
 
-                                        )
-                                    })}
-                                </ul>
-                            </Panel>
-                            <Panel header="Personal jewelry" key="3" className='menu__collapse--filter'>
-                                <ul>
-                                    {/* <li>Bracelet</li>
-                                    <li>Ring</li>
-                                    <li>Necklace</li> */}
-                                </ul>
-                            </Panel>
+                                {brandProduct?.technological?.map((brand) => {
+                                    return <Menu.Item
+                                        key={brand}
+                                        style={{ textTransform: 'capitalize' }}
+                                        
+                                        onClick={()=>handleChangeBrand(brand)}
+                                    >
+                                        {brand}
+                                    </Menu.Item>
+                                })}
 
+                            </SubMenu>
+                            <SubMenu
+                                key="sub2"
+                                title={<span><MailOutlined />
+                                    <span>Clothes</span></span>}>
 
-                        </Collapse>
-                        <br />
+                                {brandProduct?.clothes?.map((brand) => {
+                                    return <Menu.Item
+                                        key={brand}
+                                        style={{ textTransform: 'capitalize' }}
+                                        
+                                        onClick={()=>handleChangeBrand(brand)}
+                                    >
+                                        {brand}
+                                    </Menu.Item>
+                                })}
+
+                            </SubMenu>
+                            <SubMenu
+                                key="sub3"
+                                title={<span><MailOutlined />
+                                    <span>Personal jewelry</span></span>}>
+                                {brandProduct?.jewelry?.map((brand) => {
+                                    return <Menu.Item
+                                        key={brand}
+                                        style={{ textTransform: 'capitalize' }}
+                                        
+                                        onClick={()=>handleChangeBrand(brand)}
+                                    >
+                                        {brand}
+                                    </Menu.Item>
+                                })}
+
+                            </SubMenu>
+                        </Menu>
+
                         <Col span={20} offset={0} >
                             <div className='filter'>
                                 Around Price: USD
@@ -166,6 +195,7 @@ const Shop = () => {
                                     step={10}
                                     defaultValue={[0, 400]}
                                     onAfterChange={value => {
+                                        console.log(value, 'abc');
                                         setFilterPrice(value)
                                     }}
                                 />
@@ -174,7 +204,7 @@ const Shop = () => {
                                     <Button onClick={handleClickSlider} type='primary'>
                                         Filter
                                     </Button>
-                                    <Button onClick={handleResetFilter}>
+                                    <Button>
                                         Reset
                                     </Button>
                                 </Space>
@@ -186,28 +216,37 @@ const Shop = () => {
                     <Row>
                         <Col span={20} offset={2}>
                             <Row gutter={[16, 16]}>
-
-                                {/* {isShowFilter && renderListProductFilter(filterResult)} */}
-
                                 {isLoading ? <Product loading={isLoading} /> :
                                     (
                                         renderListProduct(allProduct)
                                     )
                                 }
 
-                                {/* {isShowFilter && filterResult.length <= 0 && (
-                                    <img src='https://img.freepik.com/free-vector/shopping-cart_1284-672.jpg?w=1060&t=st=1677918872~exp=1677919472~hmac=234c124517b413187ca099fc37768d9a02d78caf6acc3f179511bf522bb2c5e4' width='50%' alt='hihi' />
-                                )} */}
+                                {allProduct.length <= 0 && isLoading == false && (
+                                    <div style={{ display: 'block', textAlign: 'center' }}>
+                                        <Typography.Title level={2}>No products match</Typography.Title>
+                                        <img
+                                            src='https://img.freepik.com/free-vector/shopping-cart_1284-672.jpg?w=1060&t=st=1677918872~exp=1677919472~hmac=234c124517b413187ca099fc37768d9a02d78caf6acc3f179511bf522bb2c5e4'
+                                            alt='hihi'
+
+                                            style={{
+                                                width: '30%',
+                                                margin: 'auto'
+                                            }}
+                                        />
+                                    </div>
+                                )}
                             </Row>
 
                             {allProduct.length > 0 && (
                                 <Pagination
                                     style={{ textAlign: 'center', padding: '20px 0' }}
-                                    defaultCurrent={1}
-                                    total={totalRecord}
+                                    defaultCurrent={currentPage}
+                                    pageSize={pageSize}
+                                    total={totalProduct}
                                     onChange={(page) => {
-                                        setPage(page)
-                                        window.scrollTo(0, 0)
+                                        dispatch(actSetChangePage(page))
+                                        window.scroll(0, 0)
                                     }}
                                 />
                             )}

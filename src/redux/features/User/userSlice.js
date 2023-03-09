@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { BE_URL, KEY_ACCESS_TOKEN, KEY_IS_LOGGED } from '../../../constants/config'
 import * as Jwt from 'jsonwebtoken'
-import { fetchDeleteUserByID, fetchInfoMe, fetchRegisterUser } from '../../../apis/userAPI'
+import { fetchDeleteUserByID, fetchInfoMe, fetchRegisterUser, fetchUpdateUserEdit } from '../../../apis/userAPI'
 import { toast } from 'react-toastify'
 
 const initialState = {
@@ -75,7 +75,7 @@ export const userSlice = createSlice({
                 localStorage.setItem(KEY_IS_LOGGED, JSON.stringify(true))
                 localStorage.setItem(KEY_ACCESS_TOKEN, accessToken);
             }
-            
+
             state.isLoading = false;
 
         });
@@ -83,10 +83,10 @@ export const userSlice = createSlice({
         //FetchAllUser
 
         // builder.addCase(fetchAllUser.pending, (state) => {{
-            
+
         // }});
         // builder.addCase(fetchAllUser.rejected, (state, action) => {{
-            
+
         // }});
         builder.addCase(fetchAllUser.fulfilled, (state, action) => {
             state.allUser = action.payload
@@ -107,7 +107,7 @@ export const actReLogin = (accessToken) => async (dispatch) => {
             dispatch(loginSuccess()) //middeware update status login success
         }
 
-        
+
     } catch (error) {
         console.log(error);
     }
@@ -127,7 +127,7 @@ export const actRegister = (dataRegister) => async (dispatch) => {
             draggable: true,
             progress: undefined,
             theme: "colored",
-            });
+        });
     } catch (error) {
         toast.error('🦄 ERROR Register !', {
             position: "top-center",
@@ -138,7 +138,7 @@ export const actRegister = (dataRegister) => async (dispatch) => {
             draggable: true,
             progress: undefined,
             theme: "colored",
-            });
+        });
         console.log(error);
     } finally {
         dispatch(actUpdateRegister(false))
@@ -146,8 +146,41 @@ export const actRegister = (dataRegister) => async (dispatch) => {
 }
 
 export const actDeleteUserByID = (id) => async (dispatch) => {
-    console.log(id, 'actDeleteUserByID');
-    await dispatch(fetchDeleteUserByID(id))
+    try {
+        await fetchDeleteUserByID(id)
+        dispatch(fetchAllUser())
+        toast.success('Delete User success!', {
+            position: "top-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
+export const actUpdateUserEdit = (infoUserEdit) => async (dispatch) => {
+console.log(infoUserEdit, 'infoUserEdit');
+    try {
+        await fetchUpdateUserEdit(infoUserEdit)
+        dispatch(fetchAllUser())
+        toast.success('Update Role success', {
+            position: "top-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 export const { actGetMe, loginSuccess, actLogout, actUpdateRegister } = userSlice.actions

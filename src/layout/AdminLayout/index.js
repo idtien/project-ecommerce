@@ -9,6 +9,7 @@ import logo from '../../assets/images/logo-orange.png'
 import './AdminLayout.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { actLogout } from '../../redux/features/User/userSlice'
+import { ToastContainer } from 'react-toastify'
 
 
 const AdminLayout = () => {
@@ -49,6 +50,7 @@ const AdminLayout = () => {
 
     return (
         <>
+        <ToastContainer/>
             <Row className='admin'>
                 <Col span={4}>
                     <div className='admin__menu'>

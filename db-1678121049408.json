@@ -11,6 +11,16 @@
       "id": 1
     },
     {
+      "email": "user@gmail.com",
+      "password": "$2a$10$bfCOeOJ65VRgbFBXnGxzpO18o9KjGACI18R7L9EldLbCSEnenrAUW",
+      "username": "idtien",
+      "phone": "0123456789",
+      "address": "Hue, Viet nam",
+      "fullname": "Phạm Tăng D",
+      "isAdmin": false,
+      "id": 2
+    },
+    {
       "email": "test@gmail.com",
       "password": "$2a$10$anAVnxgHChQ3k/j7fW/b9.j4aTvET.tO5hHPrFxiZrqPBd0Yhr42e",
       "username": "idtien",
@@ -51,14 +61,14 @@
       "id": 6
     },
     {
-      "email": "demo@gmail.com",
-      "password": "$2a$10$R8EXrTJz4OuVtW.HN3x6w.Wz/lBrYVlkAIxPYconw2E73sP1/UDqW",
-      "username": "demo@gmail.com",
-      "phone": "0712323456",
-      "address": "Da Nang",
-      "fullname": "Tien",
+      "email": "test2@gmail.com",
+      "password": "$2a$10$gGpH4Wa8STBjf0ki0ENNtOhkE..qMRUp6zE3vlZWnjtBk4dsZ.Hby",
+      "username": "asddd",
+      "phone": "0123456789",
+      "address": "aaaaa, Viet nam",
+      "fullname": "Lý Anh L",
       "isAdmin": true,
-      "id": 8
+      "id": 7
     }
   ],
   "products": [
@@ -1630,22 +1640,6 @@
       "brand": "gucci",
       "description": "The Gucci Link to Love collection explores modern romance, characterizing new symbols of love. The collection includes different gold tones enriched with precious stones and finishes that blend the lines between masculine and feminine. Each piece inspires individualized ways to wear with stackable and layered features. This 18k white gold striped ring has a stackable mechanism and dark red rubellite gemstones.",
       "id": 82
-    },
-    {
-      "images": [
-        "https://vlink.com.vn/uploads/laptop_la_gi.jpg"
-      ],
-      "name": "LAP TOP",
-      "description": "ALALLA",
-      "price": "1234",
-      "priceSale": "1234",
-      "tag": [
-        "123"
-      ],
-      "category": "clothes",
-      "brand": "123",
-      "rating": 0,
-      "id": 83
     }
   ],
   "orders": [
@@ -1859,60 +1853,6 @@
       "totalMoneySale": 20887,
       "paymentMethod": "whenReceive",
       "id": 18
-    },
-    {
-      "receiverOfName": "Tien",
-      "phone": "0123456789",
-      "address": "Da Nang",
-      "description": "123",
-      "codeOrder": "aedc6ffe-b6d5-41b1-a0f4-8faf33340110",
-      "idUser": 8,
-      "cart": [
-        {
-          "name": "Idylle Blossom Ear Stud, Pink Gold And Diamonds - Per Unit",
-          "category": "jewelry",
-          "price": 1500,
-          "priceSale": 1000,
-          "rating": 4,
-          "images": [
-            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-ear-stud-pink-gold-and-diamonds-per-unit-categories--Q06169_PM2_Front%20view.png?wid=1240&hei=1240",
-            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-ear-stud-pink-gold-and-diamonds-per-unit-categories--Q06169_PM1_Other%20view.png?wid=1240&hei=1240",
-            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-ear-stud-pink-gold-and-diamonds-per-unit-categories--Q06169_PM1_Ambiance%20view.png?wid=2048&hei=2048"
-          ],
-          "tag": [
-            "hot",
-            "sale"
-          ],
-          "brand": "louisvuitton",
-          "description": "For any question regarding the Louis Vuitton Fine Jewelry care instructions, you can refer to the Fine Jewelry leaflet. Each piece from Louis Vuitton jewelry and watch creations is unique. Caratage and metal weight information is given for information only and may vary slightly from one piece to another.",
-          "id": 21,
-          "quantity": 1
-        },
-        {
-          "name": "Idylle Blossom Ear Stud, Yellow Gold And Diamonds - Per Unit",
-          "category": "jewelry",
-          "price": 2000,
-          "priceSale": 1200,
-          "rating": 3,
-          "images": [
-            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-ear-stud-yellow-gold-and-diamonds-per-unit-categories--Q06168_PM2_Front%20view.png?wid=2048&hei=2048",
-            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-ear-stud-yellow-gold-and-diamonds-per-unit-categories--Q06168_PM1_Other%20view.png?wid=2048&hei=2048",
-            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-ear-stud-yellow-gold-and-diamonds-per-unit-categories--Q06168_PM1_Ambiance%20view.png?wid=2048&hei=2048"
-          ],
-          "tag": [
-            "new",
-            "sale"
-          ],
-          "brand": "louisvuitton",
-          "description": "For any question regarding the Louis Vuitton Fine Jewelry care instructions, you can refer to the Fine Jewelry leaflet. Each piece from Louis Vuitton jewelry and watch creations is unique. Caratage and metal weight information is given for information only and may vary slightly from one piece to another.",
-          "id": 22,
-          "quantity": 1
-        }
-      ],
-      "totalMoney": 3500,
-      "totalMoneySale": 2200,
-      "paymentMethod": "whenReceive",
-      "id": 19
     }
   ],
   "comments": [
@@ -1959,11 +1899,6 @@
       "louisvuitton",
       "channel",
       "zara"
-    ],
-    "jewelry": [
-      "bracelet",
-      "ring",
-      "necklace"
     ]
   }
 }
