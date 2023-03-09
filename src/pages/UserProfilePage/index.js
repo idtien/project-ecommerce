@@ -12,7 +12,6 @@ const UserProfilePage = () => {
     useGoToTop()
     const [disable, setDisable] = useState(true)
     const { user } = useSelector(state => state.users)
-    console.log(user, 'user');
     return (
         <>
 

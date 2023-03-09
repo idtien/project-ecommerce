@@ -1,21 +1,28 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { fetchAllDataProduct, fetchDataProductByID } from '../../../apis/productAPI';
+import { toast } from 'react-toastify';
+import { deleteProductById, fetchAddNewProduct, fetchAllDataProduct, fetchDataProductByID, fetchUpdateProductEdit } from '../../../apis/productAPI';
 
 const initialState = {
     allProduct: [],
     product: {},
     isLoading: false,
-    errors: {}
+    errors: {},
+    currentPage: 1,
+    pageSize: 20,
+    totalProduct: 0
 }
+
 
 export const fetchAllProduct = createAsyncThunk(
     "user/fetchProduct",
-    async (params = {}) => {
+    async (params) => {
         //call api get all data
-        const data = await fetchAllDataProduct(params);
-        return data || [];
+        const resp = await fetchAllDataProduct(params);
+        const totalProduct = resp.headers["x-total-count"]
+        return { data: resp.data, totalProduct }
     }
 )
+
 
 export const productSlice = createSlice({
     name: 'product',
@@ -23,7 +30,11 @@ export const productSlice = createSlice({
     reducers: {
         actGetProduct: (state, action) => {
             state.product = action.payload
+        },
+        actChangePage: (state, action) => {
+            state.currentPage = action.payload
         }
+
     },
     extraReducers: (builder) => {
         builder.addCase(fetchAllProduct.pending, (state) => {
@@ -36,22 +47,116 @@ export const productSlice = createSlice({
             }
             state.isLoading = false
         });
-        builder.addCase(fetchAllProduct.fulfilled, (state, action) => {
+        builder.addCase(fetchAllProduct.fulfilled, (state, { payload }) => {
             state.isLoading = false
-            state.allProduct = action.payload || []
-
+            state.allProduct = payload.data || []
+            state.totalProduct = payload.totalProduct
         });
     }
 })
 
+export const actSetChangePage = (page) => async (dispatch) => {
+    try {
+        dispatch(actChangePage(page))
+        dispatch(fetchAllProduct({ _page: page, _limit: 20 }))
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export const actGetProductById = (id) => async (dispatch) => {
     try {
-        const dataProduct =   await fetchDataProductByID(id)
+        const dataProduct = await fetchDataProductByID(id)
         dispatch(actGetProduct(dataProduct.data))
     } catch (error) {
         console.log(error);
-    } 
+    }
 }
 
-export const { actGetProduct } = productSlice.actions
+export const actDeleteProductByID = (id) => async (dispatch) => {
+    try {
+        await deleteProductById(id)
+        dispatch(fetchAllProduct())
+        toast.success('Delete Product success', {
+            position: "top-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
+    } catch (error) {
+        console.log(error);
+        toast.error('Delete Product error', {
+            position: "top-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
+    }
+}
+
+export const actUpdateProductEdit = (infoProductEdit) => async (dispatch) => {
+
+    try {
+        await fetchUpdateProductEdit(infoProductEdit)
+        dispatch(fetchAllProduct())
+        toast.success('Update Product success', {
+            position: "top-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
+    } catch (error) {
+        toast.error('Update Product error', {
+            position: "top-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
+    }
+}
+export const actAddNewProduct = (dataProduct) => async (dispatch) => {
+    try {
+        await fetchAddNewProduct(dataProduct)
+        dispatch(fetchAllProduct())
+        toast.success('Add New Product success', {
+            position: "top-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
+    } catch (error) {
+        toast.error('Add New Product error', {
+            position: "top-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
+    }
+}
+
+export const { actGetProduct, actChangePage } = productSlice.actions
 export default productSlice.reducer
