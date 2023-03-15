@@ -1,31 +1,29 @@
 .admin {
-    padding: 20px;
-  }
-  
-  .admin__menu {
-    height: 100vh;
-  
-    &--menu {
-      color: red;
-  
-      ul li {
-        list-style-type: none;
-        margin: 10px;
-        font-size: 16px;
-        font-weight: bold;
-      }
-    }
-  }
-  
-  .admin__main {
-    // height: 100vh;
-  
-    &--header {
-      font-size: 28px;
+  padding: 20px;
+}
+
+.admin__menu {
+  height: 100vh;
+
+  &--menu {
+    color: red;
+
+    ul li {
+      list-style-type: none;
+      margin: 10px;
+      font-size: 16px;
       font-weight: bold;
-      height: 50px;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
     }
   }
+}
+
+.admin__main {
+  &--header {
+    font-size: 28px;
+    font-weight: bold;
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}

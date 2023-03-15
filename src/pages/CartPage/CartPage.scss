@@ -5,15 +5,16 @@
         font-size: 24px;
     }
 
-    
+
 }
+
 .cart__confirm {
     height: 100px;
-    line-height: 100px; 
+    line-height: 100px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    }
+}
 
 .cart__tag {
     display: flex;
@@ -30,29 +31,39 @@
 }
 
 .cart__total {
-    color: #fff;
+    color: #000;
     padding: 10px;
-    // border: 1px solid #000;
+    border: 1px solid #4096ff;
     border-radius: 5px;
-    background-color: #EE4D2D;
+    background-color: #e6f4ff;
 
-    h3 {
-        font-size: 20px;
+    .cart__total--total {
+        font-size: 18px;
+        & span {
+            float: right;
+            font-weight: bold;
+        }
     }
 
     .card__total--sub {
-        font-size: 20px;
-        font-weight: bold;
+        font-size: 18px;
+        & span {
+            float: right;
+            font-weight: bold;
+        }
     }
 
     .card__total--payment {
-        font-size: 20px;
-        font-weight: bold;
+        font-size: 18px;
+        & span {
+            float: right;
+            font-weight: bold;
+        }
     }
 
     .card__total--select {
         font-size: 16px;
-        color: #fff;
+        color: #000;
     }
 
     .cart__total--submit {

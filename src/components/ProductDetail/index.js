@@ -185,6 +185,16 @@ const ProductDetails = () => {
               </div> */}
               <div>
                 <strong>
+                  Brand:
+                </strong>
+                <span className='productDetails__details--infoType'>
+                  <Tag color={'#fa8c16'} key={product?.id}>
+                    {product?.brand}
+                  </Tag>
+                </span>
+              </div>
+              <div>
+                <strong>
                   Type:
                 </strong>
                 <span className='productDetails__details--infoType'>
@@ -195,10 +205,30 @@ const ProductDetails = () => {
               </div>
               <div>
                 <strong>
+                  Tags:
+                </strong>
+                <span className='productDetails__details--infoType'>
+                  {product?.tag?.map((tag, index) => {
+                    let color2 = ''
+                    if(tag === 'hot') {
+                      color2 = '#f5222d'
+                    } else if (tag === 'new') {
+                      color2 = '#4096ff'
+                    } else {
+                      color2 = '#d4b106'
+                    }
+                    return <Tag color={color2} key={index}>
+                    {tag}
+                  </Tag>
+                  })}
+                </span>
+              </div>
+              <div>
+                <strong>
                   Quantity:
                 </strong>
-                <span className='productDetails__details--infoQuantity'>
-                  <InputNumber size="large" style={{ width: '150px' }} min={1} max={100000} defaultValue={quantity}
+                <span className='productDetails__details--infoQuantity' style={{margin: '0px'}}>
+                  <InputNumber size="large" style={{ width: '150px'}} min={1} max={100000} defaultValue={quantity}
                     onChange={(value) => {
                       setQuantity(value)
                     }} />

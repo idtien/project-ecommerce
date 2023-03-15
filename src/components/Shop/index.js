@@ -8,7 +8,7 @@ import useGoToTop from '../../hooks/useGoToTop'
 import { fetchAllBrandProducts } from "../../apis/productAPI"
 import { actSetChangePage, fetchAllProduct } from '../../redux/features/Product/productSlice';
 import { useSearchParams } from 'react-router-dom';
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
+import { AppstoreOutlined, CrownOutlined, LaptopOutlined, MailOutlined, SettingOutlined, TagsOutlined } from '@ant-design/icons';
 import SubMenu from 'antd/es/menu/SubMenu';
 import Icon from '@ant-design/icons/lib/components/Icon';
 
@@ -28,14 +28,6 @@ const Shop = () => {
         price: [filterPrice[0], filterPrice[1]]
     })
 
-    // let [searchParams, setSearchParams] = useSearchParams();
-
-    // const brand = searchParams.get('brand')
-    // const product = searchParams.get('product')
-    // console.log(searchParams.get('brand'), 'brand');
-    // console.log(searchParams.get('product'), 'product');
-    // searchParams.delete('brand')
-
     const renderListProduct = (listProduct) => {
         return listProduct.map((product) => {
             return <Product key={product.id} products={product} />
@@ -53,7 +45,7 @@ const Shop = () => {
         if (filterValue.brand === '') {
             dispatch(fetchAllProduct({ _page: currentPage, _limit: pageSize, price_gte: filterValue.price[0], price_lte: filterValue.price[1] }))
         } else {
-            dispatch(fetchAllProduct({ _page: currentPage, _limit: pageSize, brand: filterValue.brand, price_gte: filterValue.price[0], price_lte: filterValue.price[1] }))
+            dispatch(fetchAllProduct({ _page: 1, _limit: pageSize, brand: filterValue.brand, price_gte: filterValue.price[0], price_lte: filterValue.price[1] }))
         }
 
     }, [filterValue])
@@ -129,13 +121,10 @@ const Shop = () => {
                             style={{
                                 width: 256,
                             }}
-                            // items={items}
-                            // onOpenChange={onOpenChange}
-                            // openKeys={openKeys}
                         >
                             <SubMenu
                                 key="sub1"
-                                title={<span><MailOutlined />
+                                title={<span><LaptopOutlined />
                                     <span>Technological</span></span>}>
 
                                 {brandProduct?.technological?.map((brand) => {
@@ -152,7 +141,7 @@ const Shop = () => {
                             </SubMenu>
                             <SubMenu
                                 key="sub2"
-                                title={<span><MailOutlined />
+                                title={<span><TagsOutlined />
                                     <span>Clothes</span></span>}>
 
                                 {brandProduct?.clothes?.map((brand) => {
@@ -169,7 +158,7 @@ const Shop = () => {
                             </SubMenu>
                             <SubMenu
                                 key="sub3"
-                                title={<span><MailOutlined />
+                                title={<span><CrownOutlined />
                                     <span>Personal jewelry</span></span>}>
                                 {brandProduct?.jewelry?.map((brand) => {
                                     return <Menu.Item

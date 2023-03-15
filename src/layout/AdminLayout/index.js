@@ -96,12 +96,6 @@ const AdminLayout = () => {
                 <Col span={16} offset={2}>
                     <div className='admin__main'>
                         <div className='admin__main--header'>
-                            <Input.Search
-                                size="large"
-                                allowClear
-                                placeholder='Type to search'
-                                style={{ width: '500px' }}
-                            />
                             <Popover content={content} placement="bottomRight" >
                                 <span>
                                     <Avatar

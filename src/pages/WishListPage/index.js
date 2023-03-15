@@ -139,7 +139,7 @@ const WishListPage = () => {
                 </Col>
                 <Col xs={xs} sm={sm} md={md} lg={lg}>
                     <div className='wishList__table' >
-                        <Table dataSource={wishList} columns={columns} scroll={{ x: 500, y: 300 }} />
+                        <Table dataSource={wishList} columns={columns} scroll={{ x: 500, y: 1000 }} />
                     </div>
                 </Col>
             </Row>

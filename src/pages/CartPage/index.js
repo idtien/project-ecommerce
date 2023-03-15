@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { DeleteOutlined, ExclamationCircleOutlined, ExclamationCircleTwoTone, HomeOutlined } from '@ant-design/icons'
+import { DeleteOutlined, ExclamationCircleTwoTone, HomeOutlined } from '@ant-design/icons'
 import { Breadcrumb, Button, Col, Divider, Form, Input, InputNumber, Modal, Radio, Row, Space, Table, Tag, Tooltip, Typography } from 'antd'
 import TextArea from 'antd/es/input/TextArea'
 import { toast, ToastContainer } from 'react-toastify'
@@ -8,7 +8,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { actChangeQuantity, actClearCart, actDeleteCart } from '../../redux/features/Cart/cartSlice'
 import './CartPage.scss'
 import { actOrderProduct } from '../../redux/features/Order/orderSlice'
-import { KEY_LIST_CART } from '../../constants/config'
 import useGoToTop from '../../hooks/useGoToTop'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -21,7 +20,6 @@ const lg = { span: 17, offset: 1 }
 const CartPage = () => {
     useGoToTop()
     const dispatch = useDispatch()
-    const navigate = useNavigate()
     const [cart, setCart] = useState([])
     const [confirmBuy, setConfirmBuy] = useState(false)
     const [acceptPayment, setAcceptPayment] = useState(false)
@@ -105,6 +103,7 @@ const CartPage = () => {
         return total;
     }, 0)
 
+    const time = new Date()
     const [formOrders, setFormOrders] = useState({
         receiverOfName: '',
         phone: '',
@@ -121,7 +120,9 @@ const CartPage = () => {
             total += product?.priceSale * product?.quantity
             return total;
         }, 0),
-        paymentMethod: 'whenReceive'
+        paymentMethod: 'whenReceive', 
+        status: 'waiting',
+        orderAt: `${time.getDate()} - ${time.getMonth()+ 1} - ${time.getFullYear()}`
     })
 
     const handleCheckFillInfo = (formOrders) => {
@@ -215,6 +216,7 @@ const CartPage = () => {
             },
         },
     ]
+
     return (
         <>
             <ToastContainer />
@@ -235,10 +237,33 @@ const CartPage = () => {
                 </Col>
                 <Col xs={{ span: 24, offset: 0 }} sm={{ span: 24, offset: 0 }} md={{ span: 24, offset: 0 }} lg={{ span: 5, offset: 0 }}>
                     <div className='cart__total'>
-                        <h3>Cart Total: {totalMoney} USD</h3>
+                        <div className='cart__total--details'>
+                            <Typography.Title level={4} style={{ color: '#000' }}>
+                                Bills
+                            </Typography.Title>
+                            <hr />
+                            <h4>Products:</h4>
+                            <br />
+                            {cart?.map(cart => {
+                                return <p key={cart?.key} style={{ fontSize: '16px' }}>
+                                    {cart.nameProduct}
+                                    <span style={{ float: 'right', fontWeight: 'bold' }}>x {cart?.quantity}</span>
+                                </p>
+                            })}
+                        </div>
+                        <br />
+                        <hr />
+                        <br />
+                        <div className='cart__total--total'>
+                            Total Money:<span> {totalMoney} USD</span>
+                        </div>
                         <Divider />
                         <div className='card__total--sub'>
-                            Subtotal: {totalMoneySale} USD
+                        Decreased: <span> {totalMoney - totalMoneySale} USD</span>
+                        </div>
+                        <Divider />
+                        <div className='card__total--sub'>
+                            You have to pay: <span> {totalMoneySale} USD</span>
                         </div>
                         <Divider />
                         <div className='card__total--payment'>Payment:</div>
@@ -251,8 +276,8 @@ const CartPage = () => {
                         </Radio.Group>
                         <Divider />
                         <div className='cart__total--submit' >
-                            <Button onClick={handlePayment}>Order</Button>
-                            <Button>Continued Shopping</Button>
+                            <Button onClick={handlePayment} type='primary'>Order</Button>
+                            <Button type='dashed'>Continued Shopping</Button>
                         </div>
                     </div>
                 </Col>
