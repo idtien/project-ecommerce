@@ -1650,109 +1650,147 @@
   ],
   "orders": [
     {
-      "receiverOfName": "Pham Hoang Thanh Tien",
-      "phone": "0126755974",
-      "address": "Hue, Viet Nam",
-      "description": "Mua hang qua mang",
-      "codeOrder": "07027ea0-bc44-4946-ba9b-a1fede015ed4",
-      "idUser": 1,
-      "cart": [
-        {
-          "id": 1,
-          "name": "Laptop Acer Aspire 3 A315 58 54XF i5 ",
-          "category": "technological",
-          "price": 1599,
-          "priceSale": 1099,
-          "rating": 4.5,
-          "images": [
-            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-1.jpg",
-            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-2.jpg",
-            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-03.jpg",
-            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-4.jpg",
-            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-3.jpg"
-          ],
-          "tag": [
-            "new",
-            "sale"
-          ],
-          "brand": "acer",
-          "description": "If you are looking for a study - office laptop with an elegant, modern design and configuration parameters powerful enough for smooth operation of work tasks, the Acer Aspire 3 A315 58 54XF i5 (NX. AM0SV.007) is the ideal choice for you.",
-          "quantity": 13
-        },
-        {
-          "id": 2,
-          "name": "Laptop Lenovo Ideapad 5 15IAL7 i5",
-          "category": "technological",
-          "price": 2020,
-          "priceSale": 1509,
-          "rating": 4,
-          "images": [
-            "https://cdn.tgdd.vn/Products/Images/44/300689/lenovo-ideapad-5-15ial7-i5-82sf005hvn-1.jpg",
-            "https://cdn.tgdd.vn/Products/Images/44/300689/lenovo-ideapad-5-15ial7-i5-82sf005hvn-2.jpg",
-            "https://cdn.tgdd.vn/Products/Images/44/300689/lenovo-ideapad-5-15ial7-i5-82sf005hvn-3.jpg",
-            "https://cdn.tgdd.vn/Products/Images/44/300689/lenovo-ideapad-5-15ial7-i5-82sf005hvn-4.jpg",
-            "https://cdn.tgdd.vn/Products/Images/44/300689/lenovo-ideapad-5-15ial7-i5-82sf005hvn-5.jpg",
-            "https://cdn.tgdd.vn/Products/Images/44/300689/lenovo-ideapad-5-15ial7-i5-82sf005hvn-6.jpg",
-            "https://cdn.tgdd.vn/Products/Images/44/300689/lenovo-ideapad-5-15ial7-i5-82sf005hvn-8.jpg"
-          ],
-          "tag": [
-            "new",
-            "sale"
-          ],
-          "brand": "lenovo",
-          "description": "Laptop Lenovo Ideapad 5 15IAL7 i5 1235U (82SF005HVN) will be a formidable competitor in the segment of study - office laptops when possessing the outstanding performance power from Intel Gen 12 processor and elegant appearance, Always ready to accompany you everywhere.",
-          "quantity": 7
-        }
-      ],
-      "totalMoney": 34927,
-      "totalMoneySale": 24850,
-      "paymentMethod": "whenReceive",
-      "id": 15
-    },
-    {
       "receiverOfName": "Thanh Tien",
       "phone": "0766759974",
       "address": "Da Nang, Viet Nam",
-      "description": "Mua hang online",
-      "codeOrder": "c17c2c94-39eb-4b34-97e0-dc99cfed2e42",
-      "idUser": 1,
+      "description": "Mua Hang Online",
+      "codeOrder": "a5524aba-b1be-4c88-adc5-5ba9481c02ea",
+      "idUser": 8,
       "cart": [
         {
-          "id": 1,
-          "name": "Laptop Acer Aspire 3 A315 58 54XF i5 ",
-          "category": "technological",
-          "price": 1599,
-          "priceSale": 1099,
-          "rating": 4.5,
+          "name": "Cotton shirt",
+          "category": "clothes",
+          "price": 2000,
+          "priceSale": 1000,
+          "rating": 4,
           "images": [
-            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-1.jpg",
-            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-2.jpg",
-            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-03.jpg",
-            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-4.jpg",
-            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-3.jpg"
+            "https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1603992604/649696_ZAGIR_9692_001_100_0000_Light-Cotton-shirt.jpg",
+            "https://media.gucci.com/style/DarkGray_Center_0_0_1200x1200/1603992604/649696_ZAGIR_9692_002_100_0000_Light-Cotton-shirt.jpg"
+          ],
+          "tag": [
+            "new",
+            "sale",
+            "hot"
+          ],
+          "brand": "gucci",
+          "description": "Available to selected Sydney Metropolitan postcodes. If you are eligible for this service, it will appear at checkout.The return window for online purchases is 30 days from the date you received your purchase. Prepaid return labels for complimentary return/exchange are included with all online orders along with detailed instructions. You may also return or exchange merchandise in any of our Gucci boutiques when accompanied by the original invoice. Additional information is available during the checkout process or within the FAQs Section.",
+          "id": 13,
+          "quantity": 3
+        },
+        {
+          "name": "GG stripe fil coupé cotton shirt",
+          "category": "clothes",
+          "price": 1865,
+          "priceSale": 1200,
+          "rating": 3,
+          "images": [
+            "https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1605723311/644984_ZAFXS_9018_001_100_0000_Light-GG-stripe-fil-coup-cotton-shirt.jpg",
+            "https://media.gucci.com/style/DarkGray_Center_0_0_1200x1200/1605722403/644984_ZAFXS_9018_002_100_0000_Light-GG-stripe-fil-coup-cotton-shirt.jpg"
           ],
           "tag": [
             "new",
             "sale"
           ],
-          "brand": "acer",
-          "description": "If you are looking for a study - office laptop with an elegant, modern design and configuration parameters powerful enough for smooth operation of work tasks, the Acer Aspire 3 A315 58 54XF i5 (NX. AM0SV.007) is the ideal choice for you.",
-          "quantity": 4
+          "brand": "gucci",
+          "description": "Available to selected Sydney Metropolitan postcodes. If you are eligible for this service, it will appear at checkout. The return window for online purchases is 30 days from the date you received your purchase. Prepaid return labels for complimentary return/exchange are included with all online orders along with detailed instructions. You may also return or exchange merchandise in any of our Gucci boutiques when accompanied by the original invoice.",
+          "id": 14,
+          "quantity": 1
+        },
+        {
+          "name": "GG stripe fil coupé cotton shirt",
+          "category": "clothes",
+          "price": 1999,
+          "priceSale": 1100,
+          "rating": 3,
+          "images": [
+            "https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1605294007/625888_ZAFXS_4421_001_100_0000_Light-GG-stripe-fil-coup-cotton-shirt.jpg",
+            "https://media.gucci.com/style/DarkGray_Center_0_0_1200x1200/1605294007/625888_ZAFXS_4421_002_100_0000_Light-GG-stripe-fil-coup-cotton-shirt.jpg"
+          ],
+          "tag": [
+            "new",
+            "sale"
+          ],
+          "brand": "gucci",
+          "description": "The return window for online purchases is 30 days from the date you received your purchase. Prepaid return labels for complimentary return/exchange are included with all online orders along with detailed instructions. You may also return or exchange merchandise in any of our Gucci boutiques when accompanied by the original invoice.",
+          "id": 15,
+          "quantity": 1
         }
       ],
-      "totalMoney": 6396,
-      "totalMoneySale": 4396,
+      "totalMoney": 9864,
+      "totalMoneySale": 5300,
       "paymentMethod": "whenReceive",
-      "id": 16
+      "status": "success",
+      "orderAt": "14 - 3 - 2023",
+      "id": 1
     },
     {
-      "receiverOfName": "Tien",
-      "phone": "01266759974",
-      "address": "Da Nang, Viet Nam",
-      "description": "buy online",
-      "codeOrder": "6220f06f-77cd-4684-80f9-d4864ef1cf7d",
-      "idUser": 1,
+      "receiverOfName": "Pham Hoang",
+      "phone": "012345679",
+      "address": "Hue. Viet nam",
+      "description": "buy product online",
+      "codeOrder": "61578fc6-bb10-4085-8aa6-5f5a5e5377e1",
+      "idUser": 8,
       "cart": [
+        {
+          "name": "Jumbo GG check wool shirt",
+          "category": "clothes",
+          "price": 3010,
+          "priceSale": 2500,
+          "rating": 4,
+          "images": [
+            "https://media.gucci.com/style/HEXE0E8E5_Center_0_0_800x800/1665488741/711543_ZAKZJ_3653_001_100_0000_Light-Jumbo-GG-check-wool-shirt.jpg",
+            "https://media.gucci.com/style/HEXE0E8E5_Center_0_0_800x800/1665488744/711543_ZAKZJ_3653_002_100_0000_Light-Jumbo-GG-check-wool-shirt.jpg"
+          ],
+          "tag": [
+            "hot",
+            "sale"
+          ],
+          "brand": "gucci",
+          "description": "Available to selected Sydney Metropolitan postcodes. If you are eligible for this service, it will appear at checkout. The return window for online purchases is 30 days from the date you received your purchase. Prepaid return labels for complimentary return/exchange are included with all online orders along with detailed instructions. You may also return or exchange merchandise in any of our Gucci boutiques when accompanied by the original invoice.",
+          "id": 17,
+          "quantity": 3
+        },
+        {
+          "name": "Idylle Blossom Pendant, Yellow Gold And Diamonds",
+          "category": "jewelry",
+          "price": 1785,
+          "priceSale": 1452,
+          "rating": 5,
+          "images": [
+            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-pendant-yellow-gold-and-diamonds-categories--Q93870_PM2_Front%20view.png?wid=2048&hei=2048",
+            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-pendant-yellow-gold-and-diamonds-categories--Q93870_PM1_Interior%20view.png?wid=2048&hei=2048",
+            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-pendant-yellow-gold-and-diamonds-categories--Q93870_PM1_Ambiance%20view.png?wid=2048&hei=2048"
+          ],
+          "tag": [
+            "new",
+            "sale"
+          ],
+          "brand": "louisvuitton",
+          "description": "For any question regarding the Louis Vuitton Fine Jewelry care instructions, you can refer to the Fine Jewelry leaflet. Each piece from Louis Vuitton jewelry and watch creations is unique. Caratage and metal weight information is given for information only and may vary slightly from one piece to another.",
+          "id": 23,
+          "quantity": 4
+        },
+        {
+          "name": "Idylle Blossom Small Hoop, White Gold And Diamond - Per Unit",
+          "category": "jewelry",
+          "price": 3122,
+          "priceSale": 2512,
+          "rating": 5,
+          "images": [
+            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-small-hoop-white-gold-and-diamond-per-unit-categories--Q06177_PM2_Front%20view.png?wid=2048&hei=2048",
+            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-small-hoop-white-gold-and-diamond-per-unit-categories--Q06177_PM1_Side%20view.png?wid=2048&hei=2048",
+            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-small-hoop-white-gold-and-diamond-per-unit-categories--Q06177_PM1_Ambiance%20view.png?wid=2048&hei=2048"
+          ],
+          "tag": [
+            "new",
+            "sale",
+            "hot"
+          ],
+          "brand": "louisvuitton",
+          "description": "For any question regarding the Louis Vuitton Fine Jewelry care instructions, you can refer to the Fine Jewelry leaflet. Each piece from Louis Vuitton jewelry and watch creations is unique. Caratage and metal weight information is given for information only and may vary slightly from one piece to another.",
+          "id": 26,
+          "quantity": 4
+        },
         {
           "id": 2,
           "name": "Laptop Lenovo Ideapad 5 15IAL7 i5",
@@ -1775,44 +1813,155 @@
           ],
           "brand": "lenovo",
           "description": "Laptop Lenovo Ideapad 5 15IAL7 i5 1235U (82SF005HVN) will be a formidable competitor in the segment of study - office laptops when possessing the outstanding performance power from Intel Gen 12 processor and elegant appearance, Always ready to accompany you everywhere.",
-          "quantity": 1
+          "quantity": 2
         }
       ],
-      "totalMoney": 2020,
-      "totalMoneySale": 1509,
+      "totalMoney": 32698,
+      "totalMoneySale": 26374,
       "paymentMethod": "whenReceive",
-      "id": 17
+      "status": "waiting",
+      "orderAt": "14 - 3 - 2023",
+      "id": 2
     },
     {
-      "receiverOfName": "Tien",
-      "phone": "123456789",
-      "address": "Hua",
-      "description": "123",
-      "codeOrder": "3da8a22f-313a-44ec-a49e-56772c9b0907",
-      "idUser": 1,
+      "receiverOfName": "Nguyen Quynh Nhu",
+      "phone": "0126654896",
+      "address": "Ha Noi, Viet Nam",
+      "description": "Buy some shirt ",
+      "codeOrder": "9523b989-eef0-40c6-b086-f3aa28b6d156",
+      "idUser": 8,
       "cart": [
         {
-          "id": 1,
-          "name": "Laptop Acer Aspire 3 A315 58 54XF i5 ",
-          "category": "technological",
-          "price": 1599,
-          "priceSale": 1099,
-          "rating": 4.5,
+          "name": "Cotton shirt",
+          "category": "clothes",
+          "price": 2000,
+          "priceSale": 1000,
+          "rating": 4,
           "images": [
-            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-1.jpg",
-            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-2.jpg",
-            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-03.jpg",
-            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-4.jpg",
-            "https://cdn.tgdd.vn/Products/Images/44/285764/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-3.jpg"
+            "https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1603992604/649696_ZAGIR_9692_001_100_0000_Light-Cotton-shirt.jpg",
+            "https://media.gucci.com/style/DarkGray_Center_0_0_1200x1200/1603992604/649696_ZAGIR_9692_002_100_0000_Light-Cotton-shirt.jpg"
+          ],
+          "tag": [
+            "new",
+            "sale",
+            "hot"
+          ],
+          "brand": "gucci",
+          "description": "Available to selected Sydney Metropolitan postcodes. If you are eligible for this service, it will appear at checkout.The return window for online purchases is 30 days from the date you received your purchase. Prepaid return labels for complimentary return/exchange are included with all online orders along with detailed instructions. You may also return or exchange merchandise in any of our Gucci boutiques when accompanied by the original invoice. Additional information is available during the checkout process or within the FAQs Section.",
+          "id": 13,
+          "quantity": 1
+        },
+        {
+          "name": "GG stripe fil coupé cotton shirt",
+          "category": "clothes",
+          "price": 1865,
+          "priceSale": 1200,
+          "rating": 3,
+          "images": [
+            "https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1605723311/644984_ZAFXS_9018_001_100_0000_Light-GG-stripe-fil-coup-cotton-shirt.jpg",
+            "https://media.gucci.com/style/DarkGray_Center_0_0_1200x1200/1605722403/644984_ZAFXS_9018_002_100_0000_Light-GG-stripe-fil-coup-cotton-shirt.jpg"
           ],
           "tag": [
             "new",
             "sale"
           ],
-          "brand": "acer",
-          "description": "If you are looking for a study - office laptop with an elegant, modern design and configuration parameters powerful enough for smooth operation of work tasks, the Acer Aspire 3 A315 58 54XF i5 (NX. AM0SV.007) is the ideal choice for you.",
-          "quantity": 13
+          "brand": "gucci",
+          "description": "Available to selected Sydney Metropolitan postcodes. If you are eligible for this service, it will appear at checkout. The return window for online purchases is 30 days from the date you received your purchase. Prepaid return labels for complimentary return/exchange are included with all online orders along with detailed instructions. You may also return or exchange merchandise in any of our Gucci boutiques when accompanied by the original invoice.",
+          "id": 14,
+          "quantity": 1
+        }
+      ],
+      "totalMoney": 3865,
+      "totalMoneySale": 2200,
+      "paymentMethod": "whenReceive",
+      "status": "delivering",
+      "orderAt": "14 - 3 - 2023",
+      "id": 3
+    },
+    {
+      "receiverOfName": "Tran Huyen Diu",
+      "phone": "0233564856",
+      "address": "20 Nguyen Van Linh, TP. HCM",
+      "description": "Please deliver during office hours",
+      "codeOrder": "f2ad00ad-aded-4d8d-b4d0-2d11b4b38e73",
+      "idUser": 8,
+      "cart": [
+        {
+          "name": "Idylle Blossom Small Hoop, White Gold And Diamond - Per Unit",
+          "category": "jewelry",
+          "price": 3122,
+          "priceSale": 2512,
+          "rating": 5,
+          "images": [
+            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-small-hoop-white-gold-and-diamond-per-unit-categories--Q06177_PM2_Front%20view.png?wid=2048&hei=2048",
+            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-small-hoop-white-gold-and-diamond-per-unit-categories--Q06177_PM1_Side%20view.png?wid=2048&hei=2048",
+            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-small-hoop-white-gold-and-diamond-per-unit-categories--Q06177_PM1_Ambiance%20view.png?wid=2048&hei=2048"
+          ],
+          "tag": [
+            "new",
+            "sale",
+            "hot"
+          ],
+          "brand": "louisvuitton",
+          "description": "For any question regarding the Louis Vuitton Fine Jewelry care instructions, you can refer to the Fine Jewelry leaflet. Each piece from Louis Vuitton jewelry and watch creations is unique. Caratage and metal weight information is given for information only and may vary slightly from one piece to another.",
+          "id": 26,
+          "quantity": 1
         },
+        {
+          "name": "Gucci Link to Love bracelet with 'Gucci' bar",
+          "category": "jewelry",
+          "price": 999,
+          "priceSale": 599,
+          "rating": 3,
+          "images": [
+            "https://media.gucci.com/style/HEXEAF2DC_Center_0_0_800x800/1647451834/702418_J85G0_8061_001_100_0000_Light-Gucci-Link-to-Love-bracelet-with-Gucci-bar.jpg",
+            "https://media.gucci.com/style/HEXEAF2DC_Center_0_0_800x800/1652977833/702418_J85G0_8061_003_100_0000_Light-Gucci-Link-to-Love-bracelet-with-Gucci-bar.jpg"
+          ],
+          "tag": [
+            "sale",
+            "new"
+          ],
+          "brand": "gucci",
+          "description": "The Gucci Link to Love collection explores modern romance, characterizing new symbols of love. The collection includes different gold tones enriched with precious stones and finishes that blend the lines between masculine and feminine. Each piece inspires individualized ways to wear with stackable and layered features. This 18k yellow gold bracelet features a black enamel bar pendant with 'Gucci' engraving.",
+          "id": 64,
+          "quantity": 1
+        },
+        {
+          "name": "Idylle Blossom Pendant, Yellow Gold And Diamonds",
+          "category": "jewelry",
+          "price": 1785,
+          "priceSale": 1452,
+          "rating": 5,
+          "images": [
+            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-pendant-yellow-gold-and-diamonds-categories--Q93870_PM2_Front%20view.png?wid=2048&hei=2048",
+            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-pendant-yellow-gold-and-diamonds-categories--Q93870_PM1_Interior%20view.png?wid=2048&hei=2048",
+            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-pendant-yellow-gold-and-diamonds-categories--Q93870_PM1_Ambiance%20view.png?wid=2048&hei=2048"
+          ],
+          "tag": [
+            "new",
+            "sale"
+          ],
+          "brand": "louisvuitton",
+          "description": "For any question regarding the Louis Vuitton Fine Jewelry care instructions, you can refer to the Fine Jewelry leaflet. Each piece from Louis Vuitton jewelry and watch creations is unique. Caratage and metal weight information is given for information only and may vary slightly from one piece to another.",
+          "id": 23,
+          "quantity": 3
+        }
+      ],
+      "totalMoney": 9476,
+      "totalMoneySale": 7467,
+      "paymentMethod": "whenReceive",
+      "status": "delivering",
+      "orderAt": "14 - 3 - 2023",
+      "id": 4
+    },
+    {
+      "receiverOfName": "Le Viet Binh",
+      "phone": "0754896541",
+      "address": "15 Ba Trieu, TP Hue ",
+      "description": "Please pack carefully for me",
+      "codeOrder": "8f7048a4-7b3c-4c5e-bbd3-457fb9c66007",
+      "idUser": 8,
+      "cart": [
         {
           "name": "Laptop MacBook Pro 16 inch M2 Pro 2023 ",
           "category": "technological",
@@ -1834,7 +1983,23 @@
           "description": "Apple has just introduced to users the 16-inch MacBook Pro M2 Pro 2023 with a thin and light design but inside is an extremely powerful performance to meet all tasks, promising to become a great companion. in work, study and leisure.Smoothly handle all tasks thanks to Apple M2 Pro chip",
           "id": 10,
           "quantity": 1
-        },
+        }
+      ],
+      "totalMoney": 3000,
+      "totalMoneySale": 2000,
+      "paymentMethod": "whenReceive",
+      "status": "preparing",
+      "orderAt": "14 - 3 - 2023",
+      "id": 5
+    },
+    {
+      "receiverOfName": "Nguyen Tran Quan",
+      "phone": "0668849562",
+      "address": "26 Tran Binh Trong, TP Vinh",
+      "description": "Prepare goods and deliver them to me soon",
+      "codeOrder": "4c374fd9-f49b-4499-911d-a58d500995ea",
+      "idUser": 8,
+      "cart": [
         {
           "name": "Gucci HA HA HA dove heart shirt",
           "category": "clothes",
@@ -1852,52 +2017,53 @@
           "brand": "gucci",
           "description": "Available to selected Sydney Metropolitan postcodes. If you are eligible for this service, it will appear at checkout. The return window for online purchases is 30 days from the date you received your purchase. Prepaid return labels for complimentary return/exchange are included with all online orders along with detailed instructions. You may also return or exchange merchandise in any of our Gucci boutiques when accompanied by the original invoice.",
           "id": 18,
-          "quantity": 4
-        }
-      ],
-      "totalMoney": 32387,
-      "totalMoneySale": 20887,
-      "paymentMethod": "whenReceive",
-      "id": 18
-    },
-    {
-      "receiverOfName": "Tien",
-      "phone": "0123456789",
-      "address": "Da Nang",
-      "description": "123",
-      "codeOrder": "aedc6ffe-b6d5-41b1-a0f4-8faf33340110",
-      "idUser": 8,
-      "cart": [
-        {
-          "name": "Idylle Blossom Ear Stud, Pink Gold And Diamonds - Per Unit",
-          "category": "jewelry",
-          "price": 1500,
-          "priceSale": 1000,
-          "rating": 4,
-          "images": [
-            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-ear-stud-pink-gold-and-diamonds-per-unit-categories--Q06169_PM2_Front%20view.png?wid=1240&hei=1240",
-            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-ear-stud-pink-gold-and-diamonds-per-unit-categories--Q06169_PM1_Other%20view.png?wid=1240&hei=1240",
-            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-ear-stud-pink-gold-and-diamonds-per-unit-categories--Q06169_PM1_Ambiance%20view.png?wid=2048&hei=2048"
-          ],
-          "tag": [
-            "hot",
-            "sale"
-          ],
-          "brand": "louisvuitton",
-          "description": "For any question regarding the Louis Vuitton Fine Jewelry care instructions, you can refer to the Fine Jewelry leaflet. Each piece from Louis Vuitton jewelry and watch creations is unique. Caratage and metal weight information is given for information only and may vary slightly from one piece to another.",
-          "id": 21,
           "quantity": 1
         },
         {
-          "name": "Idylle Blossom Ear Stud, Yellow Gold And Diamonds - Per Unit",
-          "category": "jewelry",
+          "name": "Cotton poplin shirt",
+          "category": "clothes",
           "price": 2000,
           "priceSale": 1200,
           "rating": 3,
           "images": [
-            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-ear-stud-yellow-gold-and-diamonds-per-unit-categories--Q06168_PM2_Front%20view.png?wid=2048&hei=2048",
-            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-ear-stud-yellow-gold-and-diamonds-per-unit-categories--Q06168_PM1_Other%20view.png?wid=2048&hei=2048",
-            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-ear-stud-yellow-gold-and-diamonds-per-unit-categories--Q06168_PM1_Ambiance%20view.png?wid=2048&hei=2048"
+            "https://media.gucci.com/style/HEXE0E8E5_Center_0_0_800x800/1665489744/710944_ZAKQC_1000_001_100_0000_Light-Cotton-poplin-shirt.jpg",
+            "https://media.gucci.com/style/HEXE0E8E5_Center_0_0_800x800/1665489746/710944_ZAKQC_1000_002_100_0000_Light-Cotton-poplin-shirt.jpg"
+          ],
+          "tag": [
+            "new",
+            "sale"
+          ],
+          "brand": "gucci",
+          "description": "Available to selected Sydney Metropolitan postcodes. If you are eligible for this service, it will appear at checkout. The return window for online purchases is 30 days from the date you received your purchase. Prepaid return labels for complimentary return/exchange are included with all online orders along with detailed instructions. You may also return or exchange merchandise in any of our Gucci boutiques when accompanied by the original invoice.",
+          "id": 19,
+          "quantity": 1
+        }
+      ],
+      "totalMoney": 4150,
+      "totalMoneySale": 2350,
+      "paymentMethod": "whenReceive",
+      "status": "failed",
+      "orderAt": "14 - 3 - 2023",
+      "id": 6
+    },
+    {
+      "receiverOfName": "Huynh Ngan",
+      "phone": "0244875695",
+      "address": "22 Le Quy Don, TP HCM",
+      "description": "Pack it carefully for me",
+      "codeOrder": "52f9e425-d6ac-4999-b958-3776a704b52c",
+      "idUser": 8,
+      "cart": [
+        {
+          "name": "Idylle Blossom Pendant, Yellow Gold And Diamonds",
+          "category": "jewelry",
+          "price": 1785,
+          "priceSale": 1452,
+          "rating": 5,
+          "images": [
+            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-pendant-yellow-gold-and-diamonds-categories--Q93870_PM2_Front%20view.png?wid=2048&hei=2048",
+            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-pendant-yellow-gold-and-diamonds-categories--Q93870_PM1_Interior%20view.png?wid=2048&hei=2048",
+            "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-idylle-blossom-pendant-yellow-gold-and-diamonds-categories--Q93870_PM1_Ambiance%20view.png?wid=2048&hei=2048"
           ],
           "tag": [
             "new",
@@ -1905,14 +2071,54 @@
           ],
           "brand": "louisvuitton",
           "description": "For any question regarding the Louis Vuitton Fine Jewelry care instructions, you can refer to the Fine Jewelry leaflet. Each piece from Louis Vuitton jewelry and watch creations is unique. Caratage and metal weight information is given for information only and may vary slightly from one piece to another.",
-          "id": 22,
+          "id": 23,
           "quantity": 1
         }
       ],
-      "totalMoney": 3500,
-      "totalMoneySale": 2200,
+      "totalMoney": 1785,
+      "totalMoneySale": 1452,
       "paymentMethod": "whenReceive",
-      "id": 19
+      "status": "delivering",
+      "orderAt": "14 - 3 - 2023",
+      "id": 7
+    },
+    {
+      "receiverOfName": "Nguyen Manh Tuan",
+      "phone": "0985456212",
+      "address": "172 Nguyen Thi Thap, Da Nang",
+      "description": "Shop delivered early lest I don't have equipment to go to school",
+      "codeOrder": "04d42f64-ea43-434d-9d2b-0ace0f843d82",
+      "idUser": 8,
+      "cart": [
+        {
+          "name": "Laptop HP Pavilion X360 14 ek0132TU i7",
+          "category": "technological",
+          "price": 1500,
+          "priceSale": 1000,
+          "rating": 5,
+          "images": [
+            "https://cdn.tgdd.vn/Products/Images/44/303079/hp-pavilion-x360-14-ek0132tu-i7-7c0w4pa-1.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/303079/hp-pavilion-x360-14-ek0132tu-i7-7c0w4pa-2.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/303079/hp-pavilion-x360-14-ek0132tu-i7-7c0w4pa-3.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/303079/hp-pavilion-x360-14-ek0132tu-i7-7c0w4pa-4.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/303079/hp-pavilion-x360-14-ek0132tu-i7-7c0w4pa-5.jpg"
+          ],
+          "tag": [
+            "new",
+            "sale"
+          ],
+          "brand": "hp",
+          "description": "HP Pavilion X360 14 laptop ek0132TU i7 (7C0W4PA) with 360-degree folding design that is flexible in all use situations, powerful configuration can perfectly balance basic daily tasks, a study - office laptop rooms that you should not pass by.",
+          "id": 7,
+          "quantity": 1
+        }
+      ],
+      "totalMoney": 1500,
+      "totalMoneySale": 1000,
+      "paymentMethod": "whenReceive",
+      "status": "waiting",
+      "orderAt": "14 - 3 - 2023",
+      "id": 8
     }
   ],
   "comments": [

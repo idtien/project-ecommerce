@@ -20,6 +20,8 @@ const ProductAdmin = () => {
     const [editProduct, setEditProduct] = useState(false)
     const [infoProductEdit, setInfoProductEdit] = useState({})
     const [showFormAddNew, setShowFormAddNew] = useState(false)
+    const [search, setSearch] = useState("")
+    
     
 
 
@@ -98,6 +100,13 @@ const ProductAdmin = () => {
             key: 'images',
             render: (images) => {
                 return <img src={images[0]} style={{ width: '100%' }} />
+            },
+            filteredValue: [search],
+            onFilter: (value, record) => {
+                return String(record.name).toLowerCase().includes(value.toLowerCase()) || 
+                String(record.brand).toLowerCase().includes(value.toLowerCase()) ||
+                String(record.category).toLowerCase().includes(value.toLowerCase()) ||
+                String(record.tag).toLowerCase().includes(value.toLowerCase())
             }
         },
         {
@@ -257,6 +266,19 @@ const ProductAdmin = () => {
                 <Col span={24}>
                     <div className='dashboard__parameters'>
                         <Typography.Title level={4}>Products</Typography.Title>
+                        <Input.Search
+                            placeholder='Search...'
+                            size='large'
+                            onSearch={(value) => {
+                                setSearch(value)
+                            }}
+                            onChange={(e) => {
+                                setSearch(e.target.value)
+                            }}
+                            allowClear
+                            style={{marginBottom: 12}}
+
+                        />
                         <Tooltip placement="right" title='Add New Product'>
                             <Button
                              type="primary" 
@@ -269,6 +291,7 @@ const ProductAdmin = () => {
                                 Add new product
                             </Button>
                         </Tooltip>
+                        
                         <Table columns={columns} dataSource={dataProduct} size='small' scroll={{ x: 600 }} />
                     </div>
                 </Col>

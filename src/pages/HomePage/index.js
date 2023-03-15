@@ -10,11 +10,14 @@ import '../../styles/Responsive.scss'
 
 import bnSale from '../../assets/images/banner3.png'
 import bnSale2 from '../../assets/images/banner4.png'
+import bnSale3 from '../../assets/images/banner9.png'
 import { ToastContainer } from 'react-toastify'
 import useGoToTop from '../../hooks/useGoToTop'
 
 import banner5 from '../../assets/images/banner5.png'
 import banner6 from '../../assets/images/banner6.png'
+import banner7 from '../../assets/images/banner7.png'
+import banner8 from '../../assets/images/banner8.png'
 import banner_extra1 from '../../assets/images/banner_extra1.png'
 import banner_extra2 from '../../assets/images/banner_extra2.png'
 import { fetchAllProduct } from '../../redux/features/Product/productSlice'
@@ -30,17 +33,49 @@ const HomePage = () => {
     const { allProduct, isLoading } = useSelector(state => state.products)
     const { isLogged, user } = useSelector(state => state.users)
 
-
-
-    const renderListProduct = (listProduct) => {
-        return listProduct.map((product) => {
+    const renderListProductTech = (listProduct) => {
+        const productTech = []
+        for (let index = 0; index < listProduct.length; index++) {
+            if (listProduct[index]?.category === 'technological') {
+                productTech.push(listProduct[index])
+            }
+        }
+        const newProductTech = productTech.slice(0, 8)
+        return newProductTech.map((product) => {
             return <Product key={product.id} products={product} />
         })
     }
+
+    const renderListProductClothes = (listProduct) => {
+        const productClothes = []
+        for (let index = 0; index < listProduct.length; index++) {
+            if (listProduct[index]?.category === 'clothes') {
+                productClothes.push(listProduct[index])
+            }
+        }
+        const newProductClothes = productClothes.slice(0, 8)
+        return newProductClothes.map((product) => {
+            return <Product key={product.id} products={product} />
+        })
+    }
+    const renderListProductJewelry = (listProduct) => {
+        const productJewelry = []
+        for (let index = 0; index < listProduct.length; index++) {
+            if (listProduct[index]?.category === 'jewelry') {
+                productJewelry.push(listProduct[index])
+            }
+        }
+        const newProductJewelry = productJewelry.slice(0, 8)
+        return newProductJewelry.map((product) => {
+            return <Product key={product.id} products={product} />
+        })
+    }
+
     useEffect(() => {
-        dispatch(fetchAllProduct({ _page: 1, _limit: 20 }))
+        // { _page: 1, _limit: 8, category: 'technological' }
+        dispatch(fetchAllProduct())
     }, [])
-   
+
 
     return (
         <>
@@ -55,10 +90,10 @@ const HomePage = () => {
                             <img src={banner6} />
                         </div>
                         <div className='carousel__main'>
-                            <img src={banner5} />
+                            <img src={banner7} />
                         </div>
                         <div className='carousel__main'>
-                            <img src={banner5} />
+                            <img src={banner8} />
                         </div>
 
                     </Carousel>
@@ -83,7 +118,7 @@ const HomePage = () => {
             <Row>
                 <Col span={24} className='features'>
                     <div className='features__content'>
-                        <p className='features__content--header'>Featured Product</p>
+                        <p className='features__content--header'>CLOTHES</p>
                         <p className='features__content--des'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                     </div>
                     <Row>
@@ -91,7 +126,8 @@ const HomePage = () => {
                             <Row gutter={[16, 16]}>
                                 {isLoading ? <Product loading={isLoading} /> :
                                     (
-                                        renderListProduct(allProduct)
+                                        renderListProductClothes(allProduct)
+                                        
                                     )
                                 }
                             </Row>
@@ -99,7 +135,38 @@ const HomePage = () => {
                     </Row>
                 </Col>
             </Row>
-
+            <Row>
+                <Col span={20} offset={2} className='sales'>
+                    <Carousel autoplay draggable className='carousel'>
+                        <div>
+                            <img className='sales__img2' src={bnSale3} alt='bannerSale' />
+                        </div>
+                    </Carousel>
+                </Col>
+            </Row>
+            
+            <Row>
+                <Col span={24} className='features'>
+                    <div className='features__content'>
+                        <p className='features__content--header'>JEWELRY</p>
+                        <p className='features__content--des'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    </div>
+                </Col>
+                <Row>
+                    <Col span={20} offset={2}>
+                        <Row gutter={[16, 16]}>
+                            {isLoading ? <Product loading={isLoading} /> :
+                                (
+                                    renderListProductJewelry(allProduct)
+                                    
+                                )
+                            }
+                        </Row>
+                    </Col>
+                </Row>
+            </Row>
+            <br/>
+            <br/>
             <Row>
                 <Col span={20} offset={2} className='sales'>
                     <Carousel autoplay draggable className='carousel'>
@@ -115,11 +182,25 @@ const HomePage = () => {
             <Row>
                 <Col span={24} className='features'>
                     <div className='features__content'>
-                        <p className='features__content--header'>Featured Product</p>
+                        <p className='features__content--header'>LAPTOP</p>
                         <p className='features__content--des'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                     </div>
                 </Col>
+                <Row>
+                    <Col span={20} offset={2}>
+                        <Row gutter={[16, 16]}>
+                            {isLoading ? <Product loading={isLoading} /> :
+                                (
+                                    renderListProductTech(allProduct)
+                                )
+                            }
+                        </Row>
+                    </Col>
+                </Row>
             </Row>
+            <br/>
+            <br/>
+            <br/>
         </>
     )
 }

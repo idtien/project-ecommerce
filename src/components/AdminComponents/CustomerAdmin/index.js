@@ -14,6 +14,8 @@ const CustomerAdmin = () => {
     const [infoUserEdit, setInfoUserEdit] = useState({})
     const [idUser, setIdUser] = useState()
     const [confirmDeleteUser, setConfirmDeleteUser] = useState(false)
+    const [search, setSearch] = useState("")
+
 
     const { allUser, user } = useSelector(state => state.users)
 
@@ -91,7 +93,6 @@ const CustomerAdmin = () => {
         })
     }
 
-    console.log(user, 'id user');
     const handleConfirmEdit = (id) => {
         if (id === infoUserEdit.id) {
             toast.info('You cannot change Role of yourself!', {
@@ -118,6 +119,14 @@ const CustomerAdmin = () => {
             key: 'name',
             sorter: (record1, record2) => {
                 return record1.name < record2.name
+            },
+            filteredValue: [search],
+            onFilter: (value, record) => {
+                return String(record.name).toLowerCase().includes(value.toLowerCase()) || 
+                String(record.username).toLowerCase().includes(value.toLowerCase()) ||
+                String(record.email).toLowerCase().includes(value.toLowerCase()) ||
+                String(record.phone).toLowerCase().includes(value.toLowerCase()) ||
+                String(record.role).toLowerCase().includes(value.toLowerCase())
             }
 
         },
@@ -210,6 +219,18 @@ const CustomerAdmin = () => {
                 <Col span={24}>
                     <div className='dashboard__parameters'>
                         <Typography.Title level={4}>Customer</Typography.Title>
+                        <Input.Search
+                            placeholder='Search...'
+                            size='large'
+                            onSearch={(value) => {
+                                setSearch(value)
+                            }}
+                            onChange={(e) => {
+                                setSearch(e.target.value)
+                            }}
+                            allowClear
+
+                        />
                         <Table columns={columns} dataSource={dataUser} size='large' scroll={{ x: 500, y: 2000 }} />
                     </div>
                 </Col>
