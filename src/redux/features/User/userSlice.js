@@ -65,6 +65,16 @@ export const userSlice = createSlice({
         builder.addCase(fetchLogin.rejected, (state, action) => {
             state.error = {};
             state.isLoading = false;
+            toast.error('Please check email or password!!!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
         });
         builder.addCase(fetchLogin.fulfilled, (state, action) => {
             const { user, accessToken } = action.payload;
@@ -116,8 +126,8 @@ export const actReLogin = (accessToken) => async (dispatch) => {
 export const actRegister = (dataRegister) => async (dispatch) => {
     console.log(dataRegister, 'log ben slice user');
     try {
-        dispatch(actUpdateRegister(true))
         await fetchRegisterUser(dataRegister)
+        dispatch(actUpdateRegister(true))
         toast.success('🦄 Success Register !', {
             position: "top-center",
             autoClose: 5000,
@@ -129,6 +139,7 @@ export const actRegister = (dataRegister) => async (dispatch) => {
             theme: "colored",
         });
     } catch (error) {
+        dispatch(actUpdateRegister(false))
         toast.error('🦄 ERROR Register !', {
             position: "top-center",
             autoClose: 5000,
@@ -141,7 +152,7 @@ export const actRegister = (dataRegister) => async (dispatch) => {
         });
         console.log(error);
     } finally {
-        dispatch(actUpdateRegister(false))
+        // dispatch(actUpdateRegister(true))
     }
 }
 

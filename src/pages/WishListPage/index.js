@@ -16,12 +16,33 @@ const md = { span: 20, offset: 2 }
 const lg = { span: 20, offset: 2 }
 const WishListPage = () => {
     useGoToTop()
-
+    
     const dispatch = useDispatch()
     const [wishList, setWishList] = useState([])
-
+    
     const { listWishList } = useSelector(state => state.wishList)
 
+    useEffect(() => {
+        document.title = `SHOP MALL - Wish List`;
+      }, []);
+
+    useEffect(() => {
+        setWishList(listWishList?.map((wishListMap, index) => {
+            return (
+                {
+                    key: index,
+                    id: wishListMap?.id,
+                    image: wishListMap?.images[0],
+                    nameProduct: wishListMap?.name,
+                    price: wishListMap?.price,
+                    priceSale: wishListMap?.priceSale,
+                    category: wishListMap?.category,
+                    quantity: wishListMap?.quantity
+                }
+            )
+        }))
+    }, [listWishList])
+    
     const handleDeleteWishList = (product) => {
         dispatch(actDeleteWishList(product))
     }
@@ -107,23 +128,7 @@ const WishListPage = () => {
     ]
 
 
-    useEffect(() => {
-        setWishList(listWishList?.map((wishListMap, index) => {
-            return (
-                {
-                    key: index,
-                    id: wishListMap?.id,
-                    image: wishListMap?.images[0],
-                    nameProduct: wishListMap?.name,
-                    price: wishListMap?.price,
-                    priceSale: wishListMap?.priceSale,
-                    category: wishListMap?.category,
-                    quantity: wishListMap?.quantity
-                }
-            )
-        }))
-    }, [listWishList])
-
+    
     return (
         <>
             <ToastContainer />

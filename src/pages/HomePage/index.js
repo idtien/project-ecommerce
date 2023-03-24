@@ -31,7 +31,6 @@ const HomePage = () => {
     useGoToTop()
     const dispatch = useDispatch()
     const { allProduct, isLoading } = useSelector(state => state.products)
-    const { isLogged, user } = useSelector(state => state.users)
 
     const renderListProductTech = (listProduct) => {
         const productTech = []
@@ -76,6 +75,9 @@ const HomePage = () => {
         dispatch(fetchAllProduct())
     }, [])
 
+    useEffect(() => {
+        document.title = 'SHOP MALL - Feel-good shopping';
+      }, []);
 
     return (
         <>
@@ -84,16 +86,16 @@ const HomePage = () => {
                 <Col xs={xs} sm={sm} md={md} lg={lg} className='carousel'>
                     <Carousel autoplay draggable className='carousel'>
                         <div className='carousel__main'>
-                            <img src={banner5} />
+                            <img src={banner5} alt='banner' />
                         </div>
                         <div className='carousel__main'>
-                            <img src={banner6} />
+                            <img src={banner6} alt='banner' />
                         </div>
                         <div className='carousel__main'>
-                            <img src={banner7} />
+                            <img src={banner7} alt='banner' />
                         </div>
                         <div className='carousel__main'>
-                            <img src={banner8} />
+                            <img src={banner8} alt='banner' />
                         </div>
 
                     </Carousel>
@@ -103,12 +105,12 @@ const HomePage = () => {
                     <Row gutter={[0, 16]}>
                         <Col span={24}>
                             <div className='carousel__extra'>
-                                <img src={banner_extra1} />
+                                <img src={banner_extra1}  alt='banner_extra'/>
                             </div>
                         </Col>
                         <Col span={24}>
                             <div className='carousel__extra'>
-                                <img src={banner_extra2} />
+                                <img src={banner_extra2}  alt='banner_extra'/>
                             </div>
                         </Col>
                     </Row>

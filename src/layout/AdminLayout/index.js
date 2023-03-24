@@ -107,7 +107,7 @@ const AdminLayout = () => {
                                         size={50}
                                     // gap={gap}
                                     >
-                                        Hello Tien
+                                        {user?.fullname}
                                     </Avatar>
                                 </span>
                             </Popover>

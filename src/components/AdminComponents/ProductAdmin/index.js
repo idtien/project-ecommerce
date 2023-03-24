@@ -3,6 +3,7 @@ import { DeleteOutlined, EditOutlined, ExclamationCircleTwoTone, PlusOutlined } 
 import { Button, Col, Form, Input, Modal, Row, Select, Space, Table, Tag, Tooltip, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import useGoToTop from '../../../hooks/useGoToTop';
 import { actDeleteProductByID, actUpdateProductEdit, fetchAllProduct } from '../../../redux/features/Product/productSlice';
 import AddNewProduct from '../AddNewProduct';
@@ -12,7 +13,7 @@ import './ProductAdmin.scss'
 const ProductAdmin = () => {
     useGoToTop()
     const dispatch = useDispatch()
-    const { allProduct, product } = useSelector(state => state.products)
+    const { allProduct } = useSelector(state => state.products)
     const [idProduct, setIdProduct] = useState()
     const [dataProduct, setDataProduct] = useState([])
     const [confirmDeleteProduct, setConfirmDeleteProduct] = useState(false)
@@ -22,12 +23,6 @@ const ProductAdmin = () => {
     const [showFormAddNew, setShowFormAddNew] = useState(false)
     const [search, setSearch] = useState("")
     
-    
-
-
-    const { currentPage, pageSize } = useSelector(state => state.products)
-
-
     useEffect(() => {
         setDataProduct(allProduct?.map((productMap, index) => {
             return (
@@ -52,7 +47,6 @@ const ProductAdmin = () => {
         dispatch(fetchAllProduct())
     }, [])
 
-
     const handleCheckFillInfo = () => {
         setConfirmEdit(true)
     }
@@ -62,7 +56,6 @@ const ProductAdmin = () => {
         setInfoProductEdit(allProduct[existProduct])
         setEditProduct(true)
         setIdProduct(id)
-
     }
 
     const handleConfirmEdit = () => {
@@ -99,7 +92,7 @@ const ProductAdmin = () => {
             dataIndex: 'images',
             key: 'images',
             render: (images) => {
-                return <img src={images[0]} style={{ width: '100%' }} />
+                return <img src={images[0]} style={{ width: '100%' }} alt='img' />
             },
             filteredValue: [search],
             onFilter: (value, record) => {
@@ -114,6 +107,9 @@ const ProductAdmin = () => {
             title: 'Name',
             dataIndex: 'name',
             key: 'name',
+            render: (_, record) => {
+                return <Link to={`/products/${record?.id}`}>{record?.name}</Link>
+            }
         },
         {
             width: 250,
@@ -133,8 +129,9 @@ const ProductAdmin = () => {
             title: 'Price',
             dataIndex: 'price',
             key: 'price',
+            // defaultSortOrder: 'descend',
             sorter: (price1, price2) => {
-                return price1.price < price2.price
+                return price1.price - price2.price
             }
         },
         {
@@ -142,6 +139,10 @@ const ProductAdmin = () => {
             title: 'Price Sale',
             dataIndex: 'priceSale',
             key: 'priceSale',
+            // defaultSortOrder: 'descend',
+            sorter: (price1, price2) => {
+                return price1.priceSale - price2.priceSale
+            }
         },
         {
             width: 100,
@@ -149,9 +150,9 @@ const ProductAdmin = () => {
             dataIndex: 'brand',
             key: 'brand',
             render: (brand) => {
-                // color={'#91caff'}
+                
                 return (
-                    <Tag key={brand}>
+                    <Tag key={brand} color={'#91caff'}>
                         {brand.toUpperCase()}
                     </Tag>
                 );
@@ -177,14 +178,16 @@ const ProductAdmin = () => {
                     </Tag>
                 );
             },
-            filters: [
-                { text: 'Technological', value: 'technological' },
-                { text: 'Clothes', value: 'clothes' },
-                { text: 'Jewelry', value: 'jewelry' },
-            ],
-            onFilter: (value, record) => {
-                return record.category === value
-            }
+            // filters: [
+            //     { text: 'Technological', value: 'technological' },
+            //     { text: 'Clothes', value: 'clothes' },
+            //     { text: 'Jewelry', value: 'jewelry' },
+            // ],
+            // onFilter: (value, record) => {
+            //     console.log(value, 'value');
+            //     console.log(record, 'record');
+            //     return record.category === value
+            // }
         },
         {
             width: 150,
@@ -212,26 +215,27 @@ const ProductAdmin = () => {
                     </>
                 )
             },
-            filters: [
-                { text: 'New', value: 'new' },
-                { text: 'Sale', value: 'sale' },
-                { text: 'Hot', value: 'hot' },
-            ],
-            onFilter: (value, record) =>
-                record['tag']
-                    ? record['tag']
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase())
-                    : false,
+            // filters: [
+            //     { text: 'New', value: 'new' },
+            //     { text: 'Sale', value: 'sale' },
+            //     { text: 'Hot', value: 'hot' },
+            // ],
+            // onFilter: (value, record) =>
+            //     record['tag']
+            //         ? record['tag']
+            //             .toString()
+            //             .toLowerCase()
+            //             .includes(value.toLowerCase())
+            //         : false,
         },
         {
             width: 80,
             title: 'Rating',
             dataIndex: 'rating',
             key: 'rating',
+            // defaultSortOrder: 'descend',
             sorter: (rating1, rating2) => {
-                return rating1.rating > rating2.rating
+                return rating1.rating - rating2.rating
             }
         },
         {
@@ -267,7 +271,7 @@ const ProductAdmin = () => {
                     <div className='dashboard__parameters'>
                         <Typography.Title level={4}>Products</Typography.Title>
                         <Input.Search
-                            placeholder='Search...'
+                            placeholder='Search...(Name, Brand, Category, Tag)'
                             size='large'
                             onSearch={(value) => {
                                 setSearch(value)

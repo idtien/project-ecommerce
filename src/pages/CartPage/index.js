@@ -20,11 +20,12 @@ const lg = { span: 17, offset: 1 }
 const CartPage = () => {
     useGoToTop()
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [cart, setCart] = useState([])
     const [confirmBuy, setConfirmBuy] = useState(false)
     const [acceptPayment, setAcceptPayment] = useState(false)
     const { user, isLogged } = useSelector(state => state.users)
-    const { listCart, totalCart } = useSelector(state => state.carts)
+    const { listCart } = useSelector(state => state.carts)
     const idUser = user?.id
     const handleChangeFormOrder = (e) => {
         const { name, value } = e.target
@@ -33,6 +34,10 @@ const CartPage = () => {
             [name]: value
         })
     }
+
+    useEffect(() => {
+        document.title = `SHOP MALL - Cart`;
+      }, []);
 
     useEffect(() => {
         setCart(listCart?.map((cartMap, index) => {
@@ -122,7 +127,8 @@ const CartPage = () => {
         }, 0),
         paymentMethod: 'whenReceive', 
         status: 'waiting',
-        orderAt: `${time.getDate()} - ${time.getMonth()+ 1} - ${time.getFullYear()}`
+        // orderAt: `${time.getDate()} - ${time.getMonth()+ 1} - ${time.getFullYear()}`
+        orderAt: time
     })
 
     const handleCheckFillInfo = (formOrders) => {
@@ -136,6 +142,9 @@ const CartPage = () => {
         dispatch(actClearCart())
     }
 
+    const handleContinuedShop = () => {
+        navigate(`/shop`)
+    }
     const columns = [
         {
             width: 100,
@@ -152,7 +161,6 @@ const CartPage = () => {
             dataIndex: 'nameProduct',
             key: 'name',
             render: (_, record) => {
-                console.log(record, 'record');
                 return <Link to={`/products/${record?.id}`}>{record.nameProduct}</Link>
             }
         },
@@ -277,7 +285,7 @@ const CartPage = () => {
                         <Divider />
                         <div className='cart__total--submit' >
                             <Button onClick={handlePayment} type='primary'>Order</Button>
-                            <Button type='dashed'>Continued Shopping</Button>
+                            <Button type='dashed' onClick={handleContinuedShop}>Continued Shopping</Button>
                         </div>
                     </div>
                 </Col>
@@ -334,7 +342,8 @@ const CartPage = () => {
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please enter your phone number!',
+                                        pattern: new RegExp(/(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/),
+                                        message: 'Format is wrong!',
                                     },
                                 ]}
                             >
