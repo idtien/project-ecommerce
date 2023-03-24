@@ -16,6 +16,7 @@ const RegisterPage = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const { isLogged, isRegister } = useSelector(state => state.users)
+    console.log(isRegister, 'isss');
 
     const [formRegister, setFormRegister] = useState({
         username: '',
@@ -41,6 +42,10 @@ const RegisterPage = () => {
             navigate('/')
         }
     })
+
+    if (isRegister) {
+        navigate('/login')
+    }
 
     const handleRegister = (e) => {
         dispatch(actRegister(formRegister))
@@ -86,6 +91,14 @@ const RegisterPage = () => {
                                                 required: true,
                                                 message: 'Please input your username!',
                                             },
+                                            {
+                                                min: 3,
+                                                message: 'Username have to > 3',
+                                            },
+                                            {
+                                                max: 15,
+                                                message: 'Username have to < 15',
+                                            },
                                         ]}
                                         hasFeedback
                                     >
@@ -103,7 +116,11 @@ const RegisterPage = () => {
                                             {
                                                 required: true,
                                                 message: 'Please input your password!',
-                                            },
+                                            }, ,
+                                            {
+                                                min: 5,
+                                                message: 'Password have to > 3',
+                                            }
                                         ]}
                                         hasFeedback
                                     >
@@ -128,7 +145,7 @@ const RegisterPage = () => {
                                                     if (!value || getFieldValue('password') === value) {
                                                         return Promise.resolve();
                                                     }
-                                                    return Promise.reject(new Error('The two passwords that you entered do not match!'));
+                                                    return Promise.reject(new Error('Passwords do not match!'));
                                                 },
                                             }),
                                         ]}
@@ -144,7 +161,8 @@ const RegisterPage = () => {
                                         rules={[
                                             {
                                                 required: true,
-                                                message: 'Please enter your phone number!',
+                                                pattern: new RegExp(/(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/),
+                                                message: 'Format is wrong!',
                                             },
                                         ]}
                                         hasFeedback
@@ -162,7 +180,8 @@ const RegisterPage = () => {
                                         rules={[
                                             {
                                                 required: true,
-                                                message: 'Please enter your email!',
+                                                pattern: new RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i),
+                                                message: 'Format is wrong!',
                                             },
                                         ]}
                                         hasFeedback
@@ -182,6 +201,10 @@ const RegisterPage = () => {
                                                 required: true,
                                                 message: 'Please enter your address!',
                                             },
+                                            {
+                                                min: 3,
+                                                message: 'Address have to > 3',
+                                            },
                                         ]}
                                         hasFeedback
                                     >
@@ -199,6 +222,14 @@ const RegisterPage = () => {
                                             {
                                                 required: true,
                                                 message: 'Please enter full name!',
+                                            },
+                                            {
+                                                min: 3,
+                                                message: 'Full Name have to > 3',
+                                            },
+                                            {
+                                                max: 20,
+                                                message: 'Username have to < 20',
                                             },
                                         ]}
                                         hasFeedback

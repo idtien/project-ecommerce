@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { ToastContainer, toast } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
 
-import { actReLogin, fetchLogin } from '../../redux/features/User/userSlice'
+import { actReLogin, actUpdateRegister, fetchLogin } from '../../redux/features/User/userSlice'
 import { ROUTE_URL } from '../../constants/routingUrl'
 import useGoToTop from '../../hooks/useGoToTop'
 import logoLogin2 from '../../assets/images/logo_part2.png'
@@ -20,7 +20,7 @@ const LoginPage = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const { isLoading, isLogged, accessToken } = useSelector(state => state.users)
+    const { isLoading, isLogged, accessToken, isRegister } = useSelector(state => state.users)
 
     const [inputDataLogin, setInputDataLogin] = useState({
         email: '',
@@ -28,18 +28,6 @@ const LoginPage = () => {
     })
     
     const handleSubmit = (e) => {
-        if (!isLogged) {
-            toast.error('Please check email or password!!!', {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
-        }
         dispatch(fetchLogin(inputDataLogin))
     }
 
@@ -58,6 +46,21 @@ const LoginPage = () => {
         })
     }
     
+    useEffect(() => {
+        if (isRegister) {
+            toast.success('🦄 Success Register !', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+        }
+        dispatch(actUpdateRegister(false))
+    }, [isRegister])
     if (isLogged) return null
 
     return (
@@ -99,16 +102,17 @@ const LoginPage = () => {
                                         remember: true,
                                     }}
                                     autoComplete="off"
+                                    onFinish={handleSubmit}
                                 >
 
                                     <h2>LOGIN</h2>
                                     <Form.Item
-                                        label="Username"
+                                        label="Email"
                                         name="username"
                                         rules={[
                                             {
                                                 required: true,
-                                                message: 'Please input your username!',
+                                                message: 'Please input your Email!',
                                             },
                                         ]}
                                     >
@@ -135,7 +139,7 @@ const LoginPage = () => {
                                         }}
                                     >
                                         <div className='form__login--btns'>
-                                            <Button type="primary" htmlType="submit" onClick={handleSubmit}>
+                                            <Button type="primary" htmlType="submit">
                                                 Login
                                             </Button>
 

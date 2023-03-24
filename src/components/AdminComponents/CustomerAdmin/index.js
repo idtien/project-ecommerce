@@ -68,7 +68,7 @@ const CustomerAdmin = () => {
                 draggable: true,
                 progress: undefined,
                 theme: "colored",
-                });
+            });
         } else {
             dispatch(actDeleteUserByID(idUser))
             setConfirmDeleteUser(false)
@@ -113,7 +113,7 @@ const CustomerAdmin = () => {
     }
     const columns = [
         {
-            width: 250,
+            width: 220,
             title: 'Name',
             dataIndex: 'name',
             key: 'name',
@@ -122,11 +122,19 @@ const CustomerAdmin = () => {
             },
             filteredValue: [search],
             onFilter: (value, record) => {
-                return String(record.name).toLowerCase().includes(value.toLowerCase()) || 
-                String(record.username).toLowerCase().includes(value.toLowerCase()) ||
-                String(record.email).toLowerCase().includes(value.toLowerCase()) ||
-                String(record.phone).toLowerCase().includes(value.toLowerCase()) ||
-                String(record.role).toLowerCase().includes(value.toLowerCase())
+                let convertValue = ''
+                if (value === 'admin') {
+                    convertValue = 'true'
+                } else if (value === 'user') {
+                    convertValue = 'false'
+                } else {
+                    convertValue = value
+                }
+                return String(record.name).toLowerCase().includes(value.toLowerCase()) ||
+                    String(record.username).toLowerCase().includes(value.toLowerCase()) ||
+                    String(record.email).toLowerCase().includes(value.toLowerCase()) ||
+                    String(record.phone).toLowerCase().includes(value.toLowerCase()) ||
+                    String(record.isAdmin).toLowerCase().includes(convertValue.toLowerCase())
             }
 
         },
@@ -140,7 +148,7 @@ const CustomerAdmin = () => {
             }
         },
         {
-            width: 150,
+            width: 170,
             title: 'Email',
             dataIndex: 'email',
             key: 'email',
@@ -178,13 +186,6 @@ const CustomerAdmin = () => {
                     </Tag>
                 );
             },
-            filters: [
-                { text: 'Admin', value: true },
-                { text: 'User', value: false },
-            ],
-            onFilter: (value, record) => {
-                return record.isAdmin === value
-            }
         },
         {
             title: 'Action',
@@ -213,6 +214,7 @@ const CustomerAdmin = () => {
         },
     ];
 
+
     return (
         <>
             <Row>
@@ -220,7 +222,7 @@ const CustomerAdmin = () => {
                     <div className='dashboard__parameters'>
                         <Typography.Title level={4}>Customer</Typography.Title>
                         <Input.Search
-                            placeholder='Search...'
+                            placeholder='Search... (Name, Username, Email, Phone, Role)'
                             size='large'
                             onSearch={(value) => {
                                 setSearch(value)

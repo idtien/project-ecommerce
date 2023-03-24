@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { CarOutlined, HeartOutlined } from '@ant-design/icons'
-import { Avatar, Button, Card, Carousel, Col, Divider, Form, Image, InputNumber, Rate, Row, Space, Tag, Typography } from 'antd'
-import Meta from 'antd/es/card/Meta'
+import { Button, Card, Carousel, Col, Divider, Form, Image, InputNumber, Rate, Row, Space, Tag, Typography } from 'antd'
 import TextArea from 'antd/es/input/TextArea'
 
 import useGoToTop from '../../hooks/useGoToTop'
@@ -14,6 +13,8 @@ import { actGetProductById } from '../../redux/features/Product/productSlice'
 import { actMoreListCart } from '../../redux/features/Cart/cartSlice'
 import { toast, ToastContainer } from 'react-toastify'
 import { actAddWishList } from '../../redux/features/WishList/wishListSlice'
+import { actAddNewComment, fetchAllComment } from '../../redux/features/Comment/commentSlice'
+import CommentsCpn from '../Comments/index,'
 
 
 const ProductDetails = () => {
@@ -21,13 +22,29 @@ const ProductDetails = () => {
   const ref = useRef()
   const params = useParams()
   const dispatch = useDispatch()
-  
+
   const [cart, setCart] = useState({})
   const [quantity, setQuantity] = useState(1)
 
   const { product } = useSelector(state => state.products)
-  const { listCart } = useSelector(state => state.carts)
+  const { allComment } = useSelector(state => state.comments)
   const { isLogged, user } = useSelector(state => state.users)
+
+  console.log(isLogged, 'isLogged');
+  const [dataRating, setDataRating] = useState({
+    idUser: user?.id,
+    idProduct: product?.id,
+    nameCmt: user?.fullname,
+    rating: 0,
+    contentCmt: '',
+    avatar: "https://static.vecteezy.com/system/resources/previews/009/734/564/original/default-avatar-profile-icon-of-social-media-user-vector.jpg"
+  })
+
+  const ratingOfProduct = []
+
+  useEffect(() => {
+    dispatch(fetchAllComment())
+  }, [])
 
   useEffect(() => {
     setCart({
@@ -35,6 +52,39 @@ const ProductDetails = () => {
       quantity: quantity
     })
   }, [product, quantity])
+
+  useEffect(() => {
+    setDataRating({
+      idUser: user?.id,
+      idProduct: product?.id,
+      nameCmt: user?.fullname,
+      rating: null,
+      contentCmt: '',
+      avatar: "https://static.vecteezy.com/system/resources/previews/009/734/564/original/default-avatar-profile-icon-of-social-media-user-vector.jpg"
+    })
+  }, [user, product])
+
+
+  useEffect(() => {
+    dispatch(actGetProductById(params.id))
+  }, [params.id])
+
+  useEffect(() => {
+    document.title = `${product?.name} - ${product?.brand}`;
+  }, [product]);
+
+  const handleRenderRating = (allComment) => {
+    for (let i = 0; i < allComment.length; i++) {
+      if (allComment[i]?.idProduct === Number(params.id)) {
+        ratingOfProduct.push(allComment[i])
+      }
+    }
+    return ratingOfProduct?.map(rating => {
+      return <CommentsCpn key={rating.id} comment={rating} />
+    })
+  }
+
+
 
   const handleAddToCart = () => {
     dispatch(actMoreListCart(cart))
@@ -58,10 +108,50 @@ const ProductDetails = () => {
     }
   }
 
-  useEffect(() => {
-    dispatch(actGetProductById(params.id))
-  }, [params.id])
 
+  const handleRating = (e) => {
+    const { name, value } = e.target
+    setDataRating({
+      ...dataRating,
+      [name]: value
+    })
+
+  }
+
+  const handleSendRating = (data) => {
+    if (data?.rating === 0) {
+      toast.warn('Please choose the number of stars!', {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } else if (!isLogged) {
+      toast.error('Please Login to Rating!', {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+    else {
+      dispatch(actAddNewComment(data))
+      setDataRating({
+        ...dataRating,
+        contentCmt: '',
+        rating: null
+      })
+    }
+
+  }
 
   const contentStyle = {
     margin: 0,
@@ -210,7 +300,7 @@ const ProductDetails = () => {
                 <span className='productDetails__details--infoType'>
                   {product?.tag?.map((tag, index) => {
                     let color2 = ''
-                    if(tag === 'hot') {
+                    if (tag === 'hot') {
                       color2 = '#f5222d'
                     } else if (tag === 'new') {
                       color2 = '#4096ff'
@@ -218,8 +308,8 @@ const ProductDetails = () => {
                       color2 = '#d4b106'
                     }
                     return <Tag color={color2} key={index}>
-                    {tag}
-                  </Tag>
+                      {tag}
+                    </Tag>
                   })}
                 </span>
               </div>
@@ -227,14 +317,15 @@ const ProductDetails = () => {
                 <strong>
                   Quantity:
                 </strong>
-                <span className='productDetails__details--infoQuantity' style={{margin: '0px'}}>
-                  <InputNumber size="large" style={{ width: '150px'}} min={1} max={100000} defaultValue={quantity}
+                <span className='productDetails__details--infoQuantity' style={{ margin: '0px' }}>
+                  <InputNumber size="large" style={{ width: '150px' }} min={1} max={100000} defaultValue={quantity}
                     onChange={(value) => {
                       setQuantity(value)
                     }} />
                 </span>
               </div>
             </div>
+
             <div className='productDetails__details--btn'>
               <Space>
                 <Button
@@ -247,9 +338,6 @@ const ProductDetails = () => {
                 >
                   WISH LIST
                 </Button>
-                {/* <Button type="primary" shape="round" style={{ backgroundColor: '#ff4d4f' }} icon={<ShoppingCartOutlined />} size='large'>
-                  BUY IT NOW
-                </Button> */}
                 <Button
                   type='primary'
                   shape="round"
@@ -294,6 +382,7 @@ const ProductDetails = () => {
                 remember: true,
               }}
               autoComplete="off"
+              onFinish={() => handleSendRating(dataRating)}
             >
               <Form.Item
                 label="Rate"
@@ -301,11 +390,18 @@ const ProductDetails = () => {
                 rules={[
                   {
                     required: true,
-                    message: 'Please!',
+                    message: 'Please select start!',
                   },
                 ]}
               >
-                <Rate />
+                <Rate
+                  name='rating'
+                  allowClear={false}
+                  value={dataRating.rating}
+                  onChange={(value) => setDataRating({
+                    ...dataRating,
+                    rating: value
+                  })} />
               </Form.Item>
               <Form.Item
                 label="Comment"
@@ -313,7 +409,7 @@ const ProductDetails = () => {
                 rules={[
                   {
                     required: true,
-                    message: 'Plese enter something',
+                    message: 'Please enter something',
                   },
                 ]}
               >
@@ -321,7 +417,9 @@ const ProductDetails = () => {
                   showCount
                   maxLength={255}
                   style={{ height: 100, resize: 'none' }}
-                  // onChange={onChange}
+                  onChange={handleRating}
+                  name='contentCmt'
+                  value={dataRating.contentCmt}
                   placeholder="Type something!"
                 />
               </Form.Item>
@@ -332,9 +430,13 @@ const ProductDetails = () => {
                   span: 16,
                 }}
               >
-                <Button type="primary" htmlType="submit">
+                <Button type="primary" htmlType="submit"
+                >
                   Submit
                 </Button>
+                {/* <Button onClick={() => setDataRating({ ...dataRating, contentCmt: '' })}>
+                  reset
+                </Button> */}
               </Form.Item>
             </Form>
           </div>
@@ -343,24 +445,7 @@ const ProductDetails = () => {
         <Col span={20} offset={2}>
           <div className='productDetails__comments'>
             <Typography.Title level={3}>Reviews</Typography.Title>
-            <div className='productDetails__comments--id' >
-              <Card
-                style={{
-                  width: '100%',
-                  marginTop: '20px'
-                }}
-              >
-
-                <Meta
-                  avatar={<Avatar src="https://joesch.moe/api/v1/random" />}
-                  title="Pham Hoang Thanh Tien"
-                  description="This is the best product I have ever bought"
-                />
-                <div style={{ marginLeft: '45px' }}>
-                  <Rate disabled defaultValue={5} />
-                </div>
-              </Card>
-            </div>
+            {product && handleRenderRating(allComment)}
           </div>
         </Col>
       </Row>

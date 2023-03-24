@@ -56,6 +56,7 @@ export const productSlice = createSlice({
 })
 
 export const actSetChangePage = (page) => async (dispatch) => {
+    console.log(page, 'page');
     try {
         dispatch(actChangePage(page))
         dispatch(fetchAllProduct({ _page: page, _limit: 20 }))

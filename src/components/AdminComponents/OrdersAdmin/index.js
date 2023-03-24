@@ -95,7 +95,11 @@ const OrdersAdmin = () => {
         {
             title: 'Order At',
             dataIndex: 'orderAt',
-            key: 'orderAt'
+            key: 'orderAt',
+            render: (order) => {
+                const date = new Date(order)
+                return <p>{`${date.getDate()} - ${date.getMonth() + 1 } - ${date.getFullYear()}`}</p>
+            }
         },
         {
             title: 'Phone',
@@ -137,16 +141,16 @@ const OrdersAdmin = () => {
                     </Tag>
                 )
             },
-            filters: [
-                { text: 'Waiting', value: 'waiting' },
-                { text: 'Preparing', value: 'preparing' },
-                { text: 'Delivering', value: 'delivering' },
-                { text: 'Success', value: 'success' },
-                { text: 'Failed', value: 'failed' },
-            ],
-            onFilter: (value, record) => {
-                return record.status === value
-            }
+            // filters: [
+            //     { text: 'Waiting', value: 'waiting' },
+            //     { text: 'Preparing', value: 'preparing' },
+            //     { text: 'Delivering', value: 'delivering' },
+            //     { text: 'Success', value: 'success' },
+            //     { text: 'Failed', value: 'failed' },
+            // ],
+            // onFilter: (value, record) => {
+            //     return record.status === value
+            // }
         },
         {
             title: 'Action',
@@ -187,7 +191,7 @@ const OrdersAdmin = () => {
                     <div className='dashboard__parameters'>
                         <Typography.Title level={4}>Orders</Typography.Title>
                         <Input.Search
-                            placeholder='Search...'
+                            placeholder='Search... (Name, Phone, Status)'
                             size='large'
                             onSearch={(value) => {
                                 setSearch(value)

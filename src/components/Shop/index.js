@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Row, message, Collapse, Slider, Button, Pagination, Space, Typography, Menu } from 'antd'
+import { Col, Row, Slider, Button, Pagination, Space, Typography, Menu } from 'antd'
 import './Shop.scss'
 import Product from '../Product';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,48 +7,35 @@ import { ToastContainer } from 'react-toastify';
 import useGoToTop from '../../hooks/useGoToTop'
 import { fetchAllBrandProducts } from "../../apis/productAPI"
 import { actSetChangePage, fetchAllProduct } from '../../redux/features/Product/productSlice';
-import { useSearchParams } from 'react-router-dom';
-import { AppstoreOutlined, CrownOutlined, LaptopOutlined, MailOutlined, SettingOutlined, TagsOutlined } from '@ant-design/icons';
+import { CrownOutlined, LaptopOutlined, TagsOutlined } from '@ant-design/icons';
 import SubMenu from 'antd/es/menu/SubMenu';
-import Icon from '@ant-design/icons/lib/components/Icon';
-
-const { Panel } = Collapse;
 
 const Shop = () => {
     useGoToTop()
     const dispatch = useDispatch()
     const { allProduct, isLoading, currentPage, pageSize, totalProduct } = useSelector(state => state.products)
-
     const [brandProduct, setBrandProduct] = useState({})
-    const [filterResult, setFilterResult] = useState([])
-    const [totalRecord, setTotalRecord] = useState(0)
+    const [flagCheck, setFlagCheck] = useState('')
     const [filterPrice, setFilterPrice] = useState([0, 9999999])
     const [filterValue, setFilterValue] = useState({
         brand: '',
+        category: '',
         price: [filterPrice[0], filterPrice[1]]
     })
 
-    const renderListProduct = (listProduct) => {
-        return listProduct.map((product) => {
-            return <Product key={product.id} products={product} />
-        })
-    }
+    useEffect(() => {
+        document.title = 'SHOP MALL - Shop';
+    }, []);
 
-    const handleChangeBrand = (brand) => {
-        setFilterValue({
-            ...filterValue,
-            brand: brand
-        })
-    }
 
     useEffect(() => {
         if (filterValue.brand === '') {
             dispatch(fetchAllProduct({ _page: currentPage, _limit: pageSize, price_gte: filterValue.price[0], price_lte: filterValue.price[1] }))
         } else {
-            dispatch(fetchAllProduct({ _page: 1, _limit: pageSize, brand: filterValue.brand, price_gte: filterValue.price[0], price_lte: filterValue.price[1] }))
+            dispatch(fetchAllProduct({ _page: currentPage, _limit: pageSize, category: filterValue.category, brand: filterValue.brand, price_gte: filterValue.price[0], price_lte: filterValue.price[1] }))
         }
 
-    }, [filterValue])
+    }, [filterValue, pageSize, currentPage])
 
     useEffect(() => {
         async function fetchDataBrand() {
@@ -59,6 +46,20 @@ const Shop = () => {
     }, [])
 
 
+    const renderListProduct = (listProduct) => {
+        return listProduct.map((product) => {
+            return <Product key={product.id} products={product} />
+        })
+    }
+
+    const handleChangeBrand = (dataBrand) => {
+        setFilterValue({
+            ...filterValue,
+            brand: dataBrand.brand,
+            category: dataBrand.category
+        })
+    }
+
     const handleClickSlider = () => {
         window.scrollTo(0, 0)
         setFilterValue({
@@ -66,55 +67,30 @@ const Shop = () => {
             price: filterPrice
         })
     }
+    const handleResetFilter = () => {
+        window.scrollTo(0, 0)
+        setFilterValue({
+            ...filterValue,
+            brand: '',
+            category: '',
+            price: [0, 9999999]
+        })
+        dispatch(actSetChangePage(1))
 
-    // const techNological = []
-    // const clothes = []
-    // const jewelry = []
-    
-    // brandProduct?.technological?.map((brand) => {
-    //     return techNological?.push(getItem(brand, brand))
-    // })
-    // brandProduct?.clothes?.map((brand) => {
-    //     return clothes?.push(getItem(brand, brand))
-    // })
-    // brandProduct?.jewelry?.map((brand) => {
-    //     return jewelry?.push(getItem(brand, brand))
-    // })
+    }
 
-  
-    // function getItem(label, key, icon, children, type) {
-    //     return {
-    //       key,
-    //       icon,
-    //       children,
-    //       label,
-    //       type,
-    //     };
-    //   }
-    //   const items = [
-    //     getItem('Technological', 'sub1', <MailOutlined />, techNological),
-    //     getItem('Clothes', 'sub2', <MailOutlined />, clothes),
-    //     getItem('Jewelry', 'sub3', <MailOutlined />, jewelry)
-    //   ];
-      
-    //   const [openKeys, setOpenKeys] = useState([]);
-    //   const rootSubmenuKeys = ['sub1', 'sub2', 'sub3'];
-    //   const onOpenChange = (keys) => {
-    //     const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
-    //     if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
-    //       setOpenKeys(keys);
-    //       console.log(keys, 'hihi');
-    //     } else {
-    //       setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
-    //     }
-    //   };
+    const handleChangePage = (page) => {
+        dispatch(actSetChangePage(page))
+        window.scroll(0, 0)
+    }
+
     return (
         <>
             <ToastContainer />
             <Row className='shop' >
                 <Col span={4} offset={0}>
                     <div className='menu__collapse'>
-                        
+
 
                         <Menu
                             mode="inline"
@@ -131,8 +107,8 @@ const Shop = () => {
                                     return <Menu.Item
                                         key={brand}
                                         style={{ textTransform: 'capitalize' }}
-                                        
-                                        onClick={()=>handleChangeBrand(brand)}
+
+                                        onClick={() => handleChangeBrand({ brand, category: 'technological' })}
                                     >
                                         {brand}
                                     </Menu.Item>
@@ -148,8 +124,8 @@ const Shop = () => {
                                     return <Menu.Item
                                         key={brand}
                                         style={{ textTransform: 'capitalize' }}
-                                        
-                                        onClick={()=>handleChangeBrand(brand)}
+
+                                        onClick={() => handleChangeBrand({ brand, category: 'clothes' })}
                                     >
                                         {brand}
                                     </Menu.Item>
@@ -160,12 +136,12 @@ const Shop = () => {
                                 key="sub3"
                                 title={<span><CrownOutlined />
                                     <span>Personal jewelry</span></span>}>
-                                {brandProduct?.jewelry?.map((brand) => {
+                                {brandProduct?.jewelry?.map((brand, index) => {
                                     return <Menu.Item
-                                        key={brand}
+                                        key={index}
                                         style={{ textTransform: 'capitalize' }}
-                                        
-                                        onClick={()=>handleChangeBrand(brand)}
+
+                                        onClick={() => handleChangeBrand({ brand, category: 'jewelry' })}
                                     >
                                         {brand}
                                     </Menu.Item>
@@ -179,7 +155,7 @@ const Shop = () => {
                                 Around Price: USD
                                 <Slider
                                     range
-                                    max={8000}
+                                    max={9999}
                                     min={0}
                                     step={10}
                                     defaultValue={[0, 400]}
@@ -193,7 +169,9 @@ const Shop = () => {
                                     <Button onClick={handleClickSlider} type='primary'>
                                         Filter
                                     </Button>
-                                    <Button>
+                                    <Button
+                                        onClick={handleResetFilter}
+                                    >
                                         Reset
                                     </Button>
                                 </Space>
@@ -210,8 +188,7 @@ const Shop = () => {
                                         renderListProduct(allProduct)
                                     )
                                 }
-
-                                {allProduct.length <= 0 && isLoading == false && (
+                                {allProduct.length <= 0 && isLoading === false && (
                                     <div style={{ display: 'block', textAlign: 'center' }}>
                                         <Typography.Title level={2}>No products match</Typography.Title>
                                         <img
@@ -233,10 +210,7 @@ const Shop = () => {
                                     defaultCurrent={currentPage}
                                     pageSize={pageSize}
                                     total={totalProduct}
-                                    onChange={(page) => {
-                                        dispatch(actSetChangePage(page))
-                                        window.scroll(0, 0)
-                                    }}
+                                    onChange={(page) => handleChangePage(page)}
                                 />
                             )}
                         </Col>
